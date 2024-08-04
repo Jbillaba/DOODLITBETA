@@ -1,0 +1,18 @@
+<h1>register</h1>
+
+<div class="flex flex-col py-[20%] sm:py-[10%] 2xl:py-[5%]  ">
+    <h1 class="p-[2%] text-2xl" >Sign up for an account </h1>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-[1%] p-[1%]" >
+        <input type="email" placeholder="enter email" formControlName="email" class="border rounded border-gray-300 hover:border-gray-600 ">
+        <br>
+        <input type="text" placeholder="enter username" class="border rounded border-gray-300 hover:border-gray-600" formControlName="username" >
+        <br>
+        <input type="password" placeholder="enter password" class="border rounded border-gray-300 hover:border-gray-600" formControlName="password" >
+        <br>
+        <input type="password" placeholder="confirm password" class="border rounded border-gray-300 hover:border-gray-600" formControlName="password2" >
+        <br>
+        <input *ngIf="registerForm.valid" type="submit" value="register account" class="border rounded border-gray-300 hover:border-gray-600 bg-white min-w-[10%]" [disabled]="!registerForm.valid" >
+        
+        <input *ngIf="!registerForm.valid" type="submit" value="register account" class="border rounded border-gray-300 hover:border-gray-600 bg-white min-w-[10%] opacity-50" [disabled]="!registerForm.valid" >
+    </form>
+</div>
