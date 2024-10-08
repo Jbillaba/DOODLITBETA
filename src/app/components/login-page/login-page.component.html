@@ -1,1 +1,15 @@
-<p>login-page works!</p>
+<div class="text-center py-[1%]" >
+    <h1>Login</h1>
+    <div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <input type="text" placeholder="enter username" formControlName="username" class="border rounded border-gray-300 hover:border-gray-600">
+            <br>
+            <input type="password" placeholder="enter password"
+            formControlName="password" class="border rounded border-gray-300 hover:border-gray-600" >
+            <br>
+            <input *ngIf="loginForm.valid" type="submit" value="Login" class="border rounded border-gray-300 hover:border-gray-600 bg-white min-w-[10%]" [disabled]="!loginForm.valid" >
+            
+            <input *ngIf="!loginForm.valid" type="submit" value="Login" class="border rounded border-gray-300 hover:border-gray-600 bg-white min-w-[10%] opacity-50" [disabled]="!loginForm.valid" >
+        </form>
+    </div>
+</div>

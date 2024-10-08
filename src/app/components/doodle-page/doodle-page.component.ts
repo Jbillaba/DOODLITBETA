@@ -1,9 +1,14 @@
 import { Component, AfterViewInit, HostListener } from '@angular/core';
+import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DoodlrApiService } from '../../services/doodlr-api.service';
+import { CommonModule } from '@angular/common';
+
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-doodle-page',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './doodle-page.component.html',
   styleUrl: './doodle-page.component.css'
 })
@@ -11,6 +16,9 @@ export class DoodlePageComponent implements AfterViewInit {
   private _canvas: HTMLCanvasElement;
   private context: CanvasRenderingContext2D;
   private paint: boolean;
+  doodlForm = new FormData();
+  public doodl: File;
+  private title = document.querySelector("input")
 
   private clickX: number[] = [];
   private clickY: number[] = [];
@@ -68,22 +76,11 @@ export class DoodlePageComponent implements AfterViewInit {
     this.context = context!;
 
     this.redraw();
-    this.createUserEvents();
    };
 
-   constructor() {}
-
-   private createUserEvents() {
-    let _canvas = this._canvas;
-
-    document
-      .getElementById('clear')
-      ?.addEventListener('click', this.clearEventHandler);
-
-    document
-      .getElementById('download')
-      ?.addEventListener('click', this.downloadEventHandler);
-   };
+   constructor(private doodlerApiService: DoodlrApiService,
+                private storageService: StorageService
+   ) {}
 
    private redraw() {
     let clickX = this.clickX;
@@ -110,17 +107,13 @@ export class DoodlePageComponent implements AfterViewInit {
     this.clickDrag.push(dragging);
    };
 
-   private clearCanvas() {
+   public clearCanvas() {
     this.context.clearRect(0, 0, this._canvas.width, this._canvas.height);
     this.clickX = [];
     this.clickY = [];
     this.clickDrag = [];
    };
-
-   private clearEventHandler = () => {
-    this.clearCanvas();
-   };
-
+  
    private releaseEventHandler = () => {
     this.paint = false;
     this.redraw();
@@ -143,6 +136,7 @@ export class DoodlePageComponent implements AfterViewInit {
     this.paint = true;
     this.addClick(mouseX, mouseY, false);
     this.redraw();
+    this.grabDoodl()
    };
 
    private dragEventHandler(e: MouseEvent | TouchEvent) {
@@ -158,16 +152,49 @@ export class DoodlePageComponent implements AfterViewInit {
     if (this.paint){
       this.addClick(mouseX, mouseY, true);
       this.redraw();
+      this.grabDoodl();
     }
 
     e.preventDefault();
    };
 
-   private downloadEventHandler() {
+   public grabTitle(e: Event){
+      const title = e.currentTarget as HTMLInputElement;
+      this.doodlForm.append("title", title!.value)
+   }
+
+   public nameGenerator(): string{
+    let phrase = ["Omega", "Alpha", "Sigma"]
+    let randomPhrase = Math.floor(Math.random() * phrase.length)
+    let randomChars = (Math.random() * 10).toString(36).substring(7);
+    let generatedName = randomChars + randomPhrase + ".png"
+    return generatedName
+   }
+
+   public turnToFile(blob: Blob){
+    let fileName: string = this.nameGenerator();
+    this.doodl = new File([blob], fileName, { type: blob.type, lastModified: Date.now()})
+    return this.doodl
+   }
+   //this is a debug function to see how the images worked
+   public previewBlob(blob: Blob){
+    const image = document.createElement("img");
+    const url = URL.createObjectURL(blob);
+    image.onload = () => {
+      URL.revokeObjectURL(url);
+    };
+    image.src = url;
+    document.body.appendChild(image);
+  }
+
+   public grabDoodl() {
     const Canvas = <HTMLCanvasElement> document.getElementById("canvas")
-    const dataURL = Canvas!.toDataURL("image/png", 1.0).replace("image/png", 
-    "image/octet-stream");
-    window.location.href=dataURL
-   };
-   
+    Canvas.toBlob(blob => {
+      return this.turnToFile(blob!);
+    })
+  }
+  public postDoodl(){
+    this.doodlForm.append("image", this.doodl!, this.doodl.name!);
+    this.doodlerApiService.postDoodle(this.doodlForm).subscribe()
+    }
 }

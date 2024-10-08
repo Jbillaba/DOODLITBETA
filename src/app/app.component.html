@@ -1,13 +1,23 @@
-<div class="border-b-4 border-slate-500">
-    <h1 class="text-center py-[3%]" > DOODLR</h1>
+<div class="border-b-4 border-slate-500" *ngIf="!storageService.isLoggedIn()">
+    <h1 class="text-center py-[1%]" > DOODLR</h1>
     <div class="space-x-[10%] text-center">
-        <a routerLink="/">Home</a>
+        <a routerLink="">Home</a>
         <a routerLink="/register"> Register</a>
         <a routerLink="/login"> Log In </a>
-        <a  routerLink="/doodle" > Doodle </a>
     </div>
 </div>    
 
-<div class="text-center py-[5%]">
+<div class="border-b-4 border-slate-500" *ngIf="storageService.isLoggedIn()">
+    <h1 class="text-center py-[1%]" > DOODLR</h1>
+    <div class="space-x-[10%] text-center">
+        <a routerLink="">Home</a>
+        <a (click)="storageService.clean()"> Log out </a>
+        <a  routerLink="/doodle" > Doodle </a>
+        <a routerLink="/profile" > Profile </a>
+    </div>
+</div>    
+
+
+<div>
     <router-outlet></router-outlet>
-</div>
+</div>3

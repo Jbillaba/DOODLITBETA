@@ -1,4 +1,8 @@
 <div>
+    <div>
+        <input (change)="grabTitle($event)" type="text" placeholder="title the doodle (optional)">
+    </div>
+
     <div class="flex justify-center py-5">
         <canvas id="canvas" width="640" height="240"  class="border-solid content-center bg-slate-100">
             your browser does not support the canvas element
@@ -6,7 +10,7 @@
     </div>
 
     <div class="flex space-x-[5%] justify-center">
-        <p id="clear" class="cursor-pointer bg-blue-400 rounded p-[1%] text-white hover:bg-blue-500"> clear </p>
-        <button id="download" class="cursor-pointer bg-blue-400 rounded p-[1%] text-white hover:bg-blue-500 " > download </button>
+        <button (click)="clearCanvas()" id="clear" class="cursor-pointer bg-blue-400 rounded p-[1%] text-white hover:bg-blue-500"> clear </button>
+        <button (click)="postDoodl()" id="post" class="cursor-pointer bg-blue-400 rounded p-[1%] text-white hover:bg-blue-500 " > post </button>
     </div>
 </div>

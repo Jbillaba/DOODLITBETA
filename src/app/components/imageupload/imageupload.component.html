@@ -1,0 +1,9 @@
+<!-- this component is just to test if image uploading works from front end with the auth interceptor -->
+
+<div>
+    <form  (submit)="onSubmit($event)" >
+        <input type="file" (change)="onImagePicked($event)">
+        <br>
+        <input type="submit" class="cursor-pointer bg-blue-400 rounded p-[1%] text-white hover:bg-blue-500" >
+    </form>
+</div>
