@@ -1,23 +1,40 @@
-<div class="border-b-4 border-slate-500" *ngIf="!storageService.isLoggedIn()">
-    <h1 class="text-center py-[1%]" > DOODLR</h1>
-    <div class="space-x-[10%] text-center">
-        <a routerLink="">Home</a>
-        <a routerLink="/register"> Register</a>
-        <a routerLink="/login"> Log In </a>
+<h1 class="text-center py-[1%] border-b-4 border-slate-600 " > DOODLR</h1>
+
+<div *ngIf="!storageService.isLoggedIn()">
+    <div class=" border-r-4 border-slate-600 w-[25%]">
+        <div class="flex flex-col space-y-[25%] ">
+            <div class="border-b-4 border-slate-600 " routerLink="/profile" >
+                <a> Profile image</a>
+            </div>
+            <div class="border-b-4 border-slate-600 "  routerLink="" >
+                <a>Home</a>
+            </div>
+            <div class="border-b-4 border-slate-600 " (click)="storageService.clean()" >
+                <p>Log out</p>
+            </div>
+            <div class="border-b-4 border-slate-600 " routerLink="/doodle" >
+                <a> Doodle </a>
+            </div>
+        </div>
     </div>
 </div>    
 
-<div class="border-b-4 border-slate-500" *ngIf="storageService.isLoggedIn()">
-    <h1 class="text-center py-[1%]" > DOODLR</h1>
-    <div class="space-x-[10%] text-center">
-        <a routerLink="">Home</a>
-        <a (click)="storageService.clean()"> Log out </a>
-        <a  routerLink="/doodle" > Doodle </a>
-        <a routerLink="/profile" > Profile </a>
+
+<div *ngIf="storageService.isLoggedIn()">
+    <div class=" border-indigo-500 w-[25%]">
+        <div class="flex flex-col space-y-[25%] ">
+            <div class="border-b-4 border-slate-600" routerLink="/profile" >
+                <a> Profile image</a>
+            </div>
+            <div class="border-b-4 border-slate-600"  routerLink="" >
+                <a>Home</a>
+            </div>
+            <div class="border-b-4 border-slate-600" (click)="storageService.clean()" >
+                <p>Log out</p>
+            </div>
+            <div class="border-b-4 border-slate-600" routerLink="/doodle" >
+                <a> Doodle </a>
+            </div>
+        </div>
     </div>
 </div>    
-
-
-<div>
-    <router-outlet></router-outlet>
-</div>
