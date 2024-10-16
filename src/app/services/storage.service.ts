@@ -13,6 +13,7 @@ export class StorageService {
   clean (): void {
     this.sessionStorage?.clear()
     location.reload();
+    alert("logged out come back soon!!")
   }
 
   public saveUser(user:any): void {
