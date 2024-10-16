@@ -3,7 +3,8 @@ import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angula
 import { DoodlrApiService } from '../../services/doodlr-api.service';
 import { CommonModule } from '@angular/common';
 import { StorageService } from '../../services/storage.service';
-import { Router } from '@angular/router';
+import { RedirectCommand, Router } from '@angular/router';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-page',
@@ -25,6 +26,7 @@ export class LoginPageComponent {
 
   onSubmit(){
     const val = this.loginForm.value;
+    const homePath = this.router.parseUrl('/');
     if (val.username && val.password){
       this.doodlrApiService.loginUser(val.username, val.password).subscribe(
         data => {
@@ -32,8 +34,7 @@ export class LoginPageComponent {
         }
       )
     }
-    console.log(this.storageService.getToken())
-
+    return this.router.navigateByUrl(homePath);
   }
 
 }

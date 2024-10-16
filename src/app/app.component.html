@@ -11,8 +11,11 @@
                     <div class=" p-4 hover:bg-slate-500"  routerLink="" >
                         <a>Home</a>
                     </div>
-                    <div class=" p-4 hover:bg-slate-500" (click)="storageService.clean()" >
+                    <div *ngIf="this.storageService.isLoggedIn()" class=" p-4 hover:bg-slate-500" (click)="storageService.clean()" >
                         <p>Log out</p>
+                    </div>
+                    <div *ngIf="!this.storageService.isLoggedIn()"  class=" p-4 hover:bg-slate-500" routerLink="/login">
+                        <p>log in</p>
                     </div>
                     <div class=" p-4 hover:bg-slate-500" routerLink="/doodle" >
                         <a> Doodle </a>
@@ -21,10 +24,8 @@
             </div>
         </div>    
     </div>
+
     <div class=" border-slate-500 border-l-4" >
         <router-outlet></router-outlet>
-    </div>
-    <div class="border-slate-500 border-l-4" >
-        <p> this is where top rated doodles will go </p>
     </div>
 </div>
