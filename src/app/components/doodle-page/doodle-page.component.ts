@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, HostListener } from '@angular/core';
-import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import {  ReactiveFormsModule  } from '@angular/forms';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
 import { CommonModule } from '@angular/common';
 
@@ -160,15 +160,15 @@ export class DoodlePageComponent implements AfterViewInit {
 
    public grabTitle(e: Event){
       const title = e.currentTarget as HTMLInputElement;
-      this.doodlForm.append("title", title!.value)
+      this.doodlForm.append("title", title!.value);
    }
 
    public nameGenerator(): string{
-    let phrase = ["Omega", "Alpha", "Sigma"]
-    let randomPhrase = Math.floor(Math.random() * phrase.length)
+    let phrase = ["Omega", "Alpha", "Sigma"];
+    let randomPhrase = Math.floor(Math.random() * phrase.length);
     let randomChars = (Math.random() * 10).toString(36).substring(7);
-    let generatedName = randomChars + randomPhrase + ".png"
-    return generatedName
+    let generatedName = randomChars + randomPhrase + ".png";
+    return generatedName;
    }
 
    public turnToFile(blob: Blob){
