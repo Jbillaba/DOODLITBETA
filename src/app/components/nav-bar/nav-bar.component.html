@@ -1,0 +1,21 @@
+        <div class="p-4">
+            <div class="flex flex-col space-y-[10%]">
+                <div class=" p-4 hover:bg-slate-500" routerLink="/profile" >
+                    <div class="" >
+                        <a> Profile image</a>
+                    </div>                    
+                </div>
+                <div class=" p-4 hover:bg-slate-500"  routerLink="" >
+                    <a>Home</a>
+                </div>
+                <div *ngIf="this.storageService.isLoggedIn()" class=" p-4 hover:bg-slate-500" (click)="storageService.clean()" >
+                    <p>Log out</p>
+                </div>
+                <div *ngIf="!this.storageService.isLoggedIn()"  class=" p-4 hover:bg-slate-500" routerLink="/login">
+                    <p>log in</p>
+                </div>
+                <div class=" p-4 hover:bg-slate-500" routerLink="/doodle" >
+                    <a> Doodle </a>
+                </div>
+            </div>
+        </div>
