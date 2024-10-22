@@ -13,6 +13,7 @@ export class DoodlrApiService {
   private DOODLE_ENDPOINT='http://localhost:8000/doodles/'
   private USER_ENDPOINT='http://localhost:8000/users/'
   private COMMENT_ENDPOINT='http://localhost:8000/comments/'
+  private SEARCH_COMMENT_ENDPOINT='http://localhost:8000/comments/?search='
 
 
   registerUser(email: string, username: string, password: string, password2: string){
@@ -37,6 +38,10 @@ export class DoodlrApiService {
 
   getDoodle(id: string){
     return this.httpClient.get(this.DOODLE_ENDPOINT + id)
+  }
+
+  getDoodleComments(id: string){
+    return this.httpClient.get(this.SEARCH_COMMENT_ENDPOINT + id)
   }
 
   postComment(text: any, post: string){

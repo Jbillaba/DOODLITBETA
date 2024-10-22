@@ -14,5 +14,11 @@
         <input type="text" placeholder="enter Comment" formControlName="text">
         <input type="submit">
     </form>
+    <div *ngFor="let comment of comments">
+        <p>{{comment.text}}</p>
+
+    </div>        
+
+
 </div>
     

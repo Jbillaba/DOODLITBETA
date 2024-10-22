@@ -13,6 +13,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class DoodlPostPageComponent {
   doodl: any;
+  comments: any;
   comment: string;
   commentForm = new FormGroup({
     text: new FormControl('', [Validators.required]),
@@ -26,10 +27,13 @@ export class DoodlPostPageComponent {
     const routeParamter = this.route.snapshot.paramMap;
     const doodlIdFromRoute = routeParamter.get("doodleid") as string;
     this.doodlrApiService.getDoodle(doodlIdFromRoute).subscribe(response => this.doodl = response)
+    this.doodlrApiService.getDoodleComments(doodlIdFromRoute).subscribe(response => this.comments = response)
   }
 
   submitComment(){
     this.doodlrApiService.postComment(this.commentForm.value.text!, this.doodl.url).subscribe()
   }
+
+  
 
 }
