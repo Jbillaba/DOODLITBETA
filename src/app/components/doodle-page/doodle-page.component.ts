@@ -2,6 +2,7 @@ import { Component, AfterViewInit, HostListener } from '@angular/core';
 import {  ReactiveFormsModule  } from '@angular/forms';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
 import { CommonModule } from '@angular/common';
+import {v4 as uuidv4} from 'uuid';
 
 import { StorageService } from '../../services/storage.service';
 
@@ -163,29 +164,11 @@ export class DoodlePageComponent implements AfterViewInit {
       this.doodlForm.append("title", title!.value);
    }
 
-   public nameGenerator(): string{
-    let phrase = ["Omega", "Alpha", "Sigma"];
-    let randomPhrase = Math.floor(Math.random() * phrase.length);
-    let randomChars = (Math.random() * 10).toString(36).substring(7);
-    let generatedName = randomChars + randomPhrase + ".png";
-    return generatedName;
-   }
-
    public turnToFile(blob: Blob){
-    let fileName: string = this.nameGenerator();
+    let fileName: string = uuidv4() + ".png";
     this.doodl = new File([blob], fileName, { type: blob.type, lastModified: Date.now()})
     return this.doodl
    }
-   //this is a debug function to see how the images worked
-   public previewBlob(blob: Blob){
-    const image = document.createElement("img");
-    const url = URL.createObjectURL(blob);
-    image.onload = () => {
-      URL.revokeObjectURL(url);
-    };
-    image.src = url;
-    document.body.appendChild(image);
-  }
 
    public grabDoodl() {
     const Canvas = <HTMLCanvasElement> document.getElementById("canvas")
