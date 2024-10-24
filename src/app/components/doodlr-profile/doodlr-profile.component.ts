@@ -1,14 +1,177 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
+import { DoodlrApiService } from '../../services/doodlr-api.service';
+import { CommonModule } from '@angular/common';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-doodlr-profile',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './doodlr-profile.component.html',
   styleUrl: './doodlr-profile.component.css'
 })
-export class DoodlrProfileComponent{
-  constructor(private storageService: StorageService){}
+export class DoodlrProfileComponent implements AfterViewInit{
+  constructor(private doodlerApiService: DoodlrApiService,
+              private storageService: StorageService) {}
+  private _canvas: HTMLCanvasElement;
+  private context: CanvasRenderingContext2D;
+  private paint: boolean;
+  profileForm = new FormData();
+  private profilePicture: File;
+  private User: any;
+
+
+  private clickX: number[] = [];
+  private clickY: number[] = [];
+  private clickDrag: boolean[] = [];
+
+  @HostListener('document:mousedown', ['$event'])
+  pressMouseEventHandler(event:MouseEvent) {
+    this.pressEventHandler(event);
+  };
+
+  @HostListener('document:touchstart', ['$event'])
+  pressTouchEventHandler(event:TouchEvent) {
+    this.pressEventHandler(event);
+  };
+
+  @HostListener('document:mousemove', ['$event'])
+  mouseDragEventHandler(event:MouseEvent) {
+    this.dragEventHandler(event);
+  };
+
+  @HostListener('document:touchmove', ['$event'])
+  touchDragEventHandler(event:TouchEvent) {
+    this.dragEventHandler(event);
+  };
+
+  @HostListener('document:mouseup', ['$event'])
+  mouseReleaseEventHandler(event:MouseEvent) {
+    this.releaseEventHandler();
+  };
+
+  @HostListener('document:mouseup', ['$event'])
+  touchReleaseEventHandler(event:TouchEvent) {
+    this.releaseEventHandler();
+  };
+
+  @HostListener('document:touchcancel', ['$event'])
+  cancelMouseEventHandler() {
+    this.cancelEventHandler();
+  };
+
+  @HostListener('document:touchcancel', ['$event'])
+  cancelTouchEventHandler() {
+    this.cancelMouseEventHandler();
+  };
   
+  ngAfterViewInit() {
+    let _canvas = <HTMLCanvasElement> document.getElementById('canvas');
+    let context = _canvas.getContext('2d');
+    context!.lineCap = 'round';
+    context!.lineJoin = 'round';
+    context!.strokeStyle = 'black';
+    context!.lineWidth = 1;
+    
+    this._canvas = _canvas;
+    this.context = context!;
+
+    this.redraw();
+    
+   };
+
+   private redraw() {
+    let clickX = this.clickX;
+    let context = this.context;
+    let clickDrag = this.clickDrag;
+    let clickY = this.clickY;
+    for (let i=0;i < clickX.length; i++) {
+      context.beginPath();
+      if (clickDrag[i] && i) {
+        context.moveTo(clickX[i - 1], clickY[i - 1]);
+      } else {
+        context.moveTo(clickX[i] - 1, clickY[i]);
+      }
+
+      context.lineTo(clickX[i], clickY[i]);
+      context.stroke();
+    }
+    context.closePath();
+   };
+
+   private addClick(x: number, y: number, dragging: boolean) {
+    this.clickX.push(x);
+    this.clickY.push(y);
+    this.clickDrag.push(dragging);
+   };
+
+   public clearCanvas() {
+    this.context.clearRect(0, 0, this._canvas.width, this._canvas.height);
+    this.clickX = [];
+    this.clickY = [];
+    this.clickDrag = [];
+   };
+  
+   private releaseEventHandler = () => {
+    this.paint = false;
+    this.redraw();
+   };
+
+   private cancelEventHandler = () => {
+    this.paint = false;
+   };
+
+   private pressEventHandler(e: MouseEvent | TouchEvent) {
+    let mouseX = (e as TouchEvent).changedTouches
+      ? (e as TouchEvent).changedTouches[0].pageX
+      : (e as MouseEvent).pageX;
+    let mouseY = (e as TouchEvent).changedTouches
+      ? (e as TouchEvent).changedTouches[0].pageY
+      : (e as MouseEvent).pageY;
+    mouseX -= this._canvas.offsetLeft;
+    mouseY -= this._canvas.offsetTop;
+
+    this.paint = true;
+    this.addClick(mouseX, mouseY, false);
+    this.redraw();
+    this.grabDoodl();
+   };
+
+   private dragEventHandler(e: MouseEvent | TouchEvent) {
+    let mouseX = (e as TouchEvent).changedTouches
+      ? (e as TouchEvent).changedTouches[0].pageX
+      : (e as MouseEvent).pageX
+    let mouseY = (e as TouchEvent).changedTouches
+      ? (e as TouchEvent).changedTouches[0].pageY
+      : (e as MouseEvent).pageY
+    mouseX -= this._canvas.offsetLeft;
+    mouseY -= this._canvas.offsetTop;
+
+    if (this.paint){
+      this.addClick(mouseX, mouseY, true);
+      this.redraw();
+      this.grabDoodl();
+    }
+
+    e.preventDefault();
+   };
+
+   public turnToFile(blob: Blob){
+    let fileName: string = uuidv4() + ".png";
+    this.profilePicture = new File([blob], fileName, { type: blob.type, lastModified: Date.now()})
+    return this.profilePicture
+   }
+
+   public grabDoodl() {
+    const Canvas = <HTMLCanvasElement> document.getElementById("canvas")
+    Canvas.toBlob(blob => {
+      return this.turnToFile(blob!);
+    })
+  }
+  public postDoodl(){
+    let username = this.storageService.getUser().username
+    this.profileForm.append("profile_picture", this.profilePicture!, this.profilePicture.name!);
+    this.doodlerApiService.updateProfilePicture(username,this.profileForm).subscribe()
+    }
 }

@@ -28,8 +28,8 @@ export class DoodlrApiService {
     return this.httpClient.post(this.DOODLE_ENDPOINT, image)
   }
 
-  getUser(){
-    return this.httpClient.get(this.USER_ENDPOINT)
+  getUser(username: string){
+    return this.httpClient.get(this.USER_ENDPOINT+ username +'/')
   }
 
   getDoodles(){
@@ -46,6 +46,10 @@ export class DoodlrApiService {
 
   postComment(text: any, post: string){
     return this.httpClient.post(this.COMMENT_ENDPOINT, {text, post})
+  }
+
+  updateProfilePicture( username:string, profile_picture: any){
+    return this.httpClient.patch(this.USER_ENDPOINT + username + '/', profile_picture)
   }
 
 }
