@@ -2,6 +2,7 @@ import { Component, } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { DoodlrApiService } from '../../services/doodlr-api.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,5 +12,10 @@ import { RouterModule } from '@angular/router';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
-  constructor (public storageService: StorageService) {}
+  doodlr: any;
+  constructor (public storageService: StorageService, public doodlrApiService: DoodlrApiService) {}
+
+  ngOnInit(){
+    return this.doodlrApiService.getUser(this.storageService.getUser().username).subscribe(response => this.doodlr = response)
+  }
 }
