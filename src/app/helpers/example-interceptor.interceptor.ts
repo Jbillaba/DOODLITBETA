@@ -6,8 +6,10 @@ const getRequest: string = 'GET';
 export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn){
   const authToken = inject(StorageService).getToken();
   const isLoggedIn = inject(StorageService).isLoggedIn();
-  if (isLoggedIn && req.url !== getRequest ){
-    return next(req.clone({setHeaders: {Authorization: `Token ${authToken}`}}));
+  if (req.method !== getRequest ){
+    return next(req.clone({
+      withCredentials: true
+    }));
   }
   else
   return next(req)

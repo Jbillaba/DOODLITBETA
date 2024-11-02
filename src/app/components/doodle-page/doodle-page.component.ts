@@ -178,6 +178,6 @@ export class DoodlePageComponent implements AfterViewInit {
   }
   public postDoodl(){
     this.doodlForm.append("image", this.doodl!, this.doodl.name!);
-    this.doodlerApiService.postDoodle(this.doodlForm).subscribe()
+    return this.doodlerApiService.postDoodle(this.doodlForm).subscribe()
     }
 }

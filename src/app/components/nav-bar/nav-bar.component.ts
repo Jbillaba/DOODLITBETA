@@ -15,7 +15,4 @@ export class NavBarComponent {
   doodlr: any;
   constructor (public storageService: StorageService, public doodlrApiService: DoodlrApiService) {}
 
-  ngOnInit(){
-    return this.doodlrApiService.getUser(this.storageService.getUser().username).subscribe(response => this.doodlr = response)
-  }
 }

@@ -30,12 +30,10 @@ export class LoginPageComponent {
     if (val.username && val.password){
       this.doodlrApiService.loginUser(val.username, val.password).subscribe(
         data => {
-          this.storageService.saveUser(data)
         }
       )
     }
-    return this.router.navigateByUrl(homePath);
-    // we could make a call for the users profile picture here to load it in 
+    
   }
 
 }
