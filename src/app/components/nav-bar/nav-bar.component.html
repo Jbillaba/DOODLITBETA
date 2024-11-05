@@ -11,10 +11,10 @@
                 <div class=" p-4 hover:bg-slate-500" routerLink="/doodle" >
                     <a> Doodle </a>
                 </div>
-                <div *ngIf="this.storageService.isLoggedIn()" class=" p-4 hover:bg-slate-500" (click)="storageService.clean()" >
+                <div class=" p-4 hover:bg-slate-500"  >
                     <p>Log out</p>
                 </div>
-                <div *ngIf="!this.storageService.isLoggedIn()"  class=" p-4 hover:bg-slate-500" routerLink="/login">
+                <div   class=" p-4 hover:bg-slate-500" routerLink="/login">
                     <p>log in</p>
                 </div>
               

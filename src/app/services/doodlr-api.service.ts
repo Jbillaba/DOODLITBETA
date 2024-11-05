@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { StorageService } from './storage.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +13,7 @@ export class DoodlrApiService {
   private USER_ENDPOINT='http://localhost:8000/users/'
   private COMMENT_ENDPOINT='http://localhost:8000/comments/'
   private SEARCH_COMMENT_ENDPOINT='http://localhost:8000/comments/?search='
+  private LOGOUT_ENDPOINT='http://localhost:8000/logout/'
 
 
   registerUser(email: string, username: string, password: string, password2: string){
@@ -22,6 +22,10 @@ export class DoodlrApiService {
 
   loginUser(username: string, password: string){
     return this.httpClient.post(this.LOGIN_ENDPOINT, {username,password})
+  }
+
+  logoutUser(){
+    return this.httpClient.post(this.LOGOUT_ENDPOINT, {})
   }
 
   postDoodle(image: any){
@@ -44,10 +48,11 @@ export class DoodlrApiService {
     return this.httpClient.get(this.SEARCH_COMMENT_ENDPOINT + id)
   }
 
-  postComment(text: any, post: string){
+  postComment( text: string, post: string ){
     return this.httpClient.post(this.COMMENT_ENDPOINT, {text, post})
   }
 
+  // find a way to use the cookie to grab the username of the person from the backend, this should be possible
   updateProfilePicture( username:string, profile_picture: any){
     return this.httpClient.patch(this.USER_ENDPOINT + username + '/', profile_picture)
   }
