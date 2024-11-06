@@ -11,7 +11,7 @@
                 <div class=" p-4 hover:bg-slate-500" routerLink="/doodle" >
                     <a> Doodle </a>
                 </div>
-                <div class=" p-4 hover:bg-slate-500"  >
+                <div class=" p-4 hover:bg-slate-500" (click)="this.doodlrApiService.logoutUser()" >
                     <p>Log out</p>
                 </div>
                 <div   class=" p-4 hover:bg-slate-500" routerLink="/login">
