@@ -28,7 +28,7 @@ export class LoginPageComponent {
     const val = this.loginForm.value;
     const homePath = this.router.parseUrl('/');
     if (val.username && val.password){
-      this.doodlrApiService.loginUser(val.username, val.password).subscribe(res => res)
+      this.doodlrApiService.loginUser(val.username, val.password).subscribe()
     }
   }
 
