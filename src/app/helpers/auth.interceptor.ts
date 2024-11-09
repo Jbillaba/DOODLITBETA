@@ -3,6 +3,6 @@ const getRequest: string = "GET"
 
 export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn){
     return next(req.clone({
-      setHeaders: {"credentials":"include"}
+      withCredentials: true
     }));
   }

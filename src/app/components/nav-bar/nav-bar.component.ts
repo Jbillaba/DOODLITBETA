@@ -15,6 +15,6 @@ export class NavBarComponent {
   constructor ( public doodlrApiService: DoodlrApiService) {}
 
   logOut(){
-    return this.doodlrApiService.logoutUser().subscribe(response => console.log(response))
+    return this.doodlrApiService.logoutUser().subscribe()
   }
 }
