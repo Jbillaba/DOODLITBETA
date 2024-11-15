@@ -1,7 +1,6 @@
-        <div class="p-8">
-            <div class="flex flex-col space-y-[10%] ">
+            <div class="flex flex-row">
                 <div class=" p-4 hover:bg-slate-500" routerLink="/profile" >
-                    <div class="size-[40%] border-solid " >
+                    <div class="border-solid " >
                         <p>profile</p>
                     </div>                    
                 </div>
@@ -11,7 +10,7 @@
                 <div class=" p-4 hover:bg-slate-500" routerLink="/doodle" >
                     <a> Doodle </a>
                 </div>
-                <div class=" p-4 hover:bg-slate-500" (click)="this.doodlrApiService.logoutUser()" >
+                <div class=" p-4 hover:bg-slate-500" (click)=" logOut()" >
                     <p>Log out</p>
                 </div>
                 <div   class=" p-4 hover:bg-slate-500" routerLink="/login">
@@ -19,4 +18,3 @@
                 </div>
               
             </div>
-        </div>

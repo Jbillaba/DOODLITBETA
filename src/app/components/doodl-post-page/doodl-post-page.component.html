@@ -8,17 +8,21 @@
         <img src="{{doodl?.image}}" >
     </div>
 </div>
-<div>
-    <h1>Comments here </h1>
+<div class="text-center py-[3%]" >
+    <h1>Comments </h1>
     <form [formGroup]="commentForm" (ngSubmit)="submitComment()">
         <input type="text" placeholder="enter Comment" formControlName="text">
         <input type="submit">
     </form>
-    <div *ngFor="let comment of comments">
-        <p>{{comment.text}}</p>
-
-    </div>        
-
-
 </div>
-    
+<div class="text-center">
+    <div *ngFor="let comment of comments">
+        <div class="">
+            <p>{{comment.text}}</p>
+            <div class="">
+                <p>{{comment.author}}</p>
+                <p>{{comment.created_on}}</p>
+            </div>
+        </div>
+    </div>
+</div>    

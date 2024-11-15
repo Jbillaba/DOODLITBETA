@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -12,7 +13,7 @@ import { RouterModule } from '@angular/router';
 })
 export class LandingPageComponent implements OnInit {
   doodles: any;
-  constructor(private doodlrApiService: DoodlrApiService){}
+  constructor(private doodlrApiService: DoodlrApiService, private storageService: StorageService){}
   ngOnInit(): void {
       this.doodlrApiService.getDoodles().subscribe(response => {this.doodles = response})
   }

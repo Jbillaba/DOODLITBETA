@@ -15,6 +15,8 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class LoginPageComponent {
 
+  user: object;
+
   constructor(private doodlrApiService: DoodlrApiService,
               private router: Router,
               private storageService: StorageService){}
@@ -30,6 +32,8 @@ export class LoginPageComponent {
     if (val.username && val.password){
       this.doodlrApiService.loginUser(val.username, val.password).subscribe()
     }
+
   }
+
 
 }

@@ -170,8 +170,6 @@ export class DoodlrProfileComponent implements AfterViewInit{
     })
   }
   public postDoodl(){
-    let username = this.storageService.getUser().username
-    this.profileForm.append("profile_picture", this.profilePicture!, this.profilePicture.name!);
-    this.doodlerApiService.updateProfilePicture(username,this.profileForm).subscribe()
+
     }
 }

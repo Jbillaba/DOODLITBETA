@@ -14,6 +14,7 @@ export class DoodlrApiService {
   private COMMENT_ENDPOINT='http://localhost:8000/comments/'
   private SEARCH_COMMENT_ENDPOINT='http://localhost:8000/comments/?search='
   private LOGOUT_ENDPOINT='http://localhost:8000/logout/'
+  private WHOAMI_ENDPOINT='http://localhost:8000/whoami/'
 
 
   registerUser(email: string, username: string, password: string, password2: string){
@@ -55,6 +56,10 @@ export class DoodlrApiService {
   // find a way to use the cookie to grab the username of the person from the backend, this should be possible
   updateProfilePicture( username:string, profile_picture: any){
     return this.httpClient.patch(this.USER_ENDPOINT + username + '/', profile_picture)
+  }
+
+  getCurrentUser(){
+    return this.httpClient.get(this.WHOAMI_ENDPOINT, {withCredentials: true})
   }
 
 }
