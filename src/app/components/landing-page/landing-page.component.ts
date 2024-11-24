@@ -13,8 +13,14 @@ import { StorageService } from '../../services/storage.service';
 })
 export class LandingPageComponent implements OnInit {
   doodles: any;
-  constructor(private doodlrApiService: DoodlrApiService, private storageService: StorageService){}
+  Type: string = "NULL"
+  constructor(private doodlrApiService: DoodlrApiService,){}
   ngOnInit(): void {
       this.doodlrApiService.getDoodles().subscribe(response => {this.doodles = response})
   }
+
+  postYeah(doodlURL: string,){
+    return this.doodlrApiService.postyeahs(doodlURL, this.Type).subscribe()
+  }
+
 }

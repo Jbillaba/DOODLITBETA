@@ -17,6 +17,7 @@ export class DoodlrApiService {
   private LOGOUT_ENDPOINT='http://localhost:8000/logout/'
   private WHOAMI_ENDPOINT='http://localhost:8000/whoami/'
   private CURRENT_USER_DOODLE_ENDPOINT='http://localhost:8000/user_doodles/'
+  private LIKE_ENDPOINT='http://localhost:8000/yeahs/'
 
   registerUser(email: string, username: string, password: string, password2: string){
     return this.httpClient.post(this.REGISTER_ENDPOINT, {email, username,  password, password2})
@@ -64,7 +65,12 @@ export class DoodlrApiService {
   }
 
   getUsersDoodles(username: string){
-    return this.httpClient.get(this.DOODLE_SEARCH_ENDPOINT + username)
+    return this.httpClient.get(this.CURRENT_USER_DOODLE_ENDPOINT, {withCredentials: true})
   }
+
+  postyeahs(post: string, type: string){
+    return this.httpClient.post(this.LIKE_ENDPOINT, {post, type})
+  }
+
 
 }
