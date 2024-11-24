@@ -4,10 +4,11 @@ import { DoodlrApiService } from '../../services/doodlr-api.service';
 import { Router } from '@angular/router';
 import { MustMatch } from '../../helpers/must-match.validator';
 import { CommonModule } from '@angular/common';
+import { DoodlePfpComponent } from "../doodle-pfp/doodle-pfp.component";
 @Component({
   selector: 'app-register-page',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, DoodlePfpComponent],
   templateUrl: './register-page.component.html',
   styleUrl: './register-page.component.css'
 })

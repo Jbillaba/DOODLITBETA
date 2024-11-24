@@ -13,13 +13,15 @@ import { CommonModule } from '@angular/common';
 export class DoodlrProfileComponent{
   constructor(private doodlerApiService: DoodlrApiService,
               private storageService: StorageService) {}
+  UsersDoodles: any;
 
   ngOnInit(){
-    this.getCurrentUsersDoodles()
+    return this.doodlerApiService.getUsersDoodles().subscribe(response => this.UsersDoodles = response)
   }
 
-  getCurrentUsersDoodles(){
-    
-  }
+  log(){
+    console.log(this.UsersDoodles)
 
+  }
+ 
 }

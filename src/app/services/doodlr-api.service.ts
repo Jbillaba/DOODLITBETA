@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class DoodlrApiService {
   constructor(private httpClient:HttpClient,){}
 
-  private REGISTER_ENDPOINT='http://localhost:8000/api/register/'
+  private REGISTER_ENDPOINT='http://localhost:8000/register/'
   private LOGIN_ENDPOINT='http://localhost:8000/login/'
   private DOODLE_ENDPOINT='http://localhost:8000/doodles/'
   private DOODLE_SEARCH_ENDPOINT='http://localhost:8000/doodles/?search='
@@ -15,7 +15,6 @@ export class DoodlrApiService {
   private COMMENT_ENDPOINT='http://localhost:8000/comments/'
   private SEARCH_COMMENT_ENDPOINT='http://localhost:8000/comments/?search='
   private LOGOUT_ENDPOINT='http://localhost:8000/logout/'
-  private WHOAMI_ENDPOINT='http://localhost:8000/whoami/'
   private CURRENT_USER_DOODLE_ENDPOINT='http://localhost:8000/user_doodles/'
   private LIKE_ENDPOINT='http://localhost:8000/yeahs/'
 
@@ -55,16 +54,7 @@ export class DoodlrApiService {
     return this.httpClient.post(this.COMMENT_ENDPOINT, {text, post})
   }
 
-  // find a way to use the cookie to grab the username of the person from the backend, this should be possible
-  updateProfilePicture( username:string, profile_picture: any){
-    return this.httpClient.patch(this.USER_ENDPOINT + username + '/', profile_picture)
-  }
-
-  getCurrentUser(){
-    return this.httpClient.get(this.WHOAMI_ENDPOINT, {withCredentials: true})
-  }
-
-  getUsersDoodles(username: string){
+  getUsersDoodles(){
     return this.httpClient.get(this.CURRENT_USER_DOODLE_ENDPOINT, {withCredentials: true})
   }
 

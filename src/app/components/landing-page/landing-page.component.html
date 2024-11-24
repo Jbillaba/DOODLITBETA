@@ -1,14 +1,14 @@
 <div class="flex flex-col" >
     <div *ngFor="let doodle of doodles" class="p-2">
             <div class=" border-2 border-indigo-500"  >
-                <p>{{doodle.doodlr}} &#9679; {{doodle.created_on}} </p>
+               <img src="doodle.profile_picture" alt="user profile picture"> <p>{{doodle.doodlr}} &#9679; {{doodle.created_on}} </p>
                 <p class="border-2 border-orange-500">{{doodle.title}}</p>
                 <a [routerLink]="['/doodle', doodle!.id]"> <img src="{{doodle.image}}" class="border-2 border-rose-500" /> </a>
                 <div class="flex flex-row justify-center space-x-2 border-2 border-lime-500 ">
-                    <img src="https://i.imgur.com/etvXnO0.png" value="HAP" alt="happy yeah" (mouseover)="Type='HAP'" (click)="this.postYeah(doodle.url)" > <p>{{doodle.yeahs.hap}}</p>
-                    <img src="https://i.imgur.com/GB5baRB.png" value="NRM" alt="monotone yeah" (mouseover)="Type='NRM'" (click)="this.postYeah(doodle.url)"  > <p>{{doodle.yeahs.nrm}}</p>
-                    <img src="https://i.imgur.com/YNjTenA.png" value="SAD" alt="sad yeah" (mouseover)="Type='SAD'" (click)="this.postYeah(doodle.url)" > <p>{{doodle.yeahs.sad}}</p>
-                    <img src="https://i.imgur.com/oIHbwwy.png" value="CFD" alt="confused yeah" (mouseover)="Type='CFD'" (click)="this.postYeah(doodle.url)" > <p>{{doodle.yeahs.cfd}}</p>
+                    <img src="https://i.imgur.com/etvXnO0.png" alt="happy yeah" (mouseover)="Type='HPY'" (click)="this.postYeah(doodle.url)" > <p>{{doodle.yeahs.hap}}</p>
+                    <img src="https://i.imgur.com/GB5baRB.png" alt="monotone yeah" (mouseover)="Type='NRM'" (click)="this.postYeah(doodle.url)"  > <p>{{doodle.yeahs.nrm}}</p>
+                    <img src="https://i.imgur.com/YNjTenA.png" alt="sad yeah" (mouseover)="Type='SAD'" (click)="this.postYeah(doodle.url)" > <p>{{doodle.yeahs.sad}}</p>
+                    <img src="https://i.imgur.com/oIHbwwy.png" alt="confused yeah" (mouseover)="Type='CFD'" (click)="this.postYeah(doodle.url)" > <p>{{doodle.yeahs.cfd}}</p>
                 </div>
             </div>
     </div>
