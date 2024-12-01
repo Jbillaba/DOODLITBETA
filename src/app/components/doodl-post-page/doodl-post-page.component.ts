@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
+import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -20,7 +21,8 @@ export class DoodlPostPageComponent {
   })
 
     constructor(private doodlrApiService:DoodlrApiService,
-              private route: ActivatedRoute,
+                private route: ActivatedRoute,
+                private authService: AuthService
   ){}
 
   ngOnInit(){
@@ -28,16 +30,18 @@ export class DoodlPostPageComponent {
     const doodlIdFromRoute = routeParamter.get("doodleid") as string;
     console.log(doodlIdFromRoute)
     this.doodlrApiService.getDoodle(doodlIdFromRoute).subscribe(response => this.doodl = response)
-    console.log(this.doodl)
     this.doodlrApiService.getDoodleComments(doodlIdFromRoute).subscribe(response => this.comments = response)
   }
 
   submitComment(){
     this.doodlrApiService.postComment(this.commentForm.value.text!, this.doodl.url).subscribe()
     window.location.reload();
-
   }
 
-  
+  authenticated(){
+    this.authService.isAuthenticated;
+  }
+
+
 
 }
