@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { StorageService } from '../../services/storage.service';
+
 
 @Component({
   selector: 'app-landing-page',
@@ -17,7 +17,7 @@ export class LandingPageComponent implements OnInit {
   constructor(private doodlrApiService: DoodlrApiService,){}
   ngOnInit(): void {
       this.doodlrApiService.getDoodles().subscribe(response => {this.doodles = response})
-      console.log(this.doodles)
+
   }
 
   postYeah(doodlURL: string,){

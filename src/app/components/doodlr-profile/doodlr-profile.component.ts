@@ -1,5 +1,4 @@
 import { Component  } from '@angular/core';
-import { StorageService } from '../../services/storage.service';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
 import { CommonModule } from '@angular/common';
 
@@ -11,8 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './doodlr-profile.component.css'
 })
 export class DoodlrProfileComponent{
-  constructor(private doodlerApiService: DoodlrApiService,
-              private storageService: StorageService) {}
+  constructor(private doodlerApiService: DoodlrApiService) {}
   UsersDoodles: any;
 
   ngOnInit(){

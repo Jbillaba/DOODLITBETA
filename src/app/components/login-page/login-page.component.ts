@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
 import { CommonModule } from '@angular/common';
-import { StorageService } from '../../services/storage.service';
 import { RedirectCommand, Router } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -19,7 +19,7 @@ export class LoginPageComponent {
 
   constructor(private doodlrApiService: DoodlrApiService,
               private router: Router,
-              private storageService: StorageService){}
+              private authService: AuthService){}
 
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
@@ -30,7 +30,8 @@ export class LoginPageComponent {
     const val = this.loginForm.value;
     const homePath = this.router.parseUrl('/');
     if (val.username && val.password){
-      this.doodlrApiService.loginUser(val.username, val.password).subscribe()
+      this.authService.isAuthenticated = true;
+      this.doodlrApiService.loginUser(val.username, val.password).subscribe();
     }
 
   }

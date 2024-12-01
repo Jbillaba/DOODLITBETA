@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AuthGuardService } from './services/auth-guard.service';
 import { FourohfourPageComponent } from './components/fourohfour-page/fourohfour-page.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
@@ -10,11 +11,11 @@ import { ImageuploadComponent } from './components/imageupload/imageupload.compo
 
 export const routes: Routes = [
     { path: '', component: LandingPageComponent },
-    { path: 'doodle', component: DoodlePageComponent },
+    { path: 'doodle', component: DoodlePageComponent, canActivate:[AuthGuardService]},
     { path: 'doodle/:doodleid', component: DoodlPostPageComponent},
     { path: 'register', component: RegisterPageComponent },
     { path: 'login', component: LoginPageComponent },
-    { path: 'profile', component: DoodlrProfileComponent },
+    { path: 'profile', component: DoodlrProfileComponent, canActivate:[AuthGuardService] },
     { path: 'image', component: ImageuploadComponent },
     { path: '**', component: FourohfourPageComponent }
 ];

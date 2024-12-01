@@ -4,7 +4,7 @@ import { DoodlrApiService } from '../../services/doodlr-api.service';
 import { CommonModule } from '@angular/common';
 import {v4 as uuidv4} from 'uuid';
 
-import { StorageService } from '../../services/storage.service';
+
 
 @Component({
   selector: 'app-doodle-page',
@@ -64,7 +64,7 @@ export class DoodlePageComponent implements AfterViewInit {
   cancelTouchEventHandler() {
     this.cancelMouseEventHandler();
   };
-  
+
   ngAfterViewInit() {
     let _canvas = <HTMLCanvasElement> document.getElementById('canvas');
     let context = _canvas.getContext('2d');
@@ -72,15 +72,15 @@ export class DoodlePageComponent implements AfterViewInit {
     context!.lineJoin = 'round';
     context!.strokeStyle = 'black';
     context!.lineWidth = 1;
-    
+
     this._canvas = _canvas;
     this.context = context!;
 
     this.redraw();
    };
 
-   constructor(private doodlerApiService: DoodlrApiService,
-                private storageService: StorageService
+   constructor(private doodlerApiService: DoodlrApiService
+
    ) {}
 
    private redraw() {
@@ -114,7 +114,7 @@ export class DoodlePageComponent implements AfterViewInit {
     this.clickY = [];
     this.clickDrag = [];
    };
-  
+
    private releaseEventHandler = () => {
     this.paint = false;
     this.redraw();
