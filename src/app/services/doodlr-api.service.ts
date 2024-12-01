@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DoodlrApiService {
-  constructor(private httpClient:HttpClient,){}
+  constructor(private httpClient:HttpClient, private authService: AuthService){}
 
   private REGISTER_ENDPOINT='http://localhost:8000/register/'
   private LOGIN_ENDPOINT='http://localhost:8000/login/'
@@ -27,6 +28,7 @@ export class DoodlrApiService {
   }
 
   logoutUser(){
+    this.authService.isAuthenticated = false;
     return this.httpClient.post(this.LOGOUT_ENDPOINT, {})
   }
 
