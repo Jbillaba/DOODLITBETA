@@ -1,5 +1,5 @@
-            <div class="flex flex-row">
-                <div *ngIf="isAuthenticated()" class=" p-4 hover:bg-slate-500" routerLink="/profile" >
+            <div *ngIf="isAuthenticated()" class="flex flex-row">
+                <div class=" p-4 hover:bg-slate-500" routerLink="/profile" >
                     <div class="border-solid " >
                         <p>profile</p>
                     </div>
@@ -10,11 +10,19 @@
                 <div class=" p-4 hover:bg-slate-500" routerLink="/doodle" >
                     <a> Doodle </a>
                 </div>
-                <div *ngIf="isAuthenticated()" class=" p-4 hover:bg-slate-500" (click)=" logOut()" >
+                <div class=" p-4 hover:bg-slate-500" (click)=" logOut()" >
                     <p>Log out</p>
                 </div>
-                <div   class=" p-4 hover:bg-slate-500" routerLink="/login">
+            </div>
+
+            <div *ngIf="!isAuthenticated()" class="flex flex-row">
+                <div class=" p-4 hover:bg-slate-500"  routerLink="" >
+                    <a>Home</a>
+                </div>
+                <div class=" p-4 hover:bg-slate-500" routerLink="/doodle" >
+                    <a> Doodle </a>
+                </div>
+                <div class=" p-4 hover:bg-slate-500" routerLink="/login">
                     <p>log in</p>
                 </div>
-
             </div>

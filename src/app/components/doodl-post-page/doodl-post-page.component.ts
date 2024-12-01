@@ -38,8 +38,8 @@ export class DoodlPostPageComponent {
     window.location.reload();
   }
 
-  authenticated(){
-    this.authService.isAuthenticated;
+  auth(){
+   return this.authService.isAuthenticated;
   }
 
 

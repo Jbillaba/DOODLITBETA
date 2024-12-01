@@ -11,11 +11,11 @@
 
 <div class="text-center py-[3%]" >
     <h1>Comments </h1>
-    <form *ngIf="authenticated()" [formGroup]="commentForm" (ngSubmit)="submitComment()">
+    <form *ngIf="auth()" [formGroup]="commentForm" (ngSubmit)="submitComment()">
         <input type="text" placeholder="enter Comment" formControlName="text">
         <input type="submit">
     </form>
-    <h2> Log In to make a comment </h2>
+    <h2 *ngIf="!auth()" > Log In to make a comment </h2>
 </div>
 <div class="text-center">
     <div *ngFor="let comment of comments">
