@@ -1,8 +1,10 @@
-<div class="text-center" (click)="log()" >
-    <h1>welcome back </h1>
+<div class="text-center">
+    <h1> Users Doodles </h1>
 </div>
 
 <div class="text-center" *ngFor="let userDoodle of UsersDoodles" >
-    <div>
+    <div class="flex justify-center" >
+      <img src="{{userDoodle.image}}" >
+
     </div>
 </div>

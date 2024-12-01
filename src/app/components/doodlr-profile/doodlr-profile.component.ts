@@ -19,9 +19,4 @@ export class DoodlrProfileComponent{
     return this.doodlerApiService.getUsersDoodles().subscribe(response => this.UsersDoodles = response)
   }
 
-  log(){
-    console.log(this.UsersDoodles)
-
-  }
- 
 }

@@ -17,6 +17,7 @@ export class LandingPageComponent implements OnInit {
   constructor(private doodlrApiService: DoodlrApiService,){}
   ngOnInit(): void {
       this.doodlrApiService.getDoodles().subscribe(response => {this.doodles = response})
+      console.log(this.doodles)
   }
 
   postYeah(doodlURL: string,){
