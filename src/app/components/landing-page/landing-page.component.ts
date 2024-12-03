@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-
+import { RouterModule, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -14,14 +14,22 @@ import { RouterModule } from '@angular/router';
 export class LandingPageComponent implements OnInit {
   doodles: any;
   Type: string = "NULL"
-  constructor(private doodlrApiService: DoodlrApiService,){}
+
+  constructor(private doodlrApiService: DoodlrApiService, private authService: AuthService, private router: Router){}
+
   ngOnInit(): void {
       this.doodlrApiService.getDoodles().subscribe(response => {this.doodles = response})
 
   }
 
   postYeah(doodlURL: string,){
-    return this.doodlrApiService.postyeahs(doodlURL, this.Type).subscribe()
+    if (this.authService.isAuthenticated == true) {
+      return this.doodlrApiService.postyeahs(doodlURL, this.Type).subscribe()
+    }
+    else {
+      return this.router.navigateByUrl('/login');
+    }
   }
+
 
 }
