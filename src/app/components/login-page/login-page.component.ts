@@ -33,7 +33,7 @@ export class LoginPageComponent {
       this.authService.isAuthenticated = true;
       this.doodlrApiService.loginUser(val.username, val.password).subscribe();
     }
-
+    return this.router.navigateByUrl('/');
   }
 
 
