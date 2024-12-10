@@ -10,16 +10,24 @@ import { CommonModule } from '@angular/common';
   styleUrl: './doodlr-profile.component.css'
 })
 export class DoodlrProfileComponent{
-  constructor(private doodlerApiService: DoodlrApiService) {}
+  constructor(private doodlrApiService: DoodlrApiService) {}
   user: any;
+  doodles: any;
 
   ngOnInit(){
-    return this.doodlerApiService.getCurrentUser().subscribe(response => {this.user = response})
+    this.getUser()
+    this.getDoodles()
   }
 
   logData(){
     console.log(this.user)
   }
 
+  getUser(){
+    this.doodlrApiService.getCurrentUser().subscribe(response => this.user = response)
+  }
 
+  getDoodles(){
+     this.doodlrApiService.getCurrentUserDoodles().subscribe(response => {this.doodles = response})
+  }
 }
