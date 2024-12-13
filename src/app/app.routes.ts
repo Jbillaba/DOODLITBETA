@@ -8,6 +8,7 @@ import { DoodlePageComponent } from './components/doodle-page/doodle-page.compon
 import { DoodlPostPageComponent } from './components/doodl-post-page/doodl-post-page.component';
 import { DoodlrProfileComponent } from './components/doodlr-profile/doodlr-profile.component';
 import { ImageuploadComponent } from './components/imageupload/imageupload.component';
+import { UsersProfileComponent } from './components/users-profile/users-profile.component';
 
 export const routes: Routes = [
     { path: '', component: LandingPageComponent },
@@ -16,6 +17,7 @@ export const routes: Routes = [
     { path: 'register', component: RegisterPageComponent },
     { path: 'login', component: LoginPageComponent },
     { path: 'profile', component: DoodlrProfileComponent, canActivate:[AuthGuardService] },
+    { path: 'usersprofile', component: UsersProfileComponent },
     { path: 'image', component: ImageuploadComponent },
     { path: '**', component: FourohfourPageComponent }
 ];
