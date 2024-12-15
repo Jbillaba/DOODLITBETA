@@ -1,7 +1,7 @@
 <div class="flex flex-col justify-center items-center" >
     <div *ngFor="let doodle of doodles" class="p-2">
             <div class=" border-2 border-indigo-500"  >
-                <p>{{doodle.doodlr}} &#9679; {{doodle.created_on}} </p>
+               <a [routerLink]="['/usersprofile', doodle!.doodlr]" > <p>{{doodle.doodlr}} &#9679; </p> </a> <p> {{doodle.created_on}} </p>
                 <p class="border-2 border-orange-500">{{doodle.title}}</p>
                 <a [routerLink]="['/doodle', doodle!.id]"> <img src="{{doodle.image}}" class="border-2 border-rose-500" /> </a>
                 <div class="flex justify-center space-x-2 border-2 border-lime-500 cursor-pointer ">

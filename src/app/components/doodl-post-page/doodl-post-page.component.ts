@@ -28,7 +28,6 @@ export class DoodlPostPageComponent {
   ngOnInit(){
     const routeParamter = this.route.snapshot.paramMap;
     const doodlIdFromRoute = routeParamter.get("doodleid") as string;
-    console.log(doodlIdFromRoute)
     this.doodlrApiService.getDoodle(doodlIdFromRoute).subscribe(response => this.doodl = response)
     this.doodlrApiService.getDoodleComments(doodlIdFromRoute).subscribe(response => this.comments = response)
   }
