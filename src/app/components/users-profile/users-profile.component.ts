@@ -6,13 +6,13 @@ import { DoodlrApiService } from '../../services/doodlr-api.service';
 @Component({
   selector: 'app-users-profile',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './users-profile.component.html',
   styleUrl: './users-profile.component.css'
 })
 export class UsersProfileComponent {
   user: any;
-  usersDoodles: any;
+  doodles: any;
   constructor(private doodlrApiService: DoodlrApiService,
               private route: ActivatedRoute){}
 
@@ -20,16 +20,15 @@ export class UsersProfileComponent {
     const routerParameter = this.route.snapshot.paramMap;
     const username = routerParameter.get("username") as string;
     this.doodlrApiService.getUser(username).subscribe(response => this.user = response)
-    this.doodlrApiService.getUsersDoodles(username).subscribe( response => this.usersDoodles = response)
+    this.doodlrApiService.getUsersDoodles(username).subscribe( response => this.doodles = response)
   }
 
   logDataForUser(){
   console.table(this.user);
-  console.log(this.user.username);
   }
 
   logDataForDoodles(){
-  console.table(this.usersDoodles);
+  console.table(this.doodles);
   }
 
 }

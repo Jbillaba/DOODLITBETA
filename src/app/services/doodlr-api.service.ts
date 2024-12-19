@@ -40,7 +40,7 @@ export class DoodlrApiService {
   }
 
   getUser(username: string){
-    return this.httpClient.get(this.SEARCH_USER_ENDPOINT+ username)
+    return this.httpClient.get(this.USER_ENDPOINT + username + '/')
   }
 
   getUsersDoodles(username:string){

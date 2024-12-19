@@ -1,24 +1,24 @@
 <!-- this component is to be used as a profile viewer for other users, it should show the users doodles, and date joined the site as well -->
 
 <div class="flex flex-col items-center">
-  <h1 class="text-2xl" (click)="logDataForUser()" > {{this.user[0].username}} </h1>
-  <h1 class="text-xl"> # doodles # followers # following </h1>
+  <h1 class="text-2xl" (click)="logDataForUser()" > {{user?.username}} </h1>
+  <h1 class="text-xl"> {{user?.num_of_doodles}} doodles {{user?.num_of_followers}} followers {{user?.num_of_following}} following </h1>
 </div>
 
 <div class="flex justify-center py-[1%]">
  <button class="p-1 border-2 rounded border-green-400 bg-green-400 text-white hover:bg-slate-300 hover:border-slate-300 hover:text-black "> follow </button>
 </div>
 
-<div class="flex flex-col justify-center items-center py-[2%]" (click)="logDataForDoodles()" >
+<div class="flex flex-col justify-center items-center py-[2%]" (click)="logDataForDoodles()" *ngFor="let doodle of doodles" >
   <div class="border-2 border-indigo-500">
-    <h1> doodle username doodle created_on  </h1>
-    <p> doodle title </p>
-    <img alt="broken image">
+    <h1> {{doodle?.doodlr}} . {{doodle?.created_on}}  </h1>
+    <p> {{doodle?.title}} </p>
+    <img src="{{doodle?.image}}" alt="broken image">
   <div class="flex justify-center space-x-2 border-2 border-lime-500 cursor-pointer ">
-    <img src="https://i.imgur.com/etvXnO0.png" alt="happy yeah">
-    <img src="https://i.imgur.com/GB5baRB.png" alt="monotone yeah">
-    <img src="https://i.imgur.com/YNjTenA.png" alt="sad yeah" >
-    <img src="https://i.imgur.com/oIHbwwy.png" alt="confused yeah" >
+    <img src="https://i.imgur.com/etvXnO0.png" alt="happy yeah"> <p> {{doodle?.yeahs.hap}} </p>
+    <img src="https://i.imgur.com/GB5baRB.png" alt="monotone yeah"> <p> {{doodle?.yeahs.nrm}} </p>
+    <img src="https://i.imgur.com/YNjTenA.png" alt="sad yeah"> <p> {{doodle?.yeahs.sad}} </p>
+    <img src="https://i.imgur.com/oIHbwwy.png" alt="confused yeah"> <p> {{doodle?.yeahs.cfd}} </p>
   </div>
   </div>
 </div>
