@@ -23,6 +23,10 @@ export class UsersProfileComponent {
     this.doodlrApiService.getUsersDoodles(username).subscribe( response => this.doodles = response)
   }
 
+  followUser(){
+    return this.doodlrApiService.postFollow(this.user.url).subscribe()
+  }
+
   logDataForUser(){
   console.table(this.user);
   }

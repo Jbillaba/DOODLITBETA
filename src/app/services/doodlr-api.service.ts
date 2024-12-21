@@ -39,8 +39,8 @@ export class DoodlrApiService {
     return this.httpClient.post(this.DOODLE_ENDPOINT, image)
   }
 
-  getUser(username: string){
-    return this.httpClient.get(this.USER_ENDPOINT + username + '/')
+  getUser(id: string){
+    return this.httpClient.get(this.USER_ENDPOINT + id + '/')
   }
 
   getUsersDoodles(username:string){
@@ -75,5 +75,8 @@ export class DoodlrApiService {
     return this.httpClient.post(this.LIKE_ENDPOINT, {post, type})
   }
 
+  postFollow(url: string){
+  return this.httpClient.post(this.FOLLOW_ENDPOINT, {url})
+  }
 
 }
