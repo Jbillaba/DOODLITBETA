@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DoodlrApiService {
-  constructor(private httpClient:HttpClient, private authService: AuthService){}
+  constructor(private httpClient:HttpClient){}
 
+  private LOGGED_IN_ENDPOINT='http://localhost:8000/logged_in/'
   private REGISTER_ENDPOINT='http://localhost:8000/register/'
   private LOGIN_ENDPOINT='http://localhost:8000/login/'
   private DOODLE_ENDPOINT='http://localhost:8000/doodles/'
@@ -22,6 +22,10 @@ export class DoodlrApiService {
   private LIKE_ENDPOINT='http://localhost:8000/yeahs/'
   private FOLLOW_ENDPOINT='http://localhost:8000/userFollows/'
 
+  loggedIn(){
+    return this.httpClient.get(this.LOGGED_IN_ENDPOINT,{withCredentials: true, observe: 'response'})
+  }
+
   registerUser(email: string, username: string, password: string, password2: string){
     return this.httpClient.post(this.REGISTER_ENDPOINT, {email, username,  password, password2})
   }
@@ -31,7 +35,6 @@ export class DoodlrApiService {
   }
 
   logoutUser(){
-    this.authService.isAuthenticated = false;
     return this.httpClient.post(this.LOGOUT_ENDPOINT, {})
   }
 

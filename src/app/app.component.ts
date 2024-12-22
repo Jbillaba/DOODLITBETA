@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {  RouterModule } from '@angular/router';
-import { NavBarComponent } from "./components/nav-bar/nav-bar.component";
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { AuthService } from './services/auth.service';
+
 
 @Component({
   selector: 'app-root',
@@ -12,4 +14,8 @@ import { NavBarComponent } from "./components/nav-bar/nav-bar.component";
 })
 export class AppComponent {
   title = 'doodlr';
+  constructor(private authService: AuthService){}
+  ngOnInit(){
+    return this.authService.isLoggedIn();
+  }
 }
