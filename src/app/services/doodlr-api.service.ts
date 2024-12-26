@@ -22,7 +22,8 @@ export class DoodlrApiService {
   private CURRENT_DOODLES_ENDPOINT=this.BACKEND_URL + '/current_doodles/'
   private LIKE_ENDPOINT=this.BACKEND_URL + '/yeahs/'
   private FOLLOW_ENDPOINT=this.BACKEND_URL + '/userFollows/'
-  private USER_FOLLOWING_ENDPOINT=this.BACKEND_URL + '/userFollows/?search='
+  private USER_FOLLOWING_ENDPOINT=this.BACKEND_URL + '/user_following/?search='
+  private USER_FOLLOWERS_ENDPOINT=this.BACKEND_URL + '/user_followers/?search='
 
   loggedIn(){
     return this.httpClient.get(this.LOGGED_IN_ENDPOINT,{withCredentials: true, observe: 'response'})
@@ -86,6 +87,10 @@ export class DoodlrApiService {
 
   getFollowing(id: string){
   return this.httpClient.get(this.USER_FOLLOWING_ENDPOINT + id)
+  }
+
+  getFollowers(id: string){
+  return this.httpClient.get(this.USER_FOLLOWERS_ENDPOINT + id)
   }
 
 }

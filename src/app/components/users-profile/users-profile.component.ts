@@ -15,6 +15,7 @@ export class UsersProfileComponent {
   user: any;
   doodles: any;
   following: any;
+  followers: any;
   constructor(private doodlrApiService: DoodlrApiService,
               private route: ActivatedRoute){}
 
@@ -38,16 +39,8 @@ export class UsersProfileComponent {
     console.table(this.following)
   }
 
-  logDataForUser(){
-  console.table(this.user);
+  userFollowers(){
+    this.doodlrApiService.getFollowers(this.id).subscribe(response => this.followers = response)
+    console.table(this.followers)
   }
-
-  logDataForDoodles(){
-  console.table(this.doodles);
-  }
-
-  logDataForFollowing(){
-    console.table(this.following);
-  };
-
 }
