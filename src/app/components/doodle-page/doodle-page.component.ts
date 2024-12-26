@@ -137,7 +137,6 @@ export class DoodlePageComponent implements AfterViewInit {
     this.paint = true;
     this.addClick(mouseX, mouseY, false);
     this.redraw();
-    this.grabDoodl()
    };
 
    private dragEventHandler(e: MouseEvent | TouchEvent) {
@@ -176,7 +175,9 @@ export class DoodlePageComponent implements AfterViewInit {
       return this.turnToFile(blob!);
     })
   }
+
   public postDoodl(){
+    this.grabDoodl()
     this.doodlForm.append("image", this.doodl!, this.doodl.name!);
     return this.doodlerApiService.postDoodle(this.doodlForm).subscribe()
     }

@@ -11,7 +11,7 @@
 
 <div class="flex flex-col justify-center items-center py-[2%]" (click)="logDataForDoodles()" *ngFor="let doodle of doodles" >
   <div class="border-2 border-indigo-500">
-    <h1> {{doodle?.doodlr_username}}  &#9679; {{doodle?.created_on}}  </h1>
+    <h1> {{doodle?.doodlr}}  &#9679; {{doodle?.created_on}}  </h1>
     <p> {{doodle?.title}} </p>
     <img src="{{doodle?.image}}" alt="broken image">
   <div class="flex justify-center space-x-2 border-2 border-lime-500 cursor-pointer ">
