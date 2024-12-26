@@ -1,7 +1,7 @@
 <!-- this component is to be used as a profile viewer for other users, it should show the users doodles, and date joined the site as well -->
 
 <div class="flex flex-col items-center">
-  <h1 class="text-2xl" (click)="logDataForUser()" > {{user?.username}} </h1>
+  <h1 class="text-2xl" (click)="userFollowing()" > {{user?.username}} </h1>
   <h1 class="text-xl"> {{user?.num_of_doodles}} doodles {{user?.num_of_followers}} followers {{user?.num_of_following}} following </h1>
 </div>
 

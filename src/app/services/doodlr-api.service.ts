@@ -7,20 +7,22 @@ import { HttpClient } from '@angular/common/http';
 export class DoodlrApiService {
   constructor(private httpClient:HttpClient){}
 
-  private LOGGED_IN_ENDPOINT='http://localhost:8000/logged_in/'
-  private REGISTER_ENDPOINT='http://localhost:8000/register/'
-  private LOGIN_ENDPOINT='http://localhost:8000/login/'
-  private DOODLE_ENDPOINT='http://localhost:8000/doodles/'
-  private DOODLE_SEARCH_ENDPOINT='http://localhost:8000/doodles/?search='
-  private USER_ENDPOINT='http://localhost:8000/users/'
-  private SEARCH_USER_ENDPOINT='http://localhost:8000/users/?search=';
-  private COMMENT_ENDPOINT='http://localhost:8000/comments/'
-  private SEARCH_COMMENT_ENDPOINT='http://localhost:8000/comments/?search='
-  private LOGOUT_ENDPOINT='http://localhost:8000/logout/'
-  private CURRENT_USER_ENDPOINT='http://localhost:8000/current_user/'
-  private CURRENT_DOODLES_ENDPOINT='http://localhost:8000/current_doodles/'
-  private LIKE_ENDPOINT='http://localhost:8000/yeahs/'
-  private FOLLOW_ENDPOINT='http://localhost:8000/userFollows/'
+  private BACKEND_URL = 'http://localhost:8000'
+  private LOGGED_IN_ENDPOINT=this.BACKEND_URL + '/logged_in/'
+  private REGISTER_ENDPOINT=this.BACKEND_URL + '/register/'
+  private LOGIN_ENDPOINT=this.BACKEND_URL + '/login/'
+  private DOODLE_ENDPOINT=this.BACKEND_URL + '/doodles/'
+  private DOODLE_SEARCH_ENDPOINT=this.BACKEND_URL + '/doodles/?search='
+  private USER_ENDPOINT=this.BACKEND_URL + '/users/'
+  private SEARCH_USER_ENDPOINT=this.BACKEND_URL + '/users/?search=';
+  private COMMENT_ENDPOINT=this.BACKEND_URL + '/comments/'
+  private SEARCH_COMMENT_ENDPOINT=this.BACKEND_URL + '/comments/?search='
+  private LOGOUT_ENDPOINT=this.BACKEND_URL + '/logout/'
+  private CURRENT_USER_ENDPOINT=this.BACKEND_URL + '/current_user/'
+  private CURRENT_DOODLES_ENDPOINT=this.BACKEND_URL + '/current_doodles/'
+  private LIKE_ENDPOINT=this.BACKEND_URL + '/yeahs/'
+  private FOLLOW_ENDPOINT=this.BACKEND_URL + '/userFollows/'
+  private USER_FOLLOWING_ENDPOINT=this.BACKEND_URL + '/userFollows/?search='
 
   loggedIn(){
     return this.httpClient.get(this.LOGGED_IN_ENDPOINT,{withCredentials: true, observe: 'response'})
@@ -80,6 +82,10 @@ export class DoodlrApiService {
 
   postFollow(url: string){
   return this.httpClient.post(this.FOLLOW_ENDPOINT, {url})
+  }
+
+  getFollowing(id: string){
+  return this.httpClient.get(this.USER_FOLLOWING_ENDPOINT + id)
   }
 
 }

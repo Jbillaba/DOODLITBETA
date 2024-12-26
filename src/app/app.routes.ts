@@ -17,7 +17,7 @@ export const routes: Routes = [
     { path: 'register', component: RegisterPageComponent },
     { path: 'login', component: LoginPageComponent },
     { path: 'profile', component: DoodlrProfileComponent, canActivate:[AuthGuardService] },
-    { path: 'profile/:username', component: UsersProfileComponent },
+    { path: 'profile/:id', component: UsersProfileComponent },
     { path: 'image', component: ImageuploadComponent },
     { path: '**', component: FourohfourPageComponent }
 ];

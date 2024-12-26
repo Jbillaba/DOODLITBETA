@@ -11,20 +11,31 @@ import { DoodlrApiService } from '../../services/doodlr-api.service';
   styleUrl: './users-profile.component.css'
 })
 export class UsersProfileComponent {
+  id: string;
   user: any;
   doodles: any;
+  following: any;
   constructor(private doodlrApiService: DoodlrApiService,
               private route: ActivatedRoute){}
 
+  //to do: make a modal that displays the names of the following objects:
+              //following
+              //followers
+
   ngOnInit(){
     const routerParameter = this.route.snapshot.paramMap;
-    const username = routerParameter.get("username") as string;
-    this.doodlrApiService.getUser(username).subscribe(response => this.user = response)
-    this.doodlrApiService.getUsersDoodles(username).subscribe( response => this.doodles = response)
+    this.id = routerParameter.get("id")
+    this.doodlrApiService.getUser(this.id).subscribe(response => this.user = response)
+    this.doodlrApiService.getUsersDoodles(this.id).subscribe(response => this.doodles = response)
   }
 
   followUser(){
     return this.doodlrApiService.postFollow(this.user.url).subscribe()
+  }
+
+  userFollowing(){
+    this.doodlrApiService.getFollowing(this.id).subscribe(response => this.following = response)
+    console.table(this.following)
   }
 
   logDataForUser(){
@@ -34,5 +45,9 @@ export class UsersProfileComponent {
   logDataForDoodles(){
   console.table(this.doodles);
   }
+
+  logDataForFollowing(){
+    console.table(this.following);
+  };
 
 }
