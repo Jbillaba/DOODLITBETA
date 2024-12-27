@@ -81,8 +81,8 @@ export class DoodlrApiService {
     return this.httpClient.post(this.LIKE_ENDPOINT, {post, type})
   }
 
-  postFollow(url: string){
-  return this.httpClient.post(this.FOLLOW_ENDPOINT, {url})
+  postFollow(following_user_id: string){
+  return this.httpClient.post(this.FOLLOW_ENDPOINT, {following_user_id})
   }
 
   getFollowing(id: string){

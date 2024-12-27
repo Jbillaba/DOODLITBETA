@@ -43,4 +43,7 @@ export class UsersProfileComponent {
     this.doodlrApiService.getFollowers(this.id).subscribe(response => this.followers = response)
     console.table(this.followers)
   }
+
+
+
 }
