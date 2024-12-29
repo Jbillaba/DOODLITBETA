@@ -1,8 +1,12 @@
 <!-- this component is to be used as a profile viewer for other users, it should show the users doodles, and date joined the site as well -->
 
 <div class="flex flex-col items-center">
-  <h1 class="text-2xl" (click)="userFollowing()" > {{user?.username}} </h1>
-  <h1 class="text-xl" (click)="userFollowers()" > {{user?.num_of_doodles}} doodles {{user?.num_of_followers}} followers {{user?.num_of_following}} following </h1>
+  <h1 class="text-3xl"> {{user?.username}} </h1>
+  <div class="flex-row text-2xl">
+    <label> {{user?.num_of_doodles}} doodles </label>
+    <label for="modal-followers" > {{user?.num_of_followers}} followers  </label>
+    <label for="modal-following" > {{user?.num_of_following}} following </label>
+  </div>
 </div>
 
 <div class="flex justify-center py-[1%]">
@@ -23,5 +27,11 @@
   </div>
 </div>
 
-
-
+<input class="modal-state" id="modal-followers" type="checkbox" />
+<div class="modal">
+  <label class="modal__bg" for="modal-followers"></label>
+  <div class="modal__inner" >
+    <label class="modal-close" for="modal-followers"></label>
+    <h1> pretend a followers list is rendered here for now </h1>
+  </div>
+</div>
