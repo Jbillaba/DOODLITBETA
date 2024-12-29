@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
 
 @Component({
   selector: 'app-users-profile',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './users-profile.component.html',
   styleUrl: './users-profile.component.css'
 })
@@ -43,7 +43,4 @@ export class UsersProfileComponent {
     this.doodlrApiService.getFollowers(this.id).subscribe(response => this.followers = response)
     console.table(this.followers)
   }
-
-
-
 }

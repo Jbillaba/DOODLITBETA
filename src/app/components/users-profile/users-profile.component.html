@@ -32,9 +32,9 @@
   <label class="modal__bg" for="modal-followers"></label>
   <div class="modal__inner" *ngFor="let follow of followers" >
     <label class="modal__close" for="modal-followers"></label>
-    <h1> followers list goes here </h1>
+    <h1> followers </h1>
     <div>
-      <h1> {{follow?.user_id}} </h1>
+      <h1> {{follow?.username}} </h1>
     </div>
   </div>
 </div>
@@ -44,9 +44,9 @@
   <label class="modal__bg" for="modal-following"></label>
   <div class="modal__inner" *ngFor="let follow of following" >
     <label class="modal__close" for="modal-following"></label>
-    <h1> following list goes here </h1>
+    <h1> following </h1>
     <div>
-      <h1> {{follow?.following_user}} </h1>
+      <a [routerLink]="['/profile', follow?.following_id]"> <h1> {{follow?.following_user}} </h1> </a>
     </div>
   </div>
 </div>
