@@ -1,7 +1,10 @@
+
 <div class="flex flex-col items-center">
-  <h1 class="text-2xl" > {{user?.username}} </h1>
-  <div>
-  <p class="text-xl" > {{user?.num_of_doodles}} doodles {{user?.num_of_followers}} followers {{user?.num_of_following}} following  </p>
+  <h1 class="text-3xl"> {{user?.username}} </h1>
+  <div class="flex-row text-2xl space-x-3">
+    <label> {{user?.num_of_doodles}} doodles </label>
+    <label for="modal-followers" (click)="getFollowers()" > {{user?.num_of_followers}} followers  </label>
+    <label for="modal-following" (click)="getFollowing()" > {{user?.num_of_following}} following </label>
   </div>
 </div>
 
@@ -22,7 +25,32 @@
     <img src="https://i.imgur.com/oIHbwwy.png" alt="confused yeah"> <p> {{doodle?.yeahs.cfd}} </p>
   </div>
   </div>
-
-
 </div>
+
+
+<input class="modal-state" id="modal-followers" type="checkbox" />
+<div class="modal">
+  <label class="modal__bg" for="modal-followers"></label>
+  <div class="modal__inner" *ngFor="let follow of followers" >
+    <label class="modal__close" for="modal-followers"></label>
+    <h1> followers list goes here </h1>
+    <div>
+      <h1> {{follow?.user_id}} </h1>
+    </div>
+  </div>
+</div>
+
+<input class="modal-state" id="modal-following" type="checkbox" />
+<div class="modal">
+  <label class="modal__bg" for="modal-following"></label>
+  <div class="modal__inner" *ngFor="let follow of following" >
+    <label class="modal__close" for="modal-following"></label>
+    <h1> following list goes here </h1>
+    <div>
+      <h1> {{follow?.following_user}} </h1>
+    </div>
+  </div>
+</div>
+
+
 

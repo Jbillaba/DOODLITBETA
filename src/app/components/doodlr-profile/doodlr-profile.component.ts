@@ -13,6 +13,8 @@ export class DoodlrProfileComponent{
   constructor(private doodlrApiService: DoodlrApiService) {}
   user: any;
   doodles: any;
+  followers: any;
+  following: any;
 
   ngOnInit(){
     this.getUser()
@@ -30,4 +32,13 @@ export class DoodlrProfileComponent{
   getDoodles(){
      this.doodlrApiService.getCurrentUserDoodles().subscribe(response => {this.doodles = response})
   }
+
+  getFollowers(){
+    this.doodlrApiService.getFollowers(this.user.id).subscribe(response => {this.followers = response})
+  }
+
+  getFollowing(){
+    this.doodlrApiService.getFollowing(this.user.id).subscribe(response=> {this.following = response})
+  }
+
 }
