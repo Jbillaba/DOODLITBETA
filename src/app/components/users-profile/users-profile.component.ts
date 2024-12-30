@@ -29,7 +29,7 @@ export class UsersProfileComponent {
   }
 
   followUser(){
-    return this.doodlrApiService.postFollow(this.user.url).subscribe()
+    this.doodlrApiService.postFollow(this.user.url).subscribe()
   }
 
   userFollowing(){
