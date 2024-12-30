@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Route, RouterModule } from '@angular/router';
+import { ActivatedRoute, Route, RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
 
@@ -19,15 +19,13 @@ export class UsersProfileComponent {
   constructor(private doodlrApiService: DoodlrApiService,
               private route: ActivatedRoute){}
 
-  //to do: make a modal that displays the names of the following objects:
-              //following
-              //followers
-
+// idea for the code in ng on init came from here https://stackoverflow.com/a/78472466/19987328
   ngOnInit(){
-    const routerParameter = this.route.snapshot.paramMap;
-    this.id = routerParameter.get("id")
-    this.doodlrApiService.getUser(this.id).subscribe(response => this.user = response)
-    this.doodlrApiService.getUsersDoodles(this.id).subscribe(response => this.doodles = response)
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+      this.doodlrApiService.getUser(this.id).subscribe(response => this.user = response)
+      this.doodlrApiService.getUsersDoodles(this.id).subscribe(response => this.doodles = response)
+      });
   }
 
   followUser(){
@@ -36,11 +34,13 @@ export class UsersProfileComponent {
 
   userFollowing(){
     this.doodlrApiService.getFollowing(this.id).subscribe(response => this.following = response)
-    console.table(this.following)
   }
 
   userFollowers(){
     this.doodlrApiService.getFollowers(this.id).subscribe(response => this.followers = response)
-    console.table(this.followers)
   }
+
+
+
+
 }
