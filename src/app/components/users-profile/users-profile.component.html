@@ -30,26 +30,26 @@
   </div>
 </div>
 
-<input class="modal-state" id="modal-followers" type="checkbox" />
+<input class="modal-state" id="modal-followers" name="followers-check" type="checkbox" />
 <div class="modal">
   <label class="modal__bg" for="modal-followers"></label>
   <div class="modal__inner" *ngFor="let follow of followers" >
     <label class="modal__close" for="modal-followers"></label>
     <h1> followers </h1>
     <div class="underline text-blue-700" >
-     <a [routerLink]="['/profile', follow?.user_id]" > <h1> {{follow?.username}} </h1> </a>
+     <a [routerLink]="['/profile', follow?.user_id]" (click)="uncheckStateBox()" > <h1> {{follow?.username}} </h1> </a>
     </div>
   </div>
 </div>
 
-<input class="modal-state" id="modal-following" type="checkbox" />
+<input class="modal-state" id="modal-following" name="following-check" type="checkbox" />
 <div class="modal">
   <label class="modal__bg" for="modal-following"></label>
   <div class="modal__inner" *ngFor="let follow of following" >
     <label class="modal__close" for="modal-following"></label>
     <h1> following </h1>
     <div class="underline text-blue-700">
-      <a [routerLink]="['/profile', follow?.following_id]" > <h1> {{follow?.following_user}} </h1> </a>
+      <a [routerLink]="['/profile', follow?.following_id]" (click)="uncheckStateBox()" > <h1> {{follow?.following_user}} </h1> </a>
     </div>
   </div>
 </div>

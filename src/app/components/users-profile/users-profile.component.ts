@@ -39,4 +39,17 @@ export class UsersProfileComponent {
   userFollowers(){
     this.doodlrApiService.getFollowers(this.id).subscribe(response => this.followers = response)
   }
+
+  uncheckStateBox(){
+   const followingBox = document.querySelector("#modal-following") as HTMLInputElement
+   const followerBox = document.querySelector("#modal-followers") as HTMLInputElement
+    if(followingBox.checked || followerBox.checked == true ){
+      followingBox.checked = false;
+      followerBox.checked = false;
+    }
+
+  }
+
+
+
 }
