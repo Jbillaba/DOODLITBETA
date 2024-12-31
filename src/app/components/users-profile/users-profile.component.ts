@@ -39,12 +39,4 @@ export class UsersProfileComponent {
   userFollowers(){
     this.doodlrApiService.getFollowers(this.id).subscribe(response => this.followers = response)
   }
-
-  reload(){
-    location.reload();
-  }
-
-
-
-
 }
