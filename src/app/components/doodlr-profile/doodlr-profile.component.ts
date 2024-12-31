@@ -1,11 +1,12 @@
 import { Component  } from '@angular/core';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-doodlr-profile',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './doodlr-profile.component.html',
   styleUrl: './doodlr-profile.component.css'
 })
@@ -39,6 +40,16 @@ export class DoodlrProfileComponent{
 
   getFollowing(){
     this.doodlrApiService.getFollowing(this.user.id).subscribe(response=> {this.following = response})
+  }
+
+  uncheckStateBox(){
+   const followingBox = document.querySelector("#modal-following") as HTMLInputElement
+   const followerBox = document.querySelector("#modal-followers") as HTMLInputElement
+    if(followingBox.checked || followerBox.checked == true ){
+      followingBox.checked = false;
+      followerBox.checked = false;
+    }
+
   }
 
 }
