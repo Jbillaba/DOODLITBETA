@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Route, RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
+import { fakeAsync } from '@angular/core/testing';
 
 @Component({
   selector: 'app-users-profile',
@@ -16,6 +17,7 @@ export class UsersProfileComponent {
   doodles: any;
   following: any;
   followers: any;
+  isFollowing: boolean = false;
   constructor(private doodlrApiService: DoodlrApiService,
               private route: ActivatedRoute){}
 
@@ -25,11 +27,19 @@ export class UsersProfileComponent {
       this.id = params['id'];
       this.doodlrApiService.getUser(this.id).subscribe(response => this.user = response)
       this.doodlrApiService.getUsersDoodles(this.id).subscribe(response => this.doodles = response)
-      });
+      this.doodlrApiService.isFollowing(this.id).subscribe(response => {if(response == true){
+        this.isFollowing = true
+      }})
+
+    });
   }
 
   followUser(){
     this.doodlrApiService.postFollow(this.user.url).subscribe()
+  }
+
+  unfollowUser(){
+    console.log("pretend this unfollows")
   }
 
   userFollowing(){
