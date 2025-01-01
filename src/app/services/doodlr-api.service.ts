@@ -14,7 +14,6 @@ export class DoodlrApiService {
   private DOODLE_ENDPOINT=this.BACKEND_URL + '/doodles/'
   private DOODLE_SEARCH_ENDPOINT=this.BACKEND_URL + '/doodles/?search='
   private USER_ENDPOINT=this.BACKEND_URL + '/users/'
-  private SEARCH_USER_ENDPOINT=this.BACKEND_URL + '/users/?search=';
   private COMMENT_ENDPOINT=this.BACKEND_URL + '/comments/'
   private SEARCH_COMMENT_ENDPOINT=this.BACKEND_URL + '/comments/?search='
   private LOGOUT_ENDPOINT=this.BACKEND_URL + '/logout/'
@@ -24,6 +23,8 @@ export class DoodlrApiService {
   private FOLLOW_ENDPOINT=this.BACKEND_URL + '/userFollows/'
   private USER_FOLLOWING_ENDPOINT=this.BACKEND_URL + '/user_following/?search='
   private USER_FOLLOWERS_ENDPOINT=this.BACKEND_URL + '/user_followers/?search='
+  private IS_FOLLOWING_ENDPOINT=this.BACKEND_URL + '/is_following/'
+  private SEARCH_ENDPOINT=this.BACKEND_URL + '/search/'
 
   loggedIn(){
     return this.httpClient.get(this.LOGGED_IN_ENDPOINT,{withCredentials: true, observe: 'response'})
@@ -91,6 +92,14 @@ export class DoodlrApiService {
 
   getFollowers(id: string){
   return this.httpClient.get(this.USER_FOLLOWERS_ENDPOINT + id)
+  }
+
+  isFollowing(id: string){
+  return this.httpClient.get(this.IS_FOLLOWING_ENDPOINT + id)
+  }
+
+  search(query: string){
+    return this.httpClient.get(this.SEARCH_ENDPOINT + query)
   }
 
 }
