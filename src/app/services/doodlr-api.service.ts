@@ -95,7 +95,7 @@ export class DoodlrApiService {
   }
 
   isFollowing(id: string){
-  return this.httpClient.get(this.IS_FOLLOWING_ENDPOINT + id)
+  return this.httpClient.get(this.IS_FOLLOWING_ENDPOINT + id, {withCredentials: true})
   }
 
   search(query: string){
