@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Route, RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
-import { fakeAsync } from '@angular/core/testing';
 
 @Component({
   selector: 'app-users-profile',
@@ -57,9 +56,5 @@ export class UsersProfileComponent {
       followingBox.checked = false;
       followerBox.checked = false;
     }
-
   }
-
-
-
 }
