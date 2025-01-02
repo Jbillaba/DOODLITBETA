@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DoodlrApiService } from '../../services/doodlr-api.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -9,15 +10,25 @@ import { CommonModule } from '@angular/common';
   styleUrl: './search-bar.component.css'
 })
 export class SearchBarComponent {
+  results: any;
+  constructor(private doodlrApiService: DoodlrApiService){}
+
 
   ngAfterViewInit(){
-    console.log(this.grabQuery)
+    this.grabQuery()
+    console.log(this.results)
   }
 
-  grabQuery(e: Event){
-    const searchBar = e.currentTarget as HTMLInputElement
-    const query = searchBar.value
-    return query
+  grabQuery(){
+    const searchBar = document.querySelector(".searchbar") as HTMLInputElement
+    searchBar.addEventListener("input", () => {
+      if (searchBar.value.length < 1){
+        return
+      }
+      else{
+        this.doodlrApiService.search(searchBar.value).subscribe( response => response = this.results )
+      }
+    })
   }
 
 
