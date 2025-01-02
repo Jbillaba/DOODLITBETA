@@ -11,12 +11,12 @@ import { DoodlrApiService } from '../../services/doodlr-api.service';
 })
 export class SearchBarComponent {
   results: any;
+  modalAppears: boolean = false;
   constructor(private doodlrApiService: DoodlrApiService){}
 
 
   ngAfterViewInit(){
     this.grabQuery()
-    console.log(this.results)
   }
 
   grabQuery(){
