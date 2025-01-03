@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
 import { AuthService } from '../../services/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -17,13 +17,16 @@ export class DoodlPostPageComponent {
   doodl: any;
   comments: any;
   comment: string;
+  Type: string = "NULL"
+
   commentForm = new FormGroup({
     text: new FormControl('', [Validators.required]),
   })
 
     constructor(private doodlrApiService:DoodlrApiService,
                 private route: ActivatedRoute,
-                private authService: AuthService
+                public authService: AuthService,
+                private router: Router
   ){}
 
   ngOnInit(){
@@ -38,8 +41,13 @@ export class DoodlPostPageComponent {
     window.location.reload();
   }
 
-  auth(){
-   return this.authService.isAuthenticated;
+  postYeah(doodlURL: string,){
+    if (this.authService.isAuthenticated == true) {
+      return this.doodlrApiService.postyeahs(doodlURL, this.Type).subscribe()
+    }
+    else {
+      return this.router.navigateByUrl('/login');
+    }
   }
 
 
