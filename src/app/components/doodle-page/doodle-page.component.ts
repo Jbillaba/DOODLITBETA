@@ -185,7 +185,7 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
     this.doodlForm.append("image", this.doodl!, this.doodl.name!);
     this.doodlerApiService.postDoodle(this.doodlForm).subscribe((response)=>{
       this.createdDoodle = response;
-      this.createdDoodle != undefined ? this.navigateToCreated(this.createdDoodle.id) : console.log("doodled undefined")
+      this.createdDoodle != undefined ? this.navigateToCreated(this.createdDoodle.id) : alert("please try posting again");
     })
     }
 }
