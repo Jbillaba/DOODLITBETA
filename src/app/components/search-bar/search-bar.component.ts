@@ -23,9 +23,11 @@ export class SearchBarComponent {
     const searchBar = document.querySelector(".searchbar") as HTMLInputElement
     searchBar.addEventListener("input", () => {
       if (searchBar.value.length < 1){
+        this.modalAppears = false;
         return this.results = null
       }
       else{
+         this.modalAppears = true;
          this.doodlrApiService.search(searchBar.value).subscribe(response => this.results = response)
       }
     })

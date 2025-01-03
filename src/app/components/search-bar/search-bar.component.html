@@ -2,8 +2,7 @@
   <input type="textbox" class="searchbar" (change)="grabQuery()">
 
 
-  <div class="modal">
-
+  <div class="modal" [style.display]="modalAppears ? 'block' : 'none'" >
     <div class="modal__inner" >
       <div *ngFor="let result of results"  >
         <a [routerLink]="result.title ? ['/doodle', result.id]: ['/profile', result.id]" > {{result.title || result.username}} </a>
