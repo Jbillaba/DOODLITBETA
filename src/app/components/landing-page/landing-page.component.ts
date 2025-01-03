@@ -20,7 +20,6 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit(): void {
       this.doodlrApiService.getDoodles().subscribe(response => {this.doodles = response})
-
   }
 
   postYeah(doodlURL: string,){

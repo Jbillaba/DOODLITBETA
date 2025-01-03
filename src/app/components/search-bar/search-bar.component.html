@@ -4,8 +4,9 @@
 
   <div class="modal" [style.display]="modalAppears ? 'block' : 'none'" >
     <div class="modal__inner" >
-      <div *ngFor="let result of results"  >
+      <div *ngFor="let result of results" class="flex items-center space-x-20 "  >
         <a [routerLink]="result.title ? ['/doodle', result.id]: ['/profile', result.id]" > {{result.title || result.username}} </a>
+        <p class="" > {{result.title? 'post' : 'user'}} </p>
       </div>
     </div>
   </div>

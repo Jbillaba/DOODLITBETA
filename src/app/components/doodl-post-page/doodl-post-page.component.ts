@@ -14,6 +14,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './doodl-post-page.component.css'
 })
 export class DoodlPostPageComponent {
+  id: string;
   doodl: any;
   comments: any;
   comment: string;
@@ -30,10 +31,11 @@ export class DoodlPostPageComponent {
   ){}
 
   ngOnInit(){
-    const routeParamter = this.route.snapshot.paramMap;
-    const doodlIdFromRoute = routeParamter.get("doodleid") as string;
-    this.doodlrApiService.getDoodle(doodlIdFromRoute).subscribe(response => this.doodl = response)
-    this.doodlrApiService.getDoodleComments(doodlIdFromRoute).subscribe(response => this.comments = response)
+    this.route.params.subscribe(params => {
+      this.id = params['doodleid'];
+      this.doodlrApiService.getDoodle(this.id).subscribe(response => this.doodl = response)
+      this.doodlrApiService.getDoodleComments(this.id).subscribe(response => this.comments = response)
+    })
   }
 
   submitComment(){
