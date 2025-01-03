@@ -2,12 +2,13 @@
   <input type="textbox" class="searchbar" (change)="grabQuery()">
 
 
-  <div class="modal" >
+  <div class="modal">
 
-    <div class="modal__inner">
-      <h1>
-        this is content inside the modal
-      </h1>
+    <div class="modal__inner" >
+      <h1>list of results</h1>
+      <div *ngFor="let result of results"  >
+        {{result.title || result.username}}
+      </div>
     </div>
   </div>
 

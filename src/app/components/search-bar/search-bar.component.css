@@ -6,14 +6,8 @@
   outline-color: blue;
 }
 
-
 .modal{
-  opacity: 0;
-  visibility: none;
   border-style: solid;
   border-width: 4px;
   border-color: lime;
 }
-
-
-
