@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, HostListener } from '@angular/core';
+import { Router, RouterModule } from '@angular/router'
 import {  ReactiveFormsModule  } from '@angular/forms';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
 import { CommonModule } from '@angular/common';
@@ -20,10 +21,13 @@ export class DoodlePageComponent implements AfterViewInit {
   doodlForm = new FormData();
   public doodl: File;
   private title = document.querySelector("input")
+  private createdDoodle: any;
 
   private clickX: number[] = [];
   private clickY: number[] = [];
   private clickDrag: boolean[] = [];
+
+constructor(private doodlerApiService: DoodlrApiService, private router: Router){}
 
   @HostListener('document:mousedown', ['$event'])
   pressMouseEventHandler(event:MouseEvent) {
@@ -78,10 +82,6 @@ export class DoodlePageComponent implements AfterViewInit {
 
     this.redraw();
    };
-
-   constructor(private doodlerApiService: DoodlrApiService
-
-   ) {}
 
    private redraw() {
     let clickX = this.clickX;
@@ -176,9 +176,16 @@ export class DoodlePageComponent implements AfterViewInit {
     })
   }
 
+  navigateToCreated(id: string){
+    this.router.navigateByUrl(`/doodle/${id}`)
+  }
+
   public postDoodl(){
     this.grabDoodl()
     this.doodlForm.append("image", this.doodl!, this.doodl.name!);
-    return this.doodlerApiService.postDoodle(this.doodlForm).subscribe()
+    this.doodlerApiService.postDoodle(this.doodlForm).subscribe((response)=>{
+      this.createdDoodle = response;
+      this.createdDoodle != undefined ? this.navigateToCreated(this.createdDoodle.id) : console.log("doodled undefined")
+    })
     }
 }
