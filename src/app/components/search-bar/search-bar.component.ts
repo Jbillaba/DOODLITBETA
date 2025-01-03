@@ -1,11 +1,12 @@
 import { Component, SimpleChanges } from '@angular/core';
+import { RouterModule } from '@angular/router'
 import { CommonModule } from '@angular/common';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
 
 @Component({
   selector: 'app-search-bar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.css'
 })
@@ -22,7 +23,7 @@ export class SearchBarComponent {
     const searchBar = document.querySelector(".searchbar") as HTMLInputElement
     searchBar.addEventListener("input", () => {
       if (searchBar.value.length < 1){
-        return null
+        return this.results = null
       }
       else{
          this.doodlrApiService.search(searchBar.value).subscribe(response => this.results = response)

@@ -5,9 +5,8 @@
   <div class="modal">
 
     <div class="modal__inner" >
-      <h1>list of results</h1>
       <div *ngFor="let result of results"  >
-        {{result.title || result.username}}
+        <a [routerLink]="result.title ? ['/doodle', result.id]: ['/profile', result.id]" > {{result.title || result.username}} </a>
       </div>
     </div>
   </div>
