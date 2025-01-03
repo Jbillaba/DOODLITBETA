@@ -12,7 +12,7 @@
 </div>
 
 <div class="flex justify-center py-[1%]">
- <button class="p-1 border-2 rounded bg-slate-300 border-slate-300 text-black "> edit profile </button>
+<a [routerLink]="['/profile/edit']" > <button class="p-1 border-2 rounded bg-slate-300 border-slate-300 text-black "> edit profile </button> </a>
 </div>
 
 <div class="flex flex-col justify-center items-center py-[2%]" *ngFor="let doodle of doodles">
