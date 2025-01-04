@@ -36,7 +36,7 @@ export class DoodlPostPageComponent {
       this.id = params['doodleid'];
       this.doodlrApiService.getDoodle(this.id).subscribe((response) => {
         this.doodl = response;
-        console.log(this.doodl.doodlr == this.authService.grabCookie("uid") ? this.authService.canEditPost = true : this.authService.canEditPost = false)
+        this.doodl.doodlr == this.authService.grabCookie("uid") ? this.authService.canEditPost = true : this.authService.canEditPost = false
 
       })
       this.doodlrApiService.getDoodleComments(this.id).subscribe(response => this.comments = response)

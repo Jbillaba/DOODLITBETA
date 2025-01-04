@@ -3,7 +3,7 @@
     <div class=" justify-center flex flex-row space-x-[1%]">
         <a [routerLink]="['/profile', doodl?.doodlr]" > <h3>doodled by {{doodl?.doodlr_username}}</h3> </a>
         <h3>doodled {{doodl?.created_on}}</h3>
-        <p class="text-3xl cursor-pointer" *ngIf="this.authService.canEditPost" (click)="edit()" > ⁝ </p>
+        <label class="text-3xl cursor-pointer" *ngIf="this.authService.canEditPost" for="modal-edit" > ⁝ </label>
     </div>
 
     <div class="m-auto border border-blue-600 object w-1/2 " >
@@ -36,5 +36,16 @@
                 <p>{{comment.created_on}}</p>
             </div>
         </div>
+    </div>
+</div>
+
+<input class="modal-state" id="modal-edit" name="edit-check" type="checkbox"  />
+<div class="modal" >
+    <label class="modal__bg" for="modal-edit"></label>
+    <div class="modal__inner">
+        <label class="modal__close"  for="modal-edit"></label>
+        <h3>edit option</h3>
+        <h2>edit</h2>
+        <h2>delete</h2>
     </div>
 </div>
