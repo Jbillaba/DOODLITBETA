@@ -1,17 +1,20 @@
 <div class="py-[1%] border border-orange-700 text-center">
     <h1 class="text-3xl" >{{doodl?.title}}</h1>
     <div class=" justify-center flex flex-row space-x-[1%]">
-       <a [routerLink]="['/profile', doodl?.doodlr]" > <h3>doodled by {{doodl?.doodlr_username}}</h3> </a>
+        <a [routerLink]="['/profile', doodl?.doodlr]" > <h3>doodled by {{doodl?.doodlr_username}}</h3> </a>
         <h3>doodled {{doodl?.created_on}}</h3>
+        <p class="underline text-blue-500 cursor-pointer" *ngIf="this.authService.canEditPost"> edit </p>
     </div>
 
     <div class="m-auto border border-blue-600 object w-1/2 " >
         <img src="{{doodl?.image}}" >
+        
         <div class="flex justify-center space-x-2 border-2 border-lime-500 cursor-pointer ">
             <img src="https://i.imgur.com/etvXnO0.png" alt="happy yeah" (mouseover)="Type='HPY'" (click)="this.postYeah(doodl?.url)" > <p>{{doodl?.yeahs.hap}}</p>
             <img src="https://i.imgur.com/GB5baRB.png" alt="monotone yeah" (mouseover)="Type='NRM'" (click)="this.postYeah(doodl?.url)"  > <p>{{doodl?.yeahs.nrm}}</p>
             <img src="https://i.imgur.com/YNjTenA.png" alt="sad yeah" (mouseover)="Type='SAD'" (click)="this.postYeah(doodl?.url)" > <p>{{doodl?.yeahs.sad}}</p>
             <img src="https://i.imgur.com/oIHbwwy.png" alt="confused yeah" (mouseover)="Type='CFD'" (click)="this.postYeah(doodl?.url)" > <p>{{doodl?.yeahs.cfd}}</p>
+            <img src="https://i.imgur.com/c0SLkN8.png" > <p>{{doodl?.number_of_comments}}</p>
         </div>
     </div>
 </div>

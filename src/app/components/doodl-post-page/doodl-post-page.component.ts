@@ -18,6 +18,7 @@ export class DoodlPostPageComponent {
   doodl: any;
   comments: any;
   comment: string;
+  cookie: string;
   Type: string = "NULL"
 
   commentForm = new FormGroup({
@@ -33,8 +34,13 @@ export class DoodlPostPageComponent {
   ngOnInit(){
     this.route.params.subscribe(params => {
       this.id = params['doodleid'];
-      this.doodlrApiService.getDoodle(this.id).subscribe(response => this.doodl = response)
+      this.doodlrApiService.getDoodle(this.id).subscribe((response) => {
+        this.doodl = response;
+        console.log(this.doodl.doodlr == this.authService.grabCookie("uid") ? this.authService.canEditPost = true : this.authService.canEditPost = false)
+
+      })
       this.doodlrApiService.getDoodleComments(this.id).subscribe(response => this.comments = response)
+
     })
   }
 
@@ -51,7 +57,4 @@ export class DoodlPostPageComponent {
       return this.router.navigateByUrl('/login');
     }
   }
-
-
-
 }
