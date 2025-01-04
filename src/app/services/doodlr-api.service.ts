@@ -62,6 +62,10 @@ export class DoodlrApiService {
     return this.httpClient.get(this.DOODLE_ENDPOINT + id)
   }
 
+  deleteDoodle(id: string){
+    return this.httpClient.delete(this.DOODLE_ENDPOINT + id)
+  }
+
   getDoodleComments(id: string){
     return this.httpClient.get(this.SEARCH_COMMENT_ENDPOINT + id)
   }

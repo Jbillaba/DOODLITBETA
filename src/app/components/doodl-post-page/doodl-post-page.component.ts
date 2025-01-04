@@ -37,7 +37,6 @@ export class DoodlPostPageComponent {
       this.doodlrApiService.getDoodle(this.id).subscribe((response) => {
         this.doodl = response;
         this.doodl.doodlr == this.authService.grabCookie("uid") ? this.authService.canEditPost = true : this.authService.canEditPost = false
-
       })
       this.doodlrApiService.getDoodleComments(this.id).subscribe(response => this.comments = response)
 
@@ -58,7 +57,10 @@ export class DoodlPostPageComponent {
     }
   }
 
-  edit(){
-    console.log("a little sub menu should popup asking if you want to edit or delete the post")
+  delete(){
+    this.doodlrApiService.deleteDoodle(this.id).subscribe(response => {
+      alert("doodle deleted")
+    })
   }
+
 }
