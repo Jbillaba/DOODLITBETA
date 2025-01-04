@@ -3,7 +3,7 @@
     <div class=" justify-center flex flex-row space-x-[1%]">
         <a [routerLink]="['/profile', doodl?.doodlr]" > <h3>doodled by {{doodl?.doodlr_username}}</h3> </a>
         <h3>doodled {{doodl?.created_on}}</h3>
-        <p class="underline text-blue-500 cursor-pointer" *ngIf="this.authService.canEditPost"> edit </p>
+        <p class="text-3xl cursor-pointer" *ngIf="this.authService.canEditPost" (click)="edit()" > ⁝ </p>
     </div>
 
     <div class="m-auto border border-blue-600 object w-1/2 " >

@@ -57,4 +57,8 @@ export class DoodlPostPageComponent {
       return this.router.navigateByUrl('/login');
     }
   }
+
+  edit(){
+    console.log("a little sub menu should popup asking if you want to edit or delete the post")
+  }
 }
