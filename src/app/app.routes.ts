@@ -10,16 +10,17 @@ import { DoodlrProfileComponent } from './components/doodlr-profile/doodlr-profi
 import { ImageuploadComponent } from './components/imageupload/imageupload.component';
 import { UsersProfileComponent } from './components/users-profile/users-profile.component';
 import { EditPageComponent } from './components/edit-page/edit-page.component';
+import { DoodleEditPageComponent } from './components/doodle-edit-page/doodle-edit-page.component';
 
 export const routes: Routes = [
     { path: '', component: LandingPageComponent },
     { path: 'doodle', component: DoodlePageComponent, canActivate:[AuthGuardService]},
+    { path: 'doodle/edit/:doodleid', component:DoodleEditPageComponent},
     { path: 'doodle/:doodleid', component: DoodlPostPageComponent},
     { path: 'register', component: RegisterPageComponent },
     { path: 'login', component: LoginPageComponent },
     { path: 'profile/edit', component: EditPageComponent },
     { path: 'profile', component: DoodlrProfileComponent, canActivate:[AuthGuardService] },
     { path: 'profile/:id', component: UsersProfileComponent },
-    { path: 'image', component: ImageuploadComponent },
     { path: '**', component: FourohfourPageComponent }
 ];

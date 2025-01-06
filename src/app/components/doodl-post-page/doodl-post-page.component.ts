@@ -57,6 +57,10 @@ export class DoodlPostPageComponent {
     }
   }
 
+  edit(){
+    return this.router.navigateByUrl(`/doodle/edit/${this.id}`)
+  }
+
   delete(){
     this.doodlrApiService.deleteDoodle(this.id).subscribe(response => {
       alert("doodle deleted")
