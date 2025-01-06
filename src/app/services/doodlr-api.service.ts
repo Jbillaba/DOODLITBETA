@@ -42,8 +42,8 @@ export class DoodlrApiService {
     return this.httpClient.post(this.LOGOUT_ENDPOINT, {})
   }
 
-  postDoodle(image: any){
-    return this.httpClient.post(this.DOODLE_ENDPOINT, image)
+  postDoodle(form: any){
+    return this.httpClient.post(this.DOODLE_ENDPOINT, form)
   }
 
   getUser(id: string){
@@ -60,6 +60,10 @@ export class DoodlrApiService {
 
   getDoodle(id: string){
     return this.httpClient.get(this.DOODLE_ENDPOINT + id)
+  }
+
+  patchDoodle(id: string, form: any){
+    return this.httpClient.patch(this.DOODLE_ENDPOINT + id + '/',  form)
   }
 
   deleteDoodle(id: string){

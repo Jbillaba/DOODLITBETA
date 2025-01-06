@@ -20,7 +20,6 @@ export class DoodlePageComponent implements AfterViewInit {
   private paint: boolean;
   doodlForm = new FormData();
   public doodl: File;
-  private title = document.querySelector("input")
   private createdDoodle: any;
 
   private clickX: number[] = [];

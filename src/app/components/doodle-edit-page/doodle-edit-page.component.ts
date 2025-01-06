@@ -16,6 +16,8 @@ export class DoodleEditPageComponent {
   doodle: any;
   cookie: string;
 
+  doodleForm = new FormData();
+
   constructor(private doodlrApiService: DoodlrApiService,
               private authService: AuthService,
               private route: ActivatedRoute,
@@ -32,7 +34,24 @@ export class DoodleEditPageComponent {
       })
     }
 
-    
+    public changeTitle(e: Event){
+      const title=e.currentTarget as HTMLInputElement;
+      console.log(title.value)
+      this.doodleForm.append("title", title!.value);
+    }
+
+    navigateToEdited(id: string){
+      this.router.navigateByUrl(`/doodle/${id}`)
+    }
+
+    public patchDoodle(){
+      console.log(this.id)
+      console.log(this.doodleForm)
+      return this.doodlrApiService.patchDoodle(this.id, this.doodleForm).subscribe((response) => {
+        this.navigateToEdited(this.id) 
+      })
+    }
+
 
 
 }
