@@ -96,6 +96,10 @@ export class DoodlrApiService {
   return this.httpClient.post(this.FOLLOW_ENDPOINT, {following_user_id})
   }
 
+  deleteFollow(id: string){
+  return this.httpClient.delete(this.FOLLOW_ENDPOINT + id)
+}
+
   getFollowing(id: string){
   return this.httpClient.get(this.USER_FOLLOWING_ENDPOINT + id)
   }

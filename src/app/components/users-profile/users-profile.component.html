@@ -39,9 +39,11 @@
   <div class="modal__inner" *ngFor="let follow of followers" >
     <label class="modal__close" for="modal-followers"></label>
     <h1> followers </h1>
+    
     <div class="underline text-blue-700" >
      <a [routerLink]="['/profile', follow?.user_id]" (click)="uncheckStateBox()" > <h1> {{follow?.username}} </h1> </a>
     </div>
+  
   </div>
 </div>
 
@@ -51,9 +53,11 @@
   <div class="modal__inner" *ngFor="let follow of following" >
     <label class="modal__close" for="modal-following"></label>
     <h1> following </h1>
+    
     <div class="underline text-blue-700">
       <a [routerLink]="['/profile', follow?.following_id]" (click)="uncheckStateBox()" > <h1> {{follow?.following_user}} </h1> </a>
     </div>
+  
   </div>
 </div>
 

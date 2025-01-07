@@ -12,10 +12,12 @@ import { DoodlrApiService } from '../../services/doodlr-api.service';
 })
 export class UsersProfileComponent {
   id: string;
+  following_id: string;
   user: any;
   doodles: any;
   following: any;
   followers: any;
+  following_obj: any; // this is declared in the isFollowing function to set the follow id to following_id to delete it
   isFollowing: boolean = false;
   constructor(private doodlrApiService: DoodlrApiService,
               private route: ActivatedRoute){}
@@ -26,9 +28,13 @@ export class UsersProfileComponent {
       this.id = params['id'];
       this.doodlrApiService.getUser(this.id).subscribe(response => this.user = response)
       this.doodlrApiService.getUsersDoodles(this.id).subscribe(response => this.doodles = response)
-      this.doodlrApiService.isFollowing(this.id).subscribe(response => {if(response == true){
-        this.isFollowing = true
-      }})
+      this.doodlrApiService.isFollowing(this.id).subscribe((response)=> {
+        if(response != undefined){
+          this.following_obj = response;
+          this.following_id = this.following_obj.id;
+          this.isFollowing = true;
+        }
+      })
 
     });
   }
@@ -38,7 +44,7 @@ export class UsersProfileComponent {
   }
 
   unfollowUser(){
-    console.log("pretend this unfollows")
+    this.doodlrApiService.deleteFollow(this.following_id).subscribe()
   }
 
   userFollowing(){
