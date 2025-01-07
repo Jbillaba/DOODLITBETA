@@ -15,6 +15,8 @@ export class EditPageComponent {
   passwordAppears: boolean = false;
   emailAppears: boolean = false;
   deleteAppears: boolean = false;
+  whichBool: string;
+
   constructor(private doodlrApiService: DoodlrApiService){}
   ngOnInit(){}
   
@@ -23,7 +25,7 @@ export class EditPageComponent {
   }
 
   open(){
-    this.userAppears = true;
+    console.log(this.whichBool)
     this.userAppears = !this.userAppears;
   }
 

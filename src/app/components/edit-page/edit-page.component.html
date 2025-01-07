@@ -1,21 +1,21 @@
 <div class="m-auto text-center border border-slate-400 rounded text space-y-[2%] max-w-[75%]" >
-    <h2 class="cursor-pointer" (click)="open()" >change username</h2>
-    <div class="dropdown" id="username-dropdown" [style.display]="userAppears ? 'block' : 'none'" >
+    <h2 class="cursor-pointer" id="userAppears" (click)="userAppears = !userAppears" >change username</h2>
+    <div class="dropdown" [style.display]="userAppears ? 'block' : 'none'" >
         content inside
     </div>
     
-    <h2 class="cursor-pointer"  >change email</h2>
-    <div class="dropdown" id="email-dropdown" [style.display]="emailAppears ? 'block' : 'none'" >
+    <h2 class="cursor-pointer" (click)="emailAppears = !emailAppears" >change email</h2>
+    <div class="dropdown" [style.display]="emailAppears ? 'block' : 'none'" >
         content inside
     </div>
     
-    <h2 class="cursor-pointer"  >change password</h2>
-    <div class="dropdown" id="password-dropdown" [style.display]="passwordAppears ? 'block' : 'none'" >
+    <h2 class="cursor-pointer" (click)="passwordAppears = !passwordAppears"  >change password</h2>
+    <div class="dropdown" [style.display]="passwordAppears ? 'block' : 'none'" >
         content inside
     </div>
     
-    <h2 class="cursor-pointer"  >delete account</h2>
-    <div class="dropdown" id="delete-dropdown" [style.display]="deleteAppears ? 'block' : 'none'" >
+    <h2 class="cursor-pointer" (click)="deleteAppears = !deleteAppears" >delete account</h2>
+    <div class="dropdown" [style.display]="deleteAppears ? 'block' : 'none'" >
         content inside
     </div>
 </div>
