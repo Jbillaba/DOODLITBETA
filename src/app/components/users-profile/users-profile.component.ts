@@ -29,10 +29,12 @@ export class UsersProfileComponent {
       this.doodlrApiService.getUser(this.id).subscribe(response => this.user = response)
       this.doodlrApiService.getUsersDoodles(this.id).subscribe(response => this.doodles = response)
       this.doodlrApiService.isFollowing(this.id).subscribe((response)=> {
-        if(response != undefined){
+        if(response != 404){
           this.following_obj = response;
           this.following_id = this.following_obj.id;
-          this.isFollowing = true;
+          return this.isFollowing = true;        }
+        else {
+          return this.isFollowing = false;
         }
       })
 
