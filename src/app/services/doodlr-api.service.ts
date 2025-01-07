@@ -25,6 +25,8 @@ export class DoodlrApiService {
   private USER_FOLLOWERS_ENDPOINT=this.BACKEND_URL + '/user_followers/?search='
   private IS_FOLLOWING_ENDPOINT=this.BACKEND_URL + '/is_following/'
   private SEARCH_ENDPOINT=this.BACKEND_URL + '/search/'
+  private CHANGE_PASSWORD_ENDPOINT=this.BACKEND_URL + '/change_password/'
+  private DELETE_ACCOUNT_ENDPOINT=this.BACKEND_URL + '/delete_account/'
 
   loggedIn(){
     return this.httpClient.get(this.LOGGED_IN_ENDPOINT,{withCredentials: true, observe: 'response'})
@@ -104,6 +106,18 @@ export class DoodlrApiService {
 
   isFollowing(id: string){
   return this.httpClient.get(this.IS_FOLLOWING_ENDPOINT + id, {withCredentials: true})
+  }
+
+  editAccountDetails(id: string, form: any){
+    return this.httpClient.patch(this.USER_ENDPOINT + `/${id}/`, form)
+  }
+
+  changePassword(form: any){
+    return this.httpClient.put(this.CHANGE_PASSWORD_ENDPOINT, form)
+  }
+
+  deleteAccount(form: any){
+    return this.httpClient.delete(this.DELETE_ACCOUNT_ENDPOINT, form)
   }
 
   search(query: string){
