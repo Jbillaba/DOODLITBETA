@@ -1,21 +1,39 @@
 <div class="m-auto text-center border border-slate-400 rounded text space-y-[2%] max-w-[75%]" >
     <h2 class="cursor-pointer" id="userAppears" (click)="userAppears = !userAppears" >change username</h2>
     <div class="dropdown" [style.display]="userAppears ? 'block' : 'none'" >
-        content inside
+        <div class="inner_content" >
+            <input  type="text" id="username" placeholder="enter new username">
+            <button class="button" (click)="changeUsername()" >change username</button>
+        </div>
+        
     </div>
     
     <h2 class="cursor-pointer" (click)="emailAppears = !emailAppears" >change email</h2>
     <div class="dropdown" [style.display]="emailAppears ? 'block' : 'none'" >
-        content inside
+        <div class="inner_content" >
+            <input type="email" id="email" placeholder="enter email" >
+            <button class="button" (click)="changeEmail()">change email</button>
+        </div>
     </div>
     
     <h2 class="cursor-pointer" (click)="passwordAppears = !passwordAppears"  >change password</h2>
     <div class="dropdown" [style.display]="passwordAppears ? 'block' : 'none'" >
-        content inside
+        <div class="inner_content">
+            <form class="flex flex-col" [formGroup]="changePasswordForm" (ngSubmit)="changePassword()" >
+                <input type="text" id="old_pass" placeholder="old password" formControlName="old_password">
+                <input type="text" id="new_pass" placeholder="new password" formControlName="new_password">
+                <input type="text" id="confirm_pass" placeholder="confirm password" formControlName="confirm_new_password" >
+                <button *ngIf="!changePasswordForm.valid" >change password</button>
+                <button *ngIf="changePasswordForm.valid"  class="button" [disabled]="!changePasswordForm.valid" > change password </button>
+            </form>
+        </div>
     </div>
     
     <h2 class="cursor-pointer" (click)="deleteAppears = !deleteAppears" >delete account</h2>
     <div class="dropdown" [style.display]="deleteAppears ? 'block' : 'none'" >
-        content inside
+        <div class="inner_content" >
+            <input type="text" id="pass" placeholder="enter password" >
+            <button class="button" (click)="deleteAccount()" >delete account</button>
+        </div>
     </div>
 </div>

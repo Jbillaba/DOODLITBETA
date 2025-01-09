@@ -53,11 +53,9 @@
   <div class="modal__inner" *ngFor="let follow of following" >
     <label class="modal__close" for="modal-following"></label>
     <h1> following </h1>
-    
-    <div class="underline text-blue-700">
+    <div class="underline text-blue-700" *ngIf="following?.length > 0">
       <a [routerLink]="['/profile', follow?.following_id]" (click)="uncheckStateBox()" > <h1> {{follow?.following_user}} </h1> </a>
     </div>
-  
   </div>
 </div>
 

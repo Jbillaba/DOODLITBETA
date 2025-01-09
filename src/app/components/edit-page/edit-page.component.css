@@ -4,3 +4,13 @@
     border-radius: 3px;
     border-color: red;
 }
+
+.inner_content{
+    display: flex;
+    flex-direction: column;
+}
+
+.button{
+    background-color: lightskyblue;
+    color: white;
+}
