@@ -5,8 +5,6 @@ import { DoodlrApiService } from '../../services/doodlr-api.service';
 import { CommonModule } from '@angular/common';
 import {v4 as uuidv4} from 'uuid';
 
-
-
 @Component({
   selector: 'app-doodle-page',
   standalone: true,

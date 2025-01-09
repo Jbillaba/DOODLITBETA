@@ -112,8 +112,8 @@ export class DoodlrApiService {
   return this.httpClient.get(this.IS_FOLLOWING_ENDPOINT + id, {withCredentials: true})
   }
 
-  editAccountDetails(id: string, form: any){
-    return this.httpClient.patch(this.USER_ENDPOINT + `/${id}/`, form)
+  editAccountDetails(form: any){
+    return this.httpClient.patch(this.CURRENT_DOODLES_ENDPOINT, form)
   }
 
   changePassword(form: any){
@@ -121,7 +121,7 @@ export class DoodlrApiService {
   }
 
   deleteAccount(form: any){
-    return this.httpClient.delete(this.DELETE_ACCOUNT_ENDPOINT, form)
+    return this.httpClient.post(this.DELETE_ACCOUNT_ENDPOINT, form)
   }
 
   search(query: string){
