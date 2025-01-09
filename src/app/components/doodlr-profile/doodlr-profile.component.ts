@@ -14,6 +14,7 @@ export class DoodlrProfileComponent{
   constructor(private doodlrApiService: DoodlrApiService) {}
   user: any;
   doodles: any;
+  doodlesLength;
   followers: any;
   following: any;
 
@@ -31,7 +32,9 @@ export class DoodlrProfileComponent{
   }
 
   getDoodles(){
-     this.doodlrApiService.getCurrentUserDoodles().subscribe(response => {this.doodles = response})
+     this.doodlrApiService.getCurrentUserDoodles().subscribe(response => {this.doodles = response;
+      this.doodlesLength = this.doodles.length;
+     })
   }
 
   getFollowers(){

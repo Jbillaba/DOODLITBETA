@@ -20,6 +20,7 @@ export class DoodlPostPageComponent {
   comment: string;
   cookie: string;
   Type: string = "NULL"
+  commentsLength;
 
   commentForm = new FormGroup({
     text: new FormControl('', [Validators.required]),
@@ -38,7 +39,10 @@ export class DoodlPostPageComponent {
         this.doodl = response;
         this.doodl.doodlr == this.authService.grabCookie("uid") ? this.authService.canEditPost = true : this.authService.canEditPost = false
       })
-      this.doodlrApiService.getDoodleComments(this.id).subscribe(response => this.comments = response)
+      this.doodlrApiService.getDoodleComments(this.id).subscribe((response) => {
+        this.comments = response;
+        this.commentsLength = this.comments.length
+      })
 
     })
   }

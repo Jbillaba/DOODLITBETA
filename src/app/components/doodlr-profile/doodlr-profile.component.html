@@ -15,21 +15,6 @@
 <a [routerLink]="['/profile/edit']" > <button class="p-1 border-2 rounded bg-slate-300 border-slate-300 text-black "> edit profile </button> </a>
 </div>
 
-<div class="flex flex-col justify-center items-center py-[2%]" *ngFor="let doodle of doodles">
- <div class="border-2 border-indigo-500">
-    <h1> {{doodle?.doodlr_username}}  &#9679; {{doodle?.created_on}}  </h1>
-    <p> {{doodle?.title}} </p>
-    <a [routerLink]="['/doodle', doodle!.id]"> <img src="{{doodle.image}}" class="border-2 border-rose-500" /> </a>
-    <div class="flex justify-center space-x-2 border-2 border-lime-500 cursor-pointer ">
-      <img src="https://i.imgur.com/etvXnO0.png" alt="happy yeah"> <p> {{doodle?.yeahs.hap}} </p>
-      <img src="https://i.imgur.com/GB5baRB.png" alt="monotone yeah"> <p> {{doodle?.yeahs.nrm}} </p>
-      <img src="https://i.imgur.com/YNjTenA.png" alt="sad yeah"> <p> {{doodle?.yeahs.sad}} </p>
-      <img src="https://i.imgur.com/oIHbwwy.png" alt="confused yeah"> <p> {{doodle?.yeahs.cfd}} </p>
-    </div>
-  </div>
-</div>
-
-
 <input class="modal-state" id="modal-followers" name="followers-check" type="checkbox" />
 <div class="modal">
   <label class="modal__bg" for="modal-followers"></label>
@@ -53,4 +38,25 @@
     </div>
   </div>
 </div>
+
+
+
+<div class="flex flex-col justify-center items-center py-[2%]" >
+ <div class="border-2 border-indigo-500" *ngFor="let doodle of doodles">
+    <h1> {{doodle?.doodlr_username}}  &#9679; {{doodle?.created_on}}  </h1>
+    <p> {{doodle?.title}} </p>
+    <a [routerLink]="['/doodle', doodle!.id]"> <img src="{{doodle.image}}" class="border-2 border-rose-500" /> </a>
+    <div class="flex justify-center space-x-2 border-2 border-lime-500 cursor-pointer ">
+      <img src="https://i.imgur.com/etvXnO0.png" alt="happy yeah"> <p> {{doodle?.yeahs.hap}} </p>
+      <img src="https://i.imgur.com/GB5baRB.png" alt="monotone yeah"> <p> {{doodle?.yeahs.nrm}} </p>
+      <img src="https://i.imgur.com/YNjTenA.png" alt="sad yeah"> <p> {{doodle?.yeahs.sad}} </p>
+      <img src="https://i.imgur.com/oIHbwwy.png" alt="confused yeah"> <p> {{doodle?.yeahs.cfd}} </p>
+    </div>
+  </div>
+
+  <div *ngIf="doodlesLength == 0">
+    <h3>you have no doodles</h3>
+  </div>
+</div>
+
 

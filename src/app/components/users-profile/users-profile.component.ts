@@ -15,6 +15,7 @@ export class UsersProfileComponent {
   following_id: string;
   user: any;
   doodles: any;
+  doodlesLength;
   following: any;
   followers: any;
   following_obj: any; // this is declared in the isFollowing function to set the follow id to following_id to delete it
@@ -27,7 +28,10 @@ export class UsersProfileComponent {
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.doodlrApiService.getUser(this.id).subscribe(response => this.user = response)
-      this.doodlrApiService.getUsersDoodles(this.id).subscribe(response => this.doodles = response)
+      this.doodlrApiService.getUsersDoodles(this.id).subscribe((response) => {
+        this.doodles = response;
+        this.doodlesLength = this.doodles.length
+      })
       this.doodlrApiService.isFollowing(this.id).subscribe((response)=> {
         if(response != 404){
           this.following_obj = response;
