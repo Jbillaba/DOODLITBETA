@@ -10,10 +10,10 @@
         <img src="{{doodl?.image}}" >
         
         <div class="flex justify-center space-x-2 border-2 border-lime-500 cursor-pointer ">
-            <img src="https://i.imgur.com/etvXnO0.png" alt="happy yeah" (mouseover)="Type='HPY'" (click)="this.postYeah(doodl?.url)" > <p>{{doodl?.yeahs.hap}}</p>
-            <img src="https://i.imgur.com/GB5baRB.png" alt="monotone yeah" (mouseover)="Type='NRM'" (click)="this.postYeah(doodl?.url)"  > <p>{{doodl?.yeahs.nrm}}</p>
-            <img src="https://i.imgur.com/YNjTenA.png" alt="sad yeah" (mouseover)="Type='SAD'" (click)="this.postYeah(doodl?.url)" > <p>{{doodl?.yeahs.sad}}</p>
-            <img src="https://i.imgur.com/oIHbwwy.png" alt="confused yeah" (mouseover)="Type='CFD'" (click)="this.postYeah(doodl?.url)" > <p>{{doodl?.yeahs.cfd}}</p>
+            <img src="https://i.imgur.com/etvXnO0.png" alt="happy yeah" (mouseover)="Type='HPY'" (click)="postYeah(doodl?.url)" > <p>{{doodl?.yeahs.hap}}</p>
+            <img src="https://i.imgur.com/GB5baRB.png" alt="monotone yeah" (mouseover)="Type='NRM'" (click)="postYeah(doodl?.url)"  > <p>{{doodl?.yeahs.nrm}}</p>
+            <img src="https://i.imgur.com/YNjTenA.png" alt="sad yeah" (mouseover)="Type='SAD'" (click)="postYeah(doodl?.url)" > <p>{{doodl?.yeahs.sad}}</p>
+            <img src="https://i.imgur.com/oIHbwwy.png" alt="confused yeah" (mouseover)="Type='CFD'" (click)="postYeah(doodl?.url)" > <p>{{doodl?.yeahs.cfd}}</p>
             <img src="https://i.imgur.com/c0SLkN8.png" > <p>{{doodl?.number_of_comments}}</p>
         </div>
     </div>
@@ -25,8 +25,8 @@
     <div class="modal__inner">
         <label class="modal__close"  for="modal-edit"></label>
         <h3>edit option</h3>
-        <h2 class="cursor-pointer hover:bg-slate-200" (click)="this.edit()">edit</h2>
-        <h2 class="cursor-pointer hover:bg-slate-200" (click)="this.delete()" >delete</h2>
+        <h2 class="cursor-pointer hover:bg-slate-200" (click)="edit()">edit</h2>
+        <h2 class="cursor-pointer hover:bg-slate-200" (click)="delete()" >delete</h2>
     </div>
 </div>
 

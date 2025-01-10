@@ -45,8 +45,6 @@ export class DoodleEditPageComponent {
     }
 
     public patchDoodle(){
-      console.log(this.id)
-      console.log(this.doodleForm)
       return this.doodlrApiService.patchDoodle(this.id, this.doodleForm).subscribe((response) => {
         this.navigateToEdited(this.id) 
       })

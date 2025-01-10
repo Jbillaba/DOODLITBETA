@@ -1,18 +1,27 @@
 import { Injectable } from '@angular/core';
 import { DoodlrApiService } from './doodlr-api.service'
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private doodlrApiService: DoodlrApiService ) { }
+  constructor(private doodlrApiService: DoodlrApiService,
+              private router: Router ) { }
 
   isAuthenticated: boolean = false;
   canEditPost: boolean = false;
 
   isLoggedIn(){
-    return this.doodlrApiService.loggedIn().subscribe(res => this.isAuthenticated = true)
+    return this.doodlrApiService.loggedIn().subscribe((response) => {
+      response.status == 200 ? this.isAuthenticated = true : this.isAuthenticated = false
+    }
+    )}
+
+  logout(){
+    this.doodlrApiService.logoutUser().subscribe()
+    this.isAuthenticated = false;
   }
 
   grabCookie(name: string): string|null {

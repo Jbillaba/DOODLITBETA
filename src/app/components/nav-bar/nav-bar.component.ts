@@ -13,11 +13,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavBarComponent {
   doodlr: any;
-  constructor ( public doodlrApiService: DoodlrApiService, private authService: AuthService) {}
-
-  logOut(){
-    return this.doodlrApiService.logoutUser().subscribe()
-  }
+  constructor ( public doodlrApiService: DoodlrApiService, public authService: AuthService) {}
 
   isAuthenticated(){
     return this.authService.isAuthenticated;

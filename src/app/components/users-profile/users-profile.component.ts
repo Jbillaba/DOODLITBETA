@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Route, RouterModule, Router } from '@angular/router';
+import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-users-profile',
@@ -23,7 +24,9 @@ export class UsersProfileComponent {
   following_obj: any; // this is declared in the isFollowing function to set the follow id to following_id to delete it
   isFollowing: boolean = false;
   constructor(private doodlrApiService: DoodlrApiService,
-              private route: ActivatedRoute){}
+              private route: ActivatedRoute,
+              private authService: AuthService,
+              private router: Router ){}
 
 // idea for the code in ng on init came from here https://stackoverflow.com/a/78472466/19987328
   ngOnInit(){
@@ -48,7 +51,11 @@ export class UsersProfileComponent {
   }
 
   followUser(){
+    if (this.authService.isAuthenticated == true){
     this.doodlrApiService.postFollow(this.user.url).subscribe()
+    } else {
+      this.router.navigateByUrl("/login")
+    }
   }
 
   unfollowUser(){

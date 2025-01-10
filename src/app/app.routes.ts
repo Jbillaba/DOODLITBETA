@@ -19,7 +19,7 @@ export const routes: Routes = [
     { path: 'doodle/:doodleid', component: DoodlPostPageComponent},
     { path: 'register', component: RegisterPageComponent },
     { path: 'login', component: LoginPageComponent },
-    { path: 'profile/edit', component: EditPageComponent },
+    { path: 'profile/edit', component: EditPageComponent, canActivate:[AuthGuardService] },
     { path: 'profile', component: DoodlrProfileComponent, canActivate:[AuthGuardService] },
     { path: 'profile/:id', component: UsersProfileComponent },
     { path: '**', component: FourohfourPageComponent }
