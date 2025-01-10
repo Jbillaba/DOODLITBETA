@@ -25,6 +25,11 @@
      <a [routerLink]="['/profile', follow?.user_id]" (click)="uncheckStateBox()" > <h1> {{follow?.username}} </h1> </a>
     </div>
   </div>
+
+  <div class="modal__inner" *ngIf="followersLength == 0">
+    <h2>no followers</h2>
+  </div>
+
 </div>
 
 <input class="modal-state" id="modal-following" name="following-check" type="checkbox" />
@@ -37,6 +42,11 @@
       <a [routerLink]="['/profile', follow?.following_id]" (click)="uncheckStateBox()" > <h1> {{follow?.following_user}} </h1> </a>
     </div>
   </div>
+
+  <div class="modal__inner" *ngIf="followingLength == 0" >
+    <h2> no following</h2>
+  </div>
+
 </div>
 
 

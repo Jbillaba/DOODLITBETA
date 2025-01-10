@@ -14,12 +14,20 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LandingPageComponent implements OnInit {
   doodles: any;
+  doodlesLength;
   Type: string = "NULL"
 
   constructor(private doodlrApiService: DoodlrApiService, private authService: AuthService, private router: Router){}
 
   ngOnInit(): void {
-      this.doodlrApiService.getDoodles().subscribe(response => {this.doodles = response})
+    this.renderDoodles()
+  }
+
+  renderDoodles(){
+    this.doodlrApiService.getDoodles().subscribe((response) => {
+      this.doodles = response;
+      this.doodlesLength = this.doodles.length;
+    })
   }
 
   postYeah(doodlURL: string,){

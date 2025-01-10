@@ -16,7 +16,9 @@ export class DoodlrProfileComponent{
   doodles: any;
   doodlesLength;
   followers: any;
+  followersLength;
   following: any;
+  followingLength;
 
   ngOnInit(){
     this.getUser()
@@ -38,11 +40,17 @@ export class DoodlrProfileComponent{
   }
 
   getFollowers(){
-    this.doodlrApiService.getFollowers(this.user.id).subscribe(response => {this.followers = response})
+    this.doodlrApiService.getFollowers(this.user.id).subscribe((response) => {
+      this.followers = response;
+      this.followersLength = this.followers.length
+    })
   }
 
   getFollowing(){
-    this.doodlrApiService.getFollowing(this.user.id).subscribe(response=> {this.following = response})
+    this.doodlrApiService.getFollowing(this.user.id).subscribe((response) => {
+      this.following = response;
+      this.followingLength = this.following.length;
+    })
   }
 
   uncheckStateBox(){

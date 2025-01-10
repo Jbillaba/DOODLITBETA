@@ -17,7 +17,9 @@ export class UsersProfileComponent {
   doodles: any;
   doodlesLength;
   following: any;
+  followingLength;
   followers: any;
+  followersLength;
   following_obj: any; // this is declared in the isFollowing function to set the follow id to following_id to delete it
   isFollowing: boolean = false;
   constructor(private doodlrApiService: DoodlrApiService,
@@ -54,11 +56,17 @@ export class UsersProfileComponent {
   }
 
   userFollowing(){
-    this.doodlrApiService.getFollowing(this.id).subscribe(response => this.following = response)
+    this.doodlrApiService.getFollowing(this.id).subscribe((response) => {
+      this.followers = response;
+      this.followersLength = this.followers.length;
+    })
   }
 
   userFollowers(){
-    this.doodlrApiService.getFollowers(this.id).subscribe(response => this.followers = response)
+    this.doodlrApiService.getFollowers(this.id).subscribe((response) => {
+      this.following = response;
+      this.followingLength = this.following.length;
+    })
   }
 
   uncheckStateBox(){
