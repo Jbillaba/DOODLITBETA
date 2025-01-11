@@ -16,8 +16,12 @@ export class AuthService {
   isLoggedIn(){
     return this.doodlrApiService.loggedIn().subscribe((response) => {
       response.status == 200 ? this.isAuthenticated = true : this.isAuthenticated = false
-    }
-    )}
+    })
+  }
+
+  cookieCheck(){
+    this.grabCookie('uid') != null ? this.isAuthenticated = true : this.isAuthenticated = false  
+  }
 
   logout(){
     this.doodlrApiService.logoutUser().subscribe()

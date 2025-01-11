@@ -30,23 +30,31 @@ export class UsersProfileComponent {
 
 // idea for the code in ng on init came from here https://stackoverflow.com/a/78472466/19987328
   ngOnInit(){
+    this.userInfo()
+    this.userFollowing()
+    this.userFollowers()
+  }
+    
+
+  userInfo(){
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.doodlrApiService.getUser(this.id).subscribe(response => this.user = response)
       this.doodlrApiService.getUsersDoodles(this.id).subscribe((response) => {
         this.doodles = response;
         this.doodlesLength = this.doodles.length
-      })
-      this.doodlrApiService.isFollowing(this.id).subscribe((response)=> {
-        if(response != 404){
-          this.following_obj = response;
-          this.following_id = this.following_obj.id;
-          return this.isFollowing = true;        }
-        else {
-          return this.isFollowing = false;
+        })
+        if(this.authService.isAuthenticated){
+          this.doodlrApiService.isFollowing(this.id).subscribe((response)=> {
+            if(response != false){
+              this.following_obj = response;
+              this.following_id = this.following_obj.id;
+            return this.isFollowing = true;        }
+          else {
+            return this.isFollowing = false;
+          }
+        })
         }
-      })
-
     });
   }
 

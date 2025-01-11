@@ -3,8 +3,8 @@
   <h1 class="text-3xl"> {{user?.username}} </h1>
   <div class="flex-row text-2xl space-x-3">
     <label> {{user?.num_of_doodles}} doodles </label>
-    <label class="cursor-pointer" for="modal-followers" (click)="userFollowers()" > {{user?.num_of_followers}} followers  </label>
-    <label class="cursor-pointer" for="modal-following" (click)="userFollowing()" > {{user?.num_of_following}} following </label>
+    <label class="cursor-pointer" for="modal-followers" > {{user?.num_of_followers}} followers  </label>
+    <label class="cursor-pointer" for="modal-following" > {{user?.num_of_following}} following </label>
   </div>
   <div>
   <h3> started doodling: {{user?.account_created}} </h3>

@@ -17,7 +17,7 @@ export class AppComponent {
   title = 'doodlr';
   constructor(private authService: AuthService){}
   ngOnInit(){
-    return this.authService.isLoggedIn();
+    this.authService.cookieCheck()
   }
 
 
