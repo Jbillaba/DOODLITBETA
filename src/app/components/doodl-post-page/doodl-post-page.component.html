@@ -36,7 +36,7 @@
         <input type="text" placeholder="enter Comment" formControlName="text">
         <input type="submit">
     </form>
-    <h2 *ngIf="!this.authService.isAuthenticated" > Log In to make a comment </h2>
+   <a routerLink="/login" class="underline text-blue-600"> <h2 *ngIf="!this.authService.isAuthenticated" > Log In to make a comment </h2> </a>
 </div>
 
 <div class="text-center">
