@@ -12,6 +12,7 @@ export class AuthService {
 
   isAuthenticated: boolean = false;
   canEditPost: boolean = false;
+  accountChangingPermission: boolean = false;
 
   isLoggedIn(){
     return this.doodlrApiService.loggedIn().subscribe((response) => {
@@ -40,4 +41,12 @@ export class AuthService {
                       return decodeURIComponent(cookie.substring(nameLenPlus));
               })[0] || null;
   }
+
+  otpAuthenticated(){
+    //after action set the accountChangingPermission to false should be done when either sending the response or sometime around then
+    //or we could send a short 10 minute cookie once dead we re authenticate
+    //should only be used for deleting account, changing email and password 
+  }
+
+
 }

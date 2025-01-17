@@ -27,6 +27,8 @@ export class DoodlrApiService {
   private SEARCH_ENDPOINT=this.BACKEND_URL + '/search/'
   private CHANGE_PASSWORD_ENDPOINT=this.BACKEND_URL + '/change_password/'
   private DELETE_ACCOUNT_ENDPOINT=this.BACKEND_URL + '/delete_account/'
+  private OTP_ENDPOINT=this.BACKEND_URL + '/token/'
+  private AUTHENTICATE_ENDPOINT=this.BACKEND_URL + '/authenticate/'
 
   loggedIn(){
     return this.httpClient.get(this.LOGGED_IN_ENDPOINT,{withCredentials: true, observe: 'response'})
@@ -126,6 +128,14 @@ export class DoodlrApiService {
 
   search(query: string){
     return this.httpClient.get(this.SEARCH_ENDPOINT + query)
+  }
+
+  grabOTP(){
+    return this.httpClient.post(this.OTP_ENDPOINT, {})
+  }
+
+  authenticateOTP(otp: string){
+    return this.httpClient.patch(this.AUTHENTICATE_ENDPOINT, otp)
   }
 
 }
