@@ -31,6 +31,12 @@ export class EditPageComponent {
   }, {
     validators: MustMatch('new_password', 'confirm_new_password')
   })
+  editAccountForm = new FormGroup({
+    email: new FormControl(''),
+    username: new FormControl(''),
+    Bio: new FormControl(''),
+
+  })
   deleteAccountForm = new FormData();
 
   ngOnInit(){}
@@ -38,13 +44,11 @@ export class EditPageComponent {
   ngAfterViewInit(){}
 
   open(){
-    console.log(this.whichBool)
     this.userAppears = !this.userAppears;
   }
 
   changeUsername(){
     const newUsername = document.querySelector('#username') as HTMLInputElement
-    console.log(newUsername.value)
     let value = newUsername.value
     this.doodlrApiService.editAccountDetails(value).subscribe((response) => {if(response == 200){location.reload()} })
   }
@@ -52,14 +56,12 @@ export class EditPageComponent {
   changeEmail(){
     const newEmail = document.querySelector('#email') as HTMLInputElement
     let value = newEmail.value;
-    console.log(newEmail.value)
     this.doodlrApiService.editAccountDetails(value).subscribe((response) => {if(response == 200){location.reload()}})
   }
 
   changePassword(){
     const formValue = this.changePasswordForm.value;
-    console.log(formValue)
-    this.doodlrApiService.changePassword(formValue).subscribe((response)=> {if(response == 200){location.reload()}})
+      this.doodlrApiService.changePassword(formValue).subscribe((response)=> {if(response == 200){location.reload()}})
   }
 
   deleteAccount(){

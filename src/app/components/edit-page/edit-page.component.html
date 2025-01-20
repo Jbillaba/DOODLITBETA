@@ -3,7 +3,7 @@
     <h2 class="cursor-pointer" id="bioAppears" (click)="bioAppears = !bioAppears" >update bio</h2>
     <div class="dropdown" [style.display]="bioAppears ? 'block' : 'none'" >
         <div class="inner_content" >
-            <input  type="text" id="bio" placeholder="enter bio">
+            <input  type="text" id="bio" placeholder="enter bio" formControlName="Bio" >
             <button class="button" (click)="changeBio()" >update Bio</button>
         </div>
         
@@ -13,7 +13,7 @@
     <h2 class="cursor-pointer" id="userAppears" (click)="userAppears = !userAppears" >change username</h2>
     <div class="dropdown" [style.display]="userAppears ? 'block' : 'none'" >
         <div class="inner_content" >
-            <input  type="text" id="username" placeholder="enter new username">
+            <input  type="text" id="username" placeholder="enter new username" formControlName="username" >
             <button class="button" (click)="changeUsername()" >change username</button>
         </div>
         
@@ -22,7 +22,7 @@
     <h2 class="cursor-pointer" (click)="emailAppears = !emailAppears" >change email</h2>
     <div class="dropdown" [style.display]="emailAppears ? 'block' : 'none'" >
         <div class="inner_content" >
-            <input type="email" id="email" placeholder="enter email" >
+            <input type="email" id="email" placeholder="enter email" formControlName="email" >
             <button class="button" (click)="changeEmail()">change email</button>
         </div>
     </div>
