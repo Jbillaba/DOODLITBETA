@@ -22,6 +22,7 @@ export class EditPageComponent {
   passwordAppears: boolean = false;
   emailAppears: boolean = false;
   deleteAppears: boolean = false;
+  bioAppears: boolean = false;
   whichBool: string;
   changePasswordForm = new FormGroup({
     old_password: new FormControl('', [Validators.required]),
@@ -65,6 +66,14 @@ export class EditPageComponent {
     const password = document.querySelector("#pass") as HTMLInputElement
     this.deleteAccountForm.append('password', password.value);
     this.doodlrApiService.deleteAccount(this.deleteAccountForm).subscribe()
+  }
+
+  changeBio(){
+    const newBio = document.querySelector('#bio') as HTMLInputElement
+    let value = newBio.value;
+    this.doodlrApiService.editAccountDetails(value).subscribe((response) => {
+      if (response == 200){location.reload()}
+    })
   }
 
 }

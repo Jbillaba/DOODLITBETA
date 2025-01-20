@@ -115,7 +115,7 @@ export class DoodlrApiService {
   }
 
   editAccountDetails(form: any){
-    return this.httpClient.patch(this.CURRENT_DOODLES_ENDPOINT, form)
+    return this.httpClient.patch(this.CURRENT_USER_ENDPOINT, form)
   }
 
   changePassword(form: any){

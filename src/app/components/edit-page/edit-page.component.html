@@ -1,4 +1,15 @@
 <div class="m-auto text-center border border-slate-400 rounded text space-y-[2%] max-w-[75%]" >
+
+    <h2 class="cursor-pointer" id="bioAppears" (click)="bioAppears = !bioAppears" >update bio</h2>
+    <div class="dropdown" [style.display]="bioAppears ? 'block' : 'none'" >
+        <div class="inner_content" >
+            <input  type="text" id="bio" placeholder="enter bio">
+            <button class="button" (click)="changeBio()" >update Bio</button>
+        </div>
+        
+    </div>
+
+
     <h2 class="cursor-pointer" id="userAppears" (click)="userAppears = !userAppears" >change username</h2>
     <div class="dropdown" [style.display]="userAppears ? 'block' : 'none'" >
         <div class="inner_content" >
