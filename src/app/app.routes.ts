@@ -7,10 +7,10 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { DoodlePageComponent } from './components/doodle-page/doodle-page.component';
 import { DoodlPostPageComponent } from './components/doodl-post-page/doodl-post-page.component';
 import { DoodlrProfileComponent } from './components/doodlr-profile/doodlr-profile.component';
-import { ImageuploadComponent } from './components/imageupload/imageupload.component';
 import { UsersProfileComponent } from './components/users-profile/users-profile.component';
 import { EditPageComponent } from './components/edit-page/edit-page.component';
 import { DoodleEditPageComponent } from './components/doodle-edit-page/doodle-edit-page.component';
+import { OtpPageComponent } from './components/otp-page/otp-page.component';
 
 export const routes: Routes = [
     { path: '', component: LandingPageComponent },
@@ -22,5 +22,6 @@ export const routes: Routes = [
     { path: 'profile/edit', component: EditPageComponent, canActivate:[AuthGuardService] },
     { path: 'profile', component: DoodlrProfileComponent, canActivate:[AuthGuardService] },
     { path: 'profile/:id', component: UsersProfileComponent },
+    { path: 'otp', component: OtpPageComponent },
     { path: '**', component: FourohfourPageComponent }
 ];
