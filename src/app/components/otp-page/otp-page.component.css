@@ -1,5 +1,21 @@
+
 .otp_box{
-    border: solid;
-    width: 1ch;
-    margin-right: 4px;
+    width: 40px;
+    border: none;
+    border-bottom: 3px solid red;
+    margin: 0 10px;
+    text-align: center;
+    font-size: 36px;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.otp_box:focus{
+    border-bottom: 3px solid blue;
+    outline: none;
+}
+
+.otp_box:nth-child(1){
+    cursor: pointer;
+    pointer-events: all;
 }

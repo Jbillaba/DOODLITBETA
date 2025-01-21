@@ -40,6 +40,9 @@ export class OtpPageComponent {
         if (e.key === 'Enter' || (input as HTMLInputElement ).value.length == 1 ){
           (input.nextElementSibling as HTMLElement ).focus()
         }
+        if (e.key === 'Backspace'){
+          (input.previousElementSibling as HTMLElement).focus()
+        }
       })
     })
   }
