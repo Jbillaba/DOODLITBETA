@@ -31,12 +31,7 @@ export class EditPageComponent {
   }, {
     validators: MustMatch('new_password', 'confirm_new_password')
   })
-  editAccountForm = new FormGroup({
-    email: new FormControl(''),
-    username: new FormControl(''),
-    Bio: new FormControl(''),
-
-  })
+  editAccountForm = new FormData();
   deleteAccountForm = new FormData();
 
   ngOnInit(){}
@@ -50,13 +45,15 @@ export class EditPageComponent {
   changeUsername(){
     const newUsername = document.querySelector('#username') as HTMLInputElement
     let value = newUsername.value
-    this.doodlrApiService.editAccountDetails(value).subscribe((response) => {if(response == 200){location.reload()} })
+    this.editAccountForm.append("username", value)
+    this.doodlrApiService.editAccountDetails(this.editAccountForm).subscribe((response) => {if(response == 200){location.reload()} })
   }
 
   changeEmail(){
     const newEmail = document.querySelector('#email') as HTMLInputElement
     let value = newEmail.value;
-    this.doodlrApiService.editAccountDetails(value).subscribe((response) => {if(response == 200){location.reload()}})
+    this.editAccountForm.append("email", value)
+    this.doodlrApiService.editAccountDetails(this.editAccountForm).subscribe((response) => {if(response == 200){location.reload()}})
   }
 
   changePassword(){
@@ -73,7 +70,8 @@ export class EditPageComponent {
   changeBio(){
     const newBio = document.querySelector('#bio') as HTMLInputElement
     let value = newBio.value;
-    this.doodlrApiService.editAccountDetails(value).subscribe((response) => {
+    this.editAccountForm.append("bio", value)
+    this.doodlrApiService.editAccountDetails(this.editAccountForm).subscribe((response) => {
       if (response == 200){location.reload()}
     })
   }
