@@ -27,10 +27,6 @@ export class OtpPageComponent {
     this.authenticate()
   }
 
-  // on loading the component we send a post to the token generator 
-  // we do a countdown of 60 seconds, once 60 has past we can allow to get another token, maximum of 3 tries after which we tell them to come back later 
-  // once we detect a value of 6, we validate the token
-
   getToken(){
     return this.doodlrApiService.grabOTP().subscribe()
   }
@@ -46,7 +42,9 @@ export class OtpPageComponent {
           let otp = code.join('')
           this.otpForm.append('otp', otp)
           this.doodlrApiService.authenticateOTP(this.otpForm).subscribe((response) => {
-            return this.router.navigateByUrl('/profile/edit')
+            if (response == 200){
+              this.router.navigateByUrl('/profile/edit')
+            }
           })
         }
       })

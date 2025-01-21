@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuardService } from './services/auth-guard.service';
+import { OtpGuardService } from './services/otp-guard.service';
 import { FourohfourPageComponent } from './components/fourohfour-page/fourohfour-page.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
@@ -19,7 +20,7 @@ export const routes: Routes = [
     { path: 'doodle/:doodleid', component: DoodlPostPageComponent},
     { path: 'register', component: RegisterPageComponent },
     { path: 'login', component: LoginPageComponent },
-    { path: 'profile/edit', component: EditPageComponent, canActivate:[AuthGuardService] },
+    { path: 'profile/edit', component: EditPageComponent, canActivate:[OtpGuardService] },
     { path: 'profile', component: DoodlrProfileComponent, canActivate:[AuthGuardService] },
     { path: 'profile/:id', component: UsersProfileComponent },
     { path: 'otp', component: OtpPageComponent },

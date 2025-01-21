@@ -17,7 +17,7 @@ export class AppComponent {
   title = 'doodlr';
   constructor(private authService: AuthService){}
   ngOnInit(){
-    this.authService.cookieCheck()
+    this.authService.authCheck()
   }
 
 

@@ -20,8 +20,19 @@ export class AuthService {
     })
   }
 
-  cookieCheck(){
+  authCheck(){
     this.grabCookie('uid') != null ? this.isAuthenticated = true : this.isAuthenticated = false  
+  }
+
+  acpCheck(){
+    if (this.grabCookie('ACP') != null){
+      this.accountChangingPermission = true
+      return true
+    }
+    else{
+      this.accountChangingPermission = false
+      return false
+    }
   }
 
   logout(){
@@ -41,12 +52,4 @@ export class AuthService {
                       return decodeURIComponent(cookie.substring(nameLenPlus));
               })[0] || null;
   }
-
-  otpAuthenticated(){
-    //after action set the accountChangingPermission to false should be done when either sending the response or sometime around then
-    //or we could send a short 10 minute cookie once dead we re authenticate
-    //should only be used for deleting account, changing email and password 
-  }
-
-
 }

@@ -2,6 +2,7 @@ import { Component  } from '@angular/core';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-doodlr-profile',
@@ -11,7 +12,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './doodlr-profile.component.css'
 })
 export class DoodlrProfileComponent{
-  constructor(private doodlrApiService: DoodlrApiService) {}
+  constructor(private doodlrApiService: DoodlrApiService,
+              private authService: AuthService) {}
   user: any;
   doodles: any;
   doodlesLength;
@@ -60,7 +62,6 @@ export class DoodlrProfileComponent{
       followingBox.checked = false;
       followerBox.checked = false;
     }
-
   }
 
 }

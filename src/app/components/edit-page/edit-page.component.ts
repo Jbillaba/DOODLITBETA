@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 export class EditPageComponent {
   constructor(private doodlrApiService: DoodlrApiService,
               private router: Router){}
+
   passMinLength: number = 8;
   userAppears: boolean = false;
   passwordAppears: boolean = false;
@@ -38,9 +39,7 @@ export class EditPageComponent {
   
   ngAfterViewInit(){}
 
-  open(){
-    this.userAppears = !this.userAppears;
-  }
+  
 
   changeUsername(){
     const newUsername = document.querySelector('#username') as HTMLInputElement
