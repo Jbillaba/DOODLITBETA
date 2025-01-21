@@ -46,7 +46,7 @@ export class OtpPageComponent {
           let otp = code.join('')
           this.otpForm.append('otp', otp)
           this.doodlrApiService.authenticateOTP(this.otpForm).subscribe((response) => {
-            let goEdit = this.router.navigateByUrl('/profile/edit')
+            return this.router.navigateByUrl('/profile/edit')
           })
         }
       })

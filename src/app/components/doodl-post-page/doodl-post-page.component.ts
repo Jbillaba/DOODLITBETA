@@ -26,6 +26,8 @@ export class DoodlPostPageComponent {
     text: new FormControl('', [Validators.required]),
   })
 
+  pinDoodleForm = new FormData()
+
     constructor(private doodlrApiService:DoodlrApiService,
                 private route: ActivatedRoute,
                 public authService: AuthService,
@@ -63,6 +65,13 @@ export class DoodlPostPageComponent {
 
   edit(){
     return this.router.navigateByUrl(`/doodle/edit/${this.id}`)
+  }
+
+  pinDoodle(){
+    this.pinDoodleForm.append('pinned_doodle', this.doodl.url)
+    return this.doodlrApiService.editAccountDetails(this.pinDoodleForm).subscribe((response) => {
+      alert("selected doodle is now pinned")
+    })
   }
 
   delete(){
