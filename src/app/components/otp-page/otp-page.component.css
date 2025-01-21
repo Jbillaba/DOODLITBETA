@@ -19,3 +19,8 @@
     cursor: pointer;
     pointer-events: all;
 }
+
+.otp_box:nth-last-child(1){
+    cursor: pointer;
+    pointer-events: all;
+}

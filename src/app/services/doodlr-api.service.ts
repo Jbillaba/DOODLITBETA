@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Form } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -134,8 +135,8 @@ export class DoodlrApiService {
     return this.httpClient.post(this.OTP_ENDPOINT, {})
   }
 
-  authenticateOTP(otp: string){
-    return this.httpClient.patch(this.AUTHENTICATE_ENDPOINT, otp)
+  authenticateOTP(form: FormData){
+    return this.httpClient.patch(this.AUTHENTICATE_ENDPOINT, form)
   }
 
 }

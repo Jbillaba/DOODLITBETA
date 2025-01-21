@@ -12,13 +12,19 @@ import { Router } from '@angular/router';
   styleUrl: './otp-page.component.css'
 })
 export class OtpPageComponent {
-
   constructor(private doodlrApiService: DoodlrApiService,
-              private authService: AuthService
+              private authService: AuthService,
+              private router: Router
   ){}
+  otpForm = new FormData()
+
+  ngOnInit(){
+    this.getToken()
+  }
 
   ngAfterViewInit(){
     this.listenToKeys()
+    this.authenticate()
   }
 
   // on loading the component we send a post to the token generator 
@@ -29,8 +35,22 @@ export class OtpPageComponent {
     return this.doodlrApiService.grabOTP().subscribe()
   }
 
-  authenticate(otp: string){
-    return this.doodlrApiService.authenticateOTP(otp).subscribe()
+  authenticate(){
+    let code: Array<string> = []
+    var inputs = document.getElementsByClassName('otp_box')
+    Array.from(inputs).forEach((input)=>{
+      input.addEventListener("input", ()=>{
+        let char = (input as HTMLInputElement).value
+        code.push(char)
+        if(code.length == 6){
+          let otp = code.join('')
+          this.otpForm.append('otp', otp)
+          this.doodlrApiService.authenticateOTP(this.otpForm).subscribe((response) => {
+            let goEdit = this.router.navigateByUrl('/profile/edit')
+          })
+        }
+      })
+    })
   }
 
   listenToKeys(){
@@ -46,7 +66,6 @@ export class OtpPageComponent {
       })
     })
   }
-  
 
 
 }
