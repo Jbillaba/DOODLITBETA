@@ -41,11 +41,7 @@ export class OtpPageComponent {
         if(code.length == 6){
           let otp = code.join('')
           this.otpForm.append('otp', otp)
-          this.doodlrApiService.authenticateOTP(this.otpForm).subscribe((response) => {
-            if (response == 200){
-              this.router.navigateByUrl('/profile/edit')
-            }
-          })
+          this.doodlrApiService.authenticateOTP(this.otpForm).subscribe((res) => this.router.navigateByUrl('/profile/edit'))
         }
       })
     })
