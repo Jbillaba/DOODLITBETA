@@ -16,6 +16,7 @@ export class DoodlrProfileComponent{
               private authService: AuthService) {}
   user: any;
   doodles: any;
+  pinned_doodle: any;
   doodlesLength;
   followers: any;
   followersLength;

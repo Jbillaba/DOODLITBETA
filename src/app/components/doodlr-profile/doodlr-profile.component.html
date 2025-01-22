@@ -49,14 +49,15 @@
   <div class="modal__inner" *ngIf="followingLength == 0" >
     <h2> no following</h2>
   </div>
-
 </div>
 
 
 
 <div class="flex flex-col justify-center items-center py-[2%]" >
- <div class="border-2 border-indigo-500" *ngFor="let doodle of doodles">
-    <h1> {{doodle?.doodlr_username}}  &#9679; {{doodle?.created_on}}  </h1>
+ <div class="border-2 border-indigo-500" *ngFor="let doodle of doodles; let first = first">
+    <h1 *ngIf="first" > {{doodle?.doodlr_username}}  &#9679; {{doodle?.created_on}} &#9679; pinned </h1>
+    <h1  *ngIf="!first"> {{doodle?.doodlr_username}}  &#9679; {{doodle?.created_on}}  </h1>
+
     <p> {{doodle?.title}} </p>
     <a [routerLink]="['/doodle', doodle!.id]"> <img src="{{doodle.image}}" class="border-2 border-rose-500" /> </a>
     <div class="flex justify-center space-x-2 border-2 border-lime-500 cursor-pointer ">
