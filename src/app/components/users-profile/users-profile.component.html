@@ -11,11 +11,11 @@
   </div>
 </div>
 
-<div *ngIf="!isFollowing" class="flex justify-center py-[1%]">
+<div *ngIf="!isFollowing" class="flex justify-center py-[1%]" [ngStyle]="isUser?{'display':'none'} : {'display' : 'visible'}" >
  <button class="p-1 border-2 rounded border-green-400 bg-green-400 text-white hover:bg-slate-300 hover:border-slate-300 hover:text-black " (click)="followUser()"> follow </button>
 </div>
 
-<div *ngIf="isFollowing" class="flex justify-center py-[1%]">
+<div *ngIf="isFollowing" class="flex justify-center py-[1%]" [ngStyle]="isUser?{'display':'none'} : {'display' : 'visible'}" >
   <button class="p-1 border-2 rounded border-slate-300 bg-slate-300 text-black" (click)="unfollowUser()"> following </button>
  </div>
 
@@ -28,7 +28,7 @@
     <h1> followers </h1>
     
     <div class="underline text-blue-700" >
-     <a [routerLink]="['/profile', follow?.user_id]" (click)="uncheckStateBox()" > <h1> {{follow?.username}} </h1> </a>
+     <a [routerLink]="['/profile', follow?.user_id]" (click)="uncheckStateBox()" > <h1> {{follow?.following_user}} </h1> </a>
     </div>
   
   </div>
@@ -45,7 +45,7 @@
     <label class="modal__close" for="modal-following"></label>
     <h1> following </h1>
     <div class="underline text-blue-700" *ngIf="following?.length > 0">
-      <a [routerLink]="['/profile', follow?.following_id]" (click)="uncheckStateBox()" > <h1> {{follow?.following_user}} </h1> </a>
+      <a [routerLink]="['/profile', follow?.following_id]" (click)="uncheckStateBox()" > <h1> {{follow?.username}} </h1> </a>
     </div>
   </div>
 

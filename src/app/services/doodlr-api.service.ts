@@ -112,7 +112,7 @@ export class DoodlrApiService {
   }
 
   isFollowing(id: string){
-  return this.httpClient.get(this.IS_FOLLOWING_ENDPOINT + id, {withCredentials: true})
+  return this.httpClient.get(this.IS_FOLLOWING_ENDPOINT + id + '/', {withCredentials: true})
   }
 
   editAccountDetails(form: any){

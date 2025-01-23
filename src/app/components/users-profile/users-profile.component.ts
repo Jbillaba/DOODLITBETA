@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
 import { AuthService } from '../../services/auth.service';
+import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-users-profile',
@@ -23,6 +24,7 @@ export class UsersProfileComponent {
   followersLength;
   following_obj: any; // this is declared in the isFollowing function to set the follow id to following_id to delete it
   isFollowing: boolean = false;
+  isUser: boolean;
   constructor(private doodlrApiService: DoodlrApiService,
               private route: ActivatedRoute,
               private authService: AuthService,
@@ -31,7 +33,6 @@ export class UsersProfileComponent {
 // idea for the code in ng on init came from here https://stackoverflow.com/a/78472466/19987328
   ngOnInit(){
     this.userInfo()
-    this.followingCheck()
     this.userFollowing()
     this.userFollowers()
   }
@@ -45,23 +46,22 @@ export class UsersProfileComponent {
         this.doodles = response;
         this.doodlesLength = this.doodles.length
         })
+      this.isUserCheck(this.id)
+      this.isUser != true ? this.checkIfFollowing(this.id) : null  
     });
   }
 
-  followingCheck(){
-    if(this.authService.isAuthenticated){
-      this.doodlrApiService.isFollowing(this.id).subscribe((response)=> {
-        if(response != false){
-          this.following_obj = response;
-          this.following_id = this.following_obj.id;
-        return this.isFollowing = true;        }
-      else {
-        return this.isFollowing = false;
+  checkIfFollowing(id: string){
+    this.doodlrApiService.isFollowing(id).subscribe((response) => {
+      if (response != false){
+        this.following_obj = response
+        this.following_id = this.following_obj.id
+        this.isFollowing = true
+      } else {
+        this.isFollowing = false
       }
     })
-    }
   }
-  
 
   followUser(){
     if (this.authService.isAuthenticated == true){
@@ -97,4 +97,15 @@ export class UsersProfileComponent {
       followerBox.checked = false;
     }
   }
+
+  isUserCheck(id){
+    let token=this.authService.grabCookie('uid')
+    if (token == id){
+      this.isUser = true
+    }
+    else {
+      this.isUser = false
+    }
+  }
+
 }
