@@ -33,8 +33,8 @@ export class RegisterPageComponent {
     
     if (val.email && val.username && val.password && val.password2){
       this.doodlrApiService.registerUser(val.email, val.username, val.password, val.password2).subscribe(
-        () => {
-          this.router.navigateByUrl("/")
+        (response) => {
+          response == 200 ? this.router.navigateByUrl("/login") : alert("something went wrong try again")
         }
       )
     }

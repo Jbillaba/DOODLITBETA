@@ -38,6 +38,7 @@ export class AuthService {
   logout(){
     this.doodlrApiService.logoutUser().subscribe()
     this.isAuthenticated = false;
+    this.router.navigateByUrl('/')
   }
 
   grabCookie(name: string): string|null {

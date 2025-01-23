@@ -27,13 +27,15 @@ export class LoginPageComponent {
 
   onSubmit(){
     const val = this.loginForm.value;
-    const homePath = this.router.parseUrl('/');
     if (val.username && val.password){
       this.authService.isAuthenticated = true;
-      this.doodlrApiService.loginUser(val.username, val.password).subscribe();
+      this.doodlrApiService.loginUser(val.username, val.password).subscribe(
+        (response) => {
+          if (response == 200) {
+            this.router.navigateByUrl('/')
+          }
+        }
+      );
     }
-    return this.router.navigateByUrl('/');
   }
-
-
 }

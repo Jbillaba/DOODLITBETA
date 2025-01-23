@@ -31,6 +31,7 @@ export class UsersProfileComponent {
 // idea for the code in ng on init came from here https://stackoverflow.com/a/78472466/19987328
   ngOnInit(){
     this.userInfo()
+    this.followingCheck()
     this.userFollowing()
     this.userFollowers()
   }
@@ -44,19 +45,23 @@ export class UsersProfileComponent {
         this.doodles = response;
         this.doodlesLength = this.doodles.length
         })
-        if(this.authService.isAuthenticated){
-          this.doodlrApiService.isFollowing(this.id).subscribe((response)=> {
-            if(response != false){
-              this.following_obj = response;
-              this.following_id = this.following_obj.id;
-            return this.isFollowing = true;        }
-          else {
-            return this.isFollowing = false;
-          }
-        })
-        }
     });
   }
+
+  followingCheck(){
+    if(this.authService.isAuthenticated){
+      this.doodlrApiService.isFollowing(this.id).subscribe((response)=> {
+        if(response != false){
+          this.following_obj = response;
+          this.following_id = this.following_obj.id;
+        return this.isFollowing = true;        }
+      else {
+        return this.isFollowing = false;
+      }
+    })
+    }
+  }
+  
 
   followUser(){
     if (this.authService.isAuthenticated == true){
