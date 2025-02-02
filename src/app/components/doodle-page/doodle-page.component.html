@@ -1,16 +1,23 @@
-<div class="text-center py-[5%]">
-    <div>
-        <input (change)="grabTitle($event)" type="text" placeholder="title the doodle (optional)" class=" text-xl underline decoration-blue-500 hover:no-underline">
-    </div>
+<div class="drawing-container">
 
-    <div class="flex justify-center py-5">
-        <canvas id="canvas" width="400" height="300"  class="border-solid content-center bg-slate-100">
+    <div class="container-top" >
+        <div class="palette">
+            <h2>palette placeholder</h2>
+        </div>
+        <div class="post-button">
+            <button (click)="postDoodl()" id="post" > post </button>
+        </div>
+    </div>
+    
+    <div class="canvas-container">
+        <canvas id="canvas" width="483" height="362" class="canvas">
             your browser does not support the canvas element
         </canvas>
     </div>
 
-    <div class="flex space-x-[5%] justify-center">
-        <button (click)="clearCanvas()" id="clear" class="cursor-pointer bg-blue-400 rounded p-[1%] text-white hover:bg-blue-500"> clear </button>
-        <button (click)="postDoodl()" id="post" class="cursor-pointer bg-blue-400 rounded p-[1%] text-white hover:bg-blue-500 " > post </button>
+    <div class="bottom-tools">
+        <div><h2>width slider</h2></div>
+        <h2>pencil</h2>
+        <h2>eraser</h2>
     </div>
 </div>

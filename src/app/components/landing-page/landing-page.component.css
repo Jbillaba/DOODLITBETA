@@ -5,6 +5,11 @@
     border-bottom: solid;
 }
 
+.doodle-container > * {
+    margin: 15px;
+
+}
+
 .doodle-post-info{
     display: flex;
     justify-content: space-between;
@@ -12,6 +17,12 @@
 
 .doodle-image{
     margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.doodle-engagement-container > *{
+    margin: 15px;
 }
 
 .doodle-engagement-text{
