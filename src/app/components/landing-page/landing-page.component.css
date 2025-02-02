@@ -1,0 +1,33 @@
+.doodle-container{
+    text-align: start;
+    margin: auto;
+    width: 95%;
+    border-bottom: solid;
+}
+
+.doodle-post-info{
+    display: flex;
+    justify-content: space-between;
+}
+
+.doodle-image{
+    margin: auto;
+}
+
+.doodle-engagement-text{
+    display: flex;
+    justify-content: space-between;
+}
+
+.doodle-yeahs{
+    display: flex;
+}
+
+.doodle-bookmark{
+    text-align: end;
+}
+
+.no-doodles{
+    margin: auto;
+}
+

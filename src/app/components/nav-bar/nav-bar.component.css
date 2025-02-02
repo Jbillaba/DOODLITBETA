@@ -1,0 +1,12 @@
+.nav-container{
+    display: flex;
+}
+
+@media screen and (min-width:500px){
+    .nav-container{
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        border-width: 3px 0 0;
+    }
+}

@@ -52,15 +52,17 @@ export class UsersProfileComponent {
   }
 
   checkIfFollowing(id: string){
-    this.doodlrApiService.isFollowing(id).subscribe((response) => {
-      if (response != false){
-        this.following_obj = response
-        this.following_id = this.following_obj.id
-        this.isFollowing = true
-      } else {
-        this.isFollowing = false
+    if(this.authService.isAuthenticated != false){
+      this.doodlrApiService.isFollowing(id).subscribe((response) => {
+        if (response != false){
+          this.following_obj = response
+          this.following_id = this.following_obj.id
+          this.isFollowing = true
+        }else {
+          this.isFollowing = false
       }
     })
+    }
   }
 
   followUser(){

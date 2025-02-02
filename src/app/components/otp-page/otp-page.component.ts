@@ -19,6 +19,7 @@ export class OtpPageComponent {
   otpForm = new FormData()
 
   ngOnInit(){
+    this.isAuth()
     this.getToken()
   }
 
@@ -27,24 +28,35 @@ export class OtpPageComponent {
     this.authenticate()
   }
 
+  isAuth(){
+    this.authService.isLoggedIn()
+    if ( this.authService.isAuthenticated != true ){
+        this.router.navigateByUrl('/login')
+    }
+  }
+
   getToken(){
-    return this.doodlrApiService.grabOTP().subscribe()
+    if(this.authService.isAuthenticated != false){
+       this.doodlrApiService.grabOTP().subscribe()
+    }
   }
 
   authenticate(){
-    let code: Array<string> = []
-    var inputs = document.getElementsByClassName('otp_box')
-    Array.from(inputs).forEach((input)=>{
-      input.addEventListener("input", ()=>{
-        let char = (input as HTMLInputElement).value
-        code.push(char)
-        if(code.length == 6){
-          let otp = code.join('')
-          this.otpForm.append('otp', otp)
-          this.doodlrApiService.authenticateOTP(this.otpForm).subscribe((res) => this.router.navigateByUrl('/profile/edit'))
-        }
+    if(this.authService.isAuthenticated != false){
+      let code: Array<string> = []
+      var inputs = document.getElementsByClassName('otp_box')
+      Array.from(inputs).forEach((input)=>{
+        input.addEventListener("input", ()=>{
+          let char = (input as HTMLInputElement).value
+          code.push(char)
+          if(code.length == 6){
+            let otp = code.join('')
+            this.otpForm.append('otp', otp)
+            this.doodlrApiService.authenticateOTP(this.otpForm).subscribe((res) => this.router.navigateByUrl('/profile/edit'))
+          }
+        })
       })
-    })
+    }
   }
 
   listenToKeys(){
