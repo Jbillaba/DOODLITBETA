@@ -12,6 +12,8 @@ import { UsersProfileComponent } from './components/users-profile/users-profile.
 import { EditPageComponent } from './components/edit-page/edit-page.component';
 import { DoodleEditPageComponent } from './components/doodle-edit-page/doodle-edit-page.component';
 import { OtpPageComponent } from './components/otp-page/otp-page.component';
+import { DoodleBookmarksComponent } from './components/doodle-bookmarks/doodle-bookmarks.component';
+
 
 export const routes: Routes = [
     { path: '', component: LandingPageComponent },
@@ -23,6 +25,7 @@ export const routes: Routes = [
     { path: 'profile/edit', component: EditPageComponent, canActivate:[OtpGuardService] },
     { path: 'profile', component: DoodlrProfileComponent, canActivate:[AuthGuardService] },
     { path: 'profile/:id', component: UsersProfileComponent },
+    { path: 'bookmarks', component: DoodleBookmarksComponent },
     { path: 'otp', component: OtpPageComponent },
     { path: '**', component: FourohfourPageComponent }
 ];
