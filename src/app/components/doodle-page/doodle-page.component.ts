@@ -74,8 +74,12 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
     context!.strokeStyle = 'black';
     context!.lineWidth = 1;
 
+
     this._canvas = _canvas;
     this.context = context!;
+
+    this._canvas.width = window.innerWidth * 0.75 ;
+    this._canvas.height = window.innerHeight * 0.50;
 
     this.redraw();
    };

@@ -6,6 +6,7 @@
 .canvas{
     background-color: beige;
     margin: auto;
+    aspect-ratio: 21/9;
 }
 
 .container-top{
