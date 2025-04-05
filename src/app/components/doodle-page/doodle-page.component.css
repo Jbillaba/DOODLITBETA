@@ -4,14 +4,14 @@
 }
 
 .canvas{
-    background-color: beige;
+    background-color: #dee0e3;
     margin: auto;
     aspect-ratio: 21/9;
 }
 
 .container-top{
     display: flex;
-    justify-content: space-between;
+    margin: auto;
 }
 
 .palette{
@@ -26,4 +26,9 @@
     border: solid 2px aqua;
     border-radius: 10%;
     padding: 1%;
+}
+
+.tools{
+    display: flex;
+    margin: auto;;
 }
