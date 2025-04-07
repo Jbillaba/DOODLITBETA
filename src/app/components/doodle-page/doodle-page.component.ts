@@ -24,6 +24,11 @@ export class DoodlePageComponent implements AfterViewInit {
   private clickY: number[] = [];
   private clickDrag: boolean[] = [];
 
+  penStyle = 'black';
+  defaultPenWidth = 1;
+
+
+
 constructor(private doodlerApiService: DoodlrApiService, private router: Router){}
 
   @HostListener('document:mousedown', ['$event'])
@@ -71,8 +76,8 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
     let context = _canvas.getContext('2d');
     context!.lineCap = 'round';
     context!.lineJoin = 'round';
-    context!.strokeStyle = 'black';
-    context!.lineWidth = 1;
+    context!.strokeStyle = this.penStyle;
+    context!.lineWidth = this.defaultPenWidth;
 
 
     this._canvas = _canvas;
@@ -116,6 +121,11 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
     this.clickDrag = [];
    };
 
+   public switchToEraser(){
+    this.context.clearRect(this.clickX as number , this.clickY, this._canvas.width, this._canvas.height);
+
+   }
+
    private releaseEventHandler = () => {
     this.paint = false;
     this.redraw();
@@ -158,6 +168,10 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
 
     e.preventDefault();
    };
+
+   public switchToPencil(){
+    this.context!.strokeStyle = this.penStyle
+   }
 
    public grabTitle(e: Event){
       const title = e.currentTarget as HTMLInputElement;
