@@ -121,11 +121,6 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
     this.clickDrag = [];
    };
 
-   public switchToEraser(){
-    this.context.clearRect(this.clickX as number , this.clickY, this._canvas.width, this._canvas.height);
-
-   }
-
    private releaseEventHandler = () => {
     this.paint = false;
     this.redraw();
