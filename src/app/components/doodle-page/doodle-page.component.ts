@@ -192,6 +192,7 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
 
   public undoCanvas(){
     //the idea is to load a file from the canvasState array and just erase it from the array, the array should only hold a max of three to prevent any issues with performance.
+    
 
   }
 
