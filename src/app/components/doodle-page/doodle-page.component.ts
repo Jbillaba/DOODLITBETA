@@ -23,11 +23,10 @@ export class DoodlePageComponent implements AfterViewInit {
   private clickX: number[] = [];
   private clickY: number[] = [];
   private clickDrag: boolean[] = [];
-
+  private canvasState = [];
+  
   penStyle = 'black';
   defaultPenWidth = 1;
-
-
 
 constructor(private doodlerApiService: DoodlrApiService, private router: Router){}
 
@@ -114,16 +113,10 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
     this.clickDrag.push(dragging);
    };
 
-   public clearCanvas() {
-    this.context.clearRect(0, 0, this._canvas.width, this._canvas.height);
-    this.clickX = [];
-    this.clickY = [];
-    this.clickDrag = [];
-   };
-
    private releaseEventHandler = () => {
     this.paint = false;
     this.redraw();
+    console.log(this.canvasState)
    };
 
    private cancelEventHandler = () => {
@@ -182,12 +175,30 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
    public grabDoodl() {
     const Canvas = <HTMLCanvasElement> document.getElementById("canvas")
     Canvas.toBlob(blob => {
-      return this.turnToFile(blob!);
+      let recentState = this.turnToFile(blob!);
+      this.limitArrayLegnth();
+      this.canvasState.push(recentState)
     })
   }
 
   navigateToCreated(id: string){
     this.router.navigateByUrl(`/doodle/${id}`)
+  }
+
+
+  public clearCanvas(){
+    console.log("this should take us to the first instance of the canvas being loaded")
+  }
+
+  public undoCanvas(){
+    //the idea is to load a file from the canvasState array and just erase it from the array, the array should only hold a max of three to prevent any issues with performance.
+
+  }
+
+  private limitArrayLegnth(){
+    if (this.canvasState.length > 2){
+      this.canvasState.pop();
+    }
   }
 
   public postDoodl(){
