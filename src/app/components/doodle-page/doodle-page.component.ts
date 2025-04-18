@@ -187,12 +187,14 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
 
 
   public clearCanvas(){
-    console.log("this should take us to the first instance of the canvas being loaded")
+    let confirmation = confirm("this will reset the entire canvas are you sure ?")
+    if (confirmation == true) {
+      window.location.reload()
+    }
   }
 
   public undoCanvas(){
     //the idea is to load a file from the canvasState array and just erase it from the array, the array should only hold a max of three to prevent any issues with performance.
-    
 
   }
 
