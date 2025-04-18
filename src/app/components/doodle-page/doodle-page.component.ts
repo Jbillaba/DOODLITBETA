@@ -204,6 +204,14 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
     }
   }
 
+  //need to make a function that wipes elements off and populates new ones 
+  // input, img , input
+
+  public segueToForm(){
+   let page = document.getElementById("drawing-ui")
+    page.remove();
+  }
+
   public postDoodl(){
     this.grabDoodl()
     this.doodlForm.append("image", this.doodl!, this.doodl.name!);
@@ -212,4 +220,4 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
       this.createdDoodle != undefined ? this.navigateToCreated(this.createdDoodle.id) : alert("please try posting again");
     })
     }
-}
+  }
