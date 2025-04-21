@@ -194,22 +194,17 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
   }
 
   public undoCanvas(){
-    //the idea is to load a file from the canvasState array and just erase it from the array, the array should only hold a max of three to prevent any issues with performance.
+   /// load the files in the array 
+  }
 
+  public takeToForm(){
+    this.router.navigateByUrl("/doodleForm")
   }
 
   private limitArrayLegnth(){
     if (this.canvasState.length > 2){
       this.canvasState.pop();
     }
-  }
-
-  //need to make a function that wipes elements off and populates new ones 
-  // input, img , input
-
-  public segueToForm(){
-   let page = document.getElementById("drawing-ui")
-    page.remove();
   }
 
   public postDoodl(){
@@ -220,4 +215,4 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
       this.createdDoodle != undefined ? this.navigateToCreated(this.createdDoodle.id) : alert("please try posting again");
     })
     }
-  }
+}
