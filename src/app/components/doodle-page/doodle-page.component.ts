@@ -198,7 +198,7 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
   }
 
   public takeToForm(){
-    this.router.navigateByUrl("/doodleForm")
+    this.router.navigate(['/doodleForm'], {skipLocationChange: true})
   }
 
   private limitArrayLegnth(){
