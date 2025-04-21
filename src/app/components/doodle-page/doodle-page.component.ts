@@ -176,7 +176,7 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
     const Canvas = <HTMLCanvasElement> document.getElementById("canvas")
     Canvas.toBlob(blob => {
       let recentState = this.turnToFile(blob!);
-      this.limitArrayLegnth();
+      this.limitArrayLength();
       this.canvasState.push(recentState)
     })
   }
@@ -201,7 +201,7 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
     this.router.navigate(['/doodleForm'], {skipLocationChange: true})
   }
 
-  private limitArrayLegnth(){
+  private limitArrayLength(){
     if (this.canvasState.length > 2){
       this.canvasState.pop();
     }
