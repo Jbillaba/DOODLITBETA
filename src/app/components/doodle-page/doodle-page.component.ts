@@ -3,6 +3,7 @@ import { Router, RouterModule } from '@angular/router'
 import {  ReactiveFormsModule  } from '@angular/forms';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
 import { CommonModule } from '@angular/common';
+import { input } from '@angular/core'
 import {v4 as uuidv4} from 'uuid';
 
 @Component({
@@ -16,7 +17,6 @@ export class DoodlePageComponent implements AfterViewInit {
   private _canvas: HTMLCanvasElement;
   private context: CanvasRenderingContext2D;
   private paint: boolean;
-  doodlForm = new FormData();
   public doodl: File;
   private createdDoodle: any;
 
@@ -161,11 +161,6 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
     this.context!.strokeStyle = this.penStyle
    }
 
-   public grabTitle(e: Event){
-      const title = e.currentTarget as HTMLInputElement;
-      this.doodlForm.append("title", title!.value);
-   }
-
    public turnToFile(blob: Blob){
     let fileName: string = uuidv4() + ".png";
     this.doodl = new File([blob], fileName, { type: blob.type, lastModified: Date.now()})
@@ -179,10 +174,6 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
       this.limitArrayLength();
       this.canvasState.push(recentState)
     })
-  }
-
-  navigateToCreated(id: string){
-    this.router.navigateByUrl(`/doodle/${id}`)
   }
 
 
@@ -207,12 +198,5 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
     }
   }
 
-  public postDoodl(){
-    this.grabDoodl()
-    this.doodlForm.append("image", this.doodl!, this.doodl.name!);
-    this.doodlerApiService.postDoodle(this.doodlForm).subscribe((response)=>{
-      this.createdDoodle = response;
-      this.createdDoodle != undefined ? this.navigateToCreated(this.createdDoodle.id) : alert("please try posting again");
-    })
-    }
+  
 }
