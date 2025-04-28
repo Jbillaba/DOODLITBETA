@@ -13,6 +13,7 @@ import { EditPageComponent } from './components/edit-page/edit-page.component';
 import { DoodleEditPageComponent } from './components/doodle-edit-page/doodle-edit-page.component';
 import { OtpPageComponent } from './components/otp-page/otp-page.component';
 import { DoodleBookmarksComponent } from './components/doodle-bookmarks/doodle-bookmarks.component';
+import { DoodleFormComponent } from './components/doodle-form/doodle-form.component';
 
 
 export const routes: Routes = [
@@ -20,6 +21,7 @@ export const routes: Routes = [
     { path: 'doodle', component: DoodlePageComponent, canActivate:[AuthGuardService]},
     { path: 'doodle/edit/:doodleid', component:DoodleEditPageComponent},
     { path: 'doodle/:doodleid', component: DoodlPostPageComponent},
+    { path: 'doodleForm', component: DoodleFormComponent},
     { path: 'register', component: RegisterPageComponent },
     { path: 'login', component: LoginPageComponent },
     { path: 'profile/edit', component: EditPageComponent, canActivate:[OtpGuardService] },
