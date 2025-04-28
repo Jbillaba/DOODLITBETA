@@ -30,8 +30,10 @@ export class DoodleFormComponent {
   private loadFileFromService(){
     if (this.doodleTransferService.doodleForForm != null){
       this.doodle = this.doodleTransferService.doodleForForm
-      let url = this.reader.readAsDataURL(this.doodle)
+      let url = URL.createObjectURL(this.doodle)
       const newImg = document.createElement("img")
+      newImg.src = url
+      document.body.appendChild(newImg)
     }
   }
 
