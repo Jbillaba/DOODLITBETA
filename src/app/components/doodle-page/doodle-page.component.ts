@@ -2,6 +2,7 @@ import { Component, AfterViewInit, HostListener } from '@angular/core';
 import { Router, RouterModule } from '@angular/router'
 import {  ReactiveFormsModule  } from '@angular/forms';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
+import { DoodleTransferService } from '../../services/doodle-transfer.service';
 import { CommonModule } from '@angular/common';
 import { input } from '@angular/core'
 import {v4 as uuidv4} from 'uuid';
@@ -17,7 +18,7 @@ export class DoodlePageComponent implements AfterViewInit {
   private _canvas: HTMLCanvasElement;
   private context: CanvasRenderingContext2D;
   private paint: boolean;
-  public doodl: File;
+  public doodle: File;
   private createdDoodle: any;
 
   private clickX: number[] = [];
@@ -28,7 +29,7 @@ export class DoodlePageComponent implements AfterViewInit {
   penStyle = 'black';
   defaultPenWidth = 1;
 
-constructor(private doodlerApiService: DoodlrApiService, private router: Router){}
+constructor(private doodlerApiService: DoodlrApiService, private router: Router, private doodleTransferService: DoodleTransferService){}
 
   @HostListener('document:mousedown', ['$event'])
   pressMouseEventHandler(event:MouseEvent) {
@@ -151,7 +152,7 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
     if (this.paint){
       this.addClick(mouseX, mouseY, true);
       this.redraw();
-      this.grabDoodl();
+      this.grabdoodle();
     }
 
     e.preventDefault();
@@ -163,17 +164,15 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
 
    public turnToFile(blob: Blob){
     let fileName: string = uuidv4() + ".png";
-    this.doodl = new File([blob], fileName, { type: blob.type, lastModified: Date.now()})
-    return this.doodl
+    this.doodle = new File([blob], fileName, { type: blob.type, lastModified: Date.now()})
+    return this.doodle
    }
 
-   public grabDoodl() {
+   public grabdoodle() {
     const Canvas = <HTMLCanvasElement> document.getElementById("canvas")
-    Canvas.toBlob(blob => {
-      let recentState = this.turnToFile(blob!);
-      this.limitArrayLength();
-      this.canvasState.push(recentState)
-    })
+    Canvas.toBlob(blob => 
+      this.doodle = this.turnToFile(blob!)
+    )
   }
 
 
@@ -189,6 +188,7 @@ constructor(private doodlerApiService: DoodlrApiService, private router: Router)
   }
 
   public takeToForm(){
+    this.doodleTransferService.doodleForForm = this.doodle;
     this.router.navigate(['/doodleForm'], {skipLocationChange: true})
   }
 

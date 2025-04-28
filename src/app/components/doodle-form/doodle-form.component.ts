@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
+import { DoodleTransferService } from '../../services/doodle-transfer.service';
 import { Router } from '@angular/router'
 
 @Component({
@@ -11,14 +12,27 @@ import { Router } from '@angular/router'
 })
 export class DoodleFormComponent {
 
+  constructor (private doodlerApiService: DoodlrApiService, private router: Router, public doodleTransferService: DoodleTransferService ){}
   doodlForm = new FormData();
-  doodl =  File; 
-  private createdDoodle: any;
+  reader = new FileReader ();
+  doodle: File;
 
-  constructor (private doodlerApiService: DoodlrApiService, private router: Router ){}
+  ngOnInit(){
+    this.loadFileFromService();
+  }
 
   private navigateToCreated(id: string){
     this.router.navigateByUrl(`/doodle/${id}`)
+  }
+
+  private 
+
+  private loadFileFromService(){
+    if (this.doodleTransferService.doodleForForm != null){
+      this.doodle = this.doodleTransferService.doodleForForm
+      let url = this.reader.readAsDataURL(this.doodle)
+      const newImg = document.createElement("img")
+    }
   }
 
 
