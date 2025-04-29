@@ -16,10 +16,10 @@ export class DoodleFormComponent {
   doodlForm = new FormData();
   reader = new FileReader ();
   doodle: File;
+  createdDoodle: any;
 
   ngOnInit(){
     this.loadFileFromService();
-    this.grabData();
   }
 
   private navigateToCreated(id: string){
@@ -30,8 +30,8 @@ export class DoodleFormComponent {
    let doodle = this.doodleTransferService.doodleForForm;
    let title  = <HTMLInputElement> document.getElementById("doodleTitle") 
    let tags = <HTMLInputElement> document.getElementById("doodleTags")
-   this.doodlForm.append("Title", title.value);
-   this.doodlForm.append("Tags", tags.value);
+   this.doodlForm.append("title", title.value);
+   this.doodlForm.append("tags", tags.value);
    this.doodlForm.append("image", doodle);
   }
 
@@ -42,6 +42,20 @@ export class DoodleFormComponent {
       const img = document.getElementById("doodle") as HTMLImageElement
       img.src = url
     }
+  }
+
+  public postDoodle(){
+    this.grabData()
+    this.doodlerApiService.postDoodle(this.doodlForm).subscribe((response) =>
+    {
+      if (response == 200){
+      this.createdDoodle = response
+      this.navigateToCreated(this.createdDoodle.id)  
+      }
+
+    }  
+      
+    )
   }
 
 
