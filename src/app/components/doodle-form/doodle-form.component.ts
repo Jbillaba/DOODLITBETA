@@ -31,9 +31,8 @@ export class DoodleFormComponent {
     if (this.doodleTransferService.doodleForForm != null){
       this.doodle = this.doodleTransferService.doodleForForm
       let url = URL.createObjectURL(this.doodle)
-      const newImg = document.createElement("img")
-      newImg.src = url
-      document.body.appendChild(newImg)
+      const img = document.getElementById("doodle") as HTMLImageElement
+      img.src = url
     }
   }
 
