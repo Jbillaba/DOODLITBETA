@@ -19,13 +19,21 @@ export class DoodleFormComponent {
 
   ngOnInit(){
     this.loadFileFromService();
+    this.grabData();
   }
 
   private navigateToCreated(id: string){
     this.router.navigateByUrl(`/doodle/${id}`)
   }
 
-  private 
+  public grabData(){
+   let doodle = this.doodleTransferService.doodleForForm;
+   let title  = <HTMLInputElement> document.getElementById("doodleTitle") 
+   let tags = <HTMLInputElement> document.getElementById("doodleTags")
+   this.doodlForm.append("Title", title.value);
+   this.doodlForm.append("Tags", tags.value);
+   this.doodlForm.append("image", doodle);
+  }
 
   private loadFileFromService(){
     if (this.doodleTransferService.doodleForForm != null){
