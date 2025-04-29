@@ -1,7 +1,7 @@
     <div *ngFor="let doodle of doodles" class="space-y-4">
             <div class="doodle-container"  >
                <div class="doodle-post-info">
-                    <a [routerLink]="['/profile', doodle!.doodlr]" > <p>{{doodle.doodlr_username}} </p></a>
+                    <a [routerLink]="['/profile', doodle!.doodlr_id]" > <p>{{doodle.doodlr_username}} </p></a>
                     <p>{{doodle.created_on}}</p>
                </div>
                     <p>{{doodle.title}}</p>
