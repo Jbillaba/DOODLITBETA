@@ -48,7 +48,7 @@ export class DoodleFormComponent {
     this.grabData()
     this.doodlerApiService.postDoodle(this.doodlForm).subscribe((response) =>
     {
-      if (response == 200){
+      if (response){
       this.createdDoodle = response
       this.navigateToCreated(this.createdDoodle.id)  
       }
