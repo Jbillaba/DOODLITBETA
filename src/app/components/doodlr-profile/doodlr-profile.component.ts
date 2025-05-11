@@ -28,10 +28,6 @@ export class DoodlrProfileComponent{
     this.getDoodles()
   }
 
-  logData(){
-    console.log(this.user)
-  }
-
   getUser(){
     this.doodlrApiService.getCurrentUser().subscribe(response => this.user = response)
   }

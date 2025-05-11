@@ -31,7 +31,7 @@ export class LoginPageComponent {
       this.authService.isAuthenticated = true;
       this.doodlrApiService.loginUser(val.username, val.password).subscribe(
         (response) => {
-          if (response == 200) {
+          if (response) {
             this.router.navigateByUrl('/')
           }
         }

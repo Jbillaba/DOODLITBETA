@@ -1,4 +1,3 @@
-
 <div class="flex flex-col items-center">
   <h1 class="text-3xl"> {{user?.username}} </h1>
   <div class="flex-row text-2xl space-x-3">
@@ -26,15 +25,9 @@
   <div class="modal__inner" *ngFor="let follow of followers" >
     <label class="modal__close" for="modal-followers"></label>
     <h1> followers </h1>
-    
-    <div class="underline text-blue-700" >
+    <div class="underline text-blue-700" *ngIf="followers?.length > 0" >
      <a [routerLink]="['/profile', follow?.user_id]" (click)="uncheckStateBox()" > <h1> {{follow?.following_user}} </h1> </a>
     </div>
-  
-  </div>
-
-  <div class="modal__inner" *ngIf="followersLength == 0" >
-    <h2>no followers</h2>
   </div>
 </div>
 
@@ -47,10 +40,6 @@
     <div class="underline text-blue-700" *ngIf="following?.length > 0">
       <a [routerLink]="['/profile', follow?.following_id]" (click)="uncheckStateBox()" > <h1> {{follow?.username}} </h1> </a>
     </div>
-  </div>
-
-  <div class="modal__inner" *ngIf="followingLength == 0" >
-    <h2>no following</h2>
   </div>
 </div>
 
