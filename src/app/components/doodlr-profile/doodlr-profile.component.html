@@ -1,18 +1,17 @@
+<div class="flex flex-row justify-center">
+  <img src="{{user?.user_image}}" alt="profile image">
+</div>
 
-<div class="flex flex-col items-center">
-  <h1 class="text-3xl"> {{user?.username}} </h1>
-  <div class="flex-row text-2xl space-x-3">
+  <div class="flex-row text-2xl space-x-3 text-center">
+    <h1 class="text-3xl"> {{user?.username}} </h1>
     <label> {{user?.num_of_doodles}} doodles </label>
     <label class="cursor-pointer" for="modal-followers" (click)="getFollowers()" > {{user?.num_of_followers}} followers  </label>
     <label class="cursor-pointer" for="modal-following" (click)="getFollowing()" > {{user?.num_of_following}} following </label>
-  </div>
-  <div>
     <h3> started doodling: {{user?.account_created}} </h3>
   </div>
   <div>
     <h1 class="text-2xl" >{{user?.bio}}</h1>
   </div>
-</div>
 
 <div class="flex justify-center py-[1%]">
 <a [routerLink]="['/profile/edit']" > <button class="p-1 border-2 rounded bg-slate-300 border-slate-300 text-black "> edit profile </button> </a>
