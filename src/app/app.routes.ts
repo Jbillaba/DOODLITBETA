@@ -27,7 +27,7 @@ export const routes: Routes = [
     { path: 'profile/edit', component: EditPageComponent, canActivate:[OtpGuardService] },
     { path: 'profile', component: DoodlrProfileComponent, canActivate:[AuthGuardService] },
     { path: 'profile/:id', component: UsersProfileComponent },
-    { path: 'bookmarks', component: DoodleBookmarksComponent },
+    { path: 'bookmarks', component: DoodleBookmarksComponent, canActivate:[AuthGuardService]},
     { path: 'otp', component: OtpPageComponent },
     { path: '**', component: FourohfourPageComponent }
 ];

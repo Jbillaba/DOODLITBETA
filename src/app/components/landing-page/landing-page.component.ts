@@ -23,19 +23,28 @@ export class LandingPageComponent implements OnInit {
     this.renderDoodles()
   }
 
-  renderDoodles(){
+  public renderDoodles(){
     this.doodlrApiService.getDoodles().subscribe((response) => {
       this.doodles = response;
       this.doodlesLength = this.doodles.length;
     })
   }
 
-  postYeah(doodlURL: string,){
+  public postYeah(doodlURL: string){
     if (this.authService.isAuthenticated == true) {
       return this.doodlrApiService.postyeahs(doodlURL, this.Type).subscribe()
     }
     else {
       return this.router.navigateByUrl('/login');
+    }
+  }
+
+  public bookmarkDoodle(doodlURL: string){
+    if (this.authService.isAuthenticated == true) {
+     return console.log(`${doodlURL} bookmarked`)
+    }
+    else {
+      return this.router.navigateByUrl("/login");
     }
   }
 
