@@ -1,12 +1,15 @@
             <div *ngIf="isAuthenticated()" class="flex flex-row space-x-10">
-                <div routerLink="/profile" >
-                    <p>profile</p>
-                </div>
+               <div>
+                <p>search</p>
+               </div>
                 <div routerLink="" >
                     <a>Home</a>
                 </div>
                 <div routerLink="/doodle" >
                     <a> Doodle </a>
+                </div>
+                <div routerLink="/profile" >
+                    <p>profile</p>
                 </div>
                 <div (click)="authService.logout()" >
                     <p>Log out</p>

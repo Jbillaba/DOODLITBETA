@@ -4,12 +4,12 @@
                     <a [routerLink]="['/profile', doodle!.doodlr_id]" > <p>{{doodle.doodlr_username}} </p></a>
                     <p>{{doodle.created_on}}</p>
                </div>
-                    <p>{{doodle.title}}</p>
+                    <h1 class="text-xl">{{doodle.title}}</h1>
 
                     <a [routerLink]="['/doodle', doodle!.id]"> <img  class="doodle-image" src="{{doodle.image}}"/> </a>
                 <div class="doodle-engagement-container">
                     <div class="doodle-engagement-text">
-                        <p>{{doodle.tags}}</p>  
+                        <p>tags: {{doodle.tags}}</p>  
                         <p (click)="this.bookmarkDoodle(doodle.url)">bookmark</p>
                     </div>
                     <div class="doodle-yeahs">
