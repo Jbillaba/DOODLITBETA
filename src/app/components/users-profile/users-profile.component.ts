@@ -79,14 +79,14 @@ export class UsersProfileComponent {
 
   userFollowing(){
     this.doodlrApiService.getFollowing(this.id).subscribe((response) => {
-      this.followers = response;
+      this.following = response;
       this.followersLength = this.followers.length;
     })
   }
 
   userFollowers(){
     this.doodlrApiService.getFollowers(this.id).subscribe((response) => {
-      this.following = response;
+      this.followers = response;
       this.followingLength = this.following.length;
     })
   }

@@ -22,24 +22,32 @@
 <input class="modal-state" id="modal-followers" name="followers-check" type="checkbox" />
 <div class="modal">
   <label class="modal__bg" for="modal-followers"></label>
-  <div class="modal__inner" *ngFor="let follow of followers" >
+  <div class="modal__inner"  >
     <label class="modal__close" for="modal-followers"></label>
     <h1> followers </h1>
-    <div class="underline text-blue-700" *ngIf="followers?.length > 0" >
-     <a [routerLink]="['/profile', follow?.user_id]" (click)="uncheckStateBox()" > <h1> {{follow?.following_user}} </h1> </a>
+    <div class="underline text-blue-700" *ngFor="let follower of followers" >
+     <a [routerLink]="['/profile', follower?.user_id]" (click)="uncheckStateBox()" > <h1> {{follower?.username}} </h1> </a>
     </div>
+  </div>
+
+  <div class="modal__inner" *ngIf="followersLength == 0">
+    <h2>no followers</h2>
   </div>
 </div>
 
 <input class="modal-state" id="modal-following" name="following-check" type="checkbox" />
 <div class="modal">
   <label class="modal__bg" for="modal-following"></label>
-  <div class="modal__inner" *ngFor="let follow of following" >
+  <div class="modal__inner"  >
     <label class="modal__close" for="modal-following"></label>
     <h1> following </h1>
-    <div class="underline text-blue-700" *ngIf="following?.length > 0">
-      <a [routerLink]="['/profile', follow?.following_id]" (click)="uncheckStateBox()" > <h1> {{follow?.username}} </h1> </a>
+    <div class="underline text-blue-700" *ngFor="let followee of following" >
+      <a [routerLink]="['/profile', followee?.following_id]" (click)="uncheckStateBox()" > <h1> {{followee?.following_user}} </h1> </a>
     </div>
+  </div>
+
+   <div class="modal__inner" *ngIf="followingLength == 0" >
+    <h2> no following</h2>
   </div>
 </div>
 
