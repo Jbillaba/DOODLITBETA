@@ -3,12 +3,14 @@
     <div class=" justify-center flex flex-row space-x-[1%]">
         <a [routerLink]="['/profile', doodl?.doodlr_id]" > <h3>doodled by {{doodl?.doodlr_username}}</h3> </a>
         <h3>doodled {{doodl?.created_on}}</h3>
-        <label class="text-3xl cursor-pointer" *ngIf="this.authService.canEditPost" for="modal-edit" > ⁝ </label>
+        <label class="text-3xl cursor-pointer" *ngIf="this.authService.canEditPost" for="modal-edit" > edit </label>
     </div>
 
     <div class="m-auto border border-blue-600 object w-1/2 " >
         <img src="{{doodl?.image}}" >
         
+
+        <div>tags: {{doodl?.tags}}</div>
         <div class="flex justify-center space-x-2 border-2 border-lime-500 cursor-pointer ">
             <img src="https://i.imgur.com/etvXnO0.png" alt="happy yeah" (mouseover)="Type='HPY'" (click)="postYeah(doodl?.url)" > <p>{{doodl?.yeahs.hap}}</p>
             <img src="https://i.imgur.com/GB5baRB.png" alt="monotone yeah" (mouseover)="Type='NRM'" (click)="postYeah(doodl?.url)"  > <p>{{doodl?.yeahs.nrm}}</p>
