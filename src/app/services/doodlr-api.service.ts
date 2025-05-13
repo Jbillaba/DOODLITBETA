@@ -30,6 +30,7 @@ export class DoodlrApiService {
   private DELETE_ACCOUNT_ENDPOINT=this.BACKEND_URL + '/delete_account/'
   private OTP_ENDPOINT=this.BACKEND_URL + '/token/'
   private AUTHENTICATE_ENDPOINT=this.BACKEND_URL + '/authenticate/'
+  private BOOKMARK_ENDPOINT=this.BACKEND_URL + '/savedDoodles/'
 
   loggedIn(){
     return this.httpClient.get(this.LOGGED_IN_ENDPOINT,{withCredentials: true, observe: 'response'})
@@ -137,6 +138,10 @@ export class DoodlrApiService {
 
   authenticateOTP(form: FormData){
     return this.httpClient.patch(this.AUTHENTICATE_ENDPOINT, form)
+  }
+
+  bookmarkDoodle(form: FormData){
+    return this.httpClient.post(this.BOOKMARK_ENDPOINT, form)
   }
 
 }

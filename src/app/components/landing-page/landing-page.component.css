@@ -32,6 +32,7 @@
 
 .doodle-yeahs{
     display: flex;
+    cursor: pointer;
 }
 
 .doodle-bookmark{
