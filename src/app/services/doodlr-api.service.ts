@@ -140,8 +140,8 @@ export class DoodlrApiService {
     return this.httpClient.patch(this.AUTHENTICATE_ENDPOINT, form)
   }
 
-  bookmarkDoodle(form: FormData){
-    return this.httpClient.post(this.BOOKMARK_ENDPOINT, form)
+  bookmarkDoodle(doodle_id: string){
+    return this.httpClient.post(this.BOOKMARK_ENDPOINT, {doodle_id})
   }
 
 }

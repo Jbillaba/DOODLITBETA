@@ -52,9 +52,7 @@ export class DoodleFormComponent {
       this.createdDoodle = response
       this.navigateToCreated(this.createdDoodle.id)  
       }
-
     }  
-      
     )
   }
 

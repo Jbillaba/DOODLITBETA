@@ -16,7 +16,6 @@ export class LandingPageComponent implements OnInit {
   doodles: any;
   doodlesLength;
   Type: string = "NULL"
-  bookmarkForm = new FormData;
 
   constructor(private doodlrApiService: DoodlrApiService, private authService: AuthService, private router: Router){}
 
@@ -42,8 +41,7 @@ export class LandingPageComponent implements OnInit {
 
   public bookmarkDoodle(doodlID: string){
     if (this.authService.isAuthenticated == true) {
-     this.bookmarkForm.append('doodle_id', doodlID)
-     return this.doodlrApiService.bookmarkDoodle(this.bookmarkForm).subscribe()
+     return this.doodlrApiService.bookmarkDoodle(doodlID).subscribe()
     }
     else {
       return this.router.navigateByUrl("/login");
