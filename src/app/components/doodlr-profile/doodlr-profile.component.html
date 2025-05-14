@@ -12,8 +12,9 @@
     <h1 class="text-2xl" >{{user?.bio}}</h1>
   </div>
 
-<div class="flex justify-center py-[1%]">
+<div class="flex justify-center py-[1%] space-x-2">
 <a [routerLink]="['/profile/edit']" > <button class="p-1 border-2 rounded bg-slate-300 border-slate-300 text-black "> edit profile </button> </a>
+<a [routerLink]="['/bookmarks']" > <button class="p-1 border-2 rounded bg-slate-300 border-slate-300 text-black "> bookmarks </button> </a>
 </div>
 
 <input class="modal-state" id="modal-followers" name="followers-check" type="checkbox" />
