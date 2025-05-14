@@ -31,6 +31,7 @@ export class DoodlrApiService {
   private OTP_ENDPOINT=this.BACKEND_URL + '/token/'
   private AUTHENTICATE_ENDPOINT=this.BACKEND_URL + '/authenticate/'
   private BOOKMARK_ENDPOINT=this.BACKEND_URL + '/savedDoodles/'
+  private USER_BOOKMARKS_ENDPOINT=this.BACKEND_URL + '/current_bookmarks'
 
   loggedIn(){
     return this.httpClient.get(this.LOGGED_IN_ENDPOINT,{withCredentials: true, observe: 'response'})
@@ -142,6 +143,10 @@ export class DoodlrApiService {
 
   bookmarkDoodle(doodle_id: string){
     return this.httpClient.post(this.BOOKMARK_ENDPOINT, {doodle_id})
+  }
+
+  currentUserBookmarks(){
+    return this.httpClient.get(this.USER_BOOKMARKS_ENDPOINT)
   }
 
 }
