@@ -1,3 +1,29 @@
-<div class="text-center" >
-    <h1>here should be some bookmarks</h1>
+<div *ngFor="let bookmark of bookmarks" class="space-y-4">
+    <div class="doodle-container"  >
+       <div class="doodle-post-info">
+            <a [routerLink]="['/profile', bookmark!.doodlr_id]" > <p>{{bookmark.doodlr_username}} </p></a>
+            <p>{{bookmark.created_on}}</p>
+       </div>
+            <h1 class="text-xl">{{bookmark.title}}</h1>
+
+            <a [routerLink]="['/bookmark', bookmark!.id]"> <img  class="doodle-image" src="{{bookmark.image}}"/> </a>
+        <div class="doodle-engagement-container">
+            <div class="doodle-engagement-text">
+                <p>tags: {{bookmark.tags}}</p>  
+                <p (click)="this.bookmarkDoodle(bookmark.url)">bookmark</p>
+            </div>
+            <div class="doodle-yeahs">
+                <img src="https://i.imgur.com/etvXnO0.png" alt="happy yeah" (mouseover)="Type='HPY'" (click)="this.postYeah(bookmark.url)" > <p>{{bookmark.yeahs.hap}}</p>
+                <img src="https://i.imgur.com/GB5baRB.png" alt="monotone yeah" (mouseover)="Type='NRM'" (click)="this.postYeah(bookmark.url)"  > <p>{{bookmark.yeahs.nrm}}</p>
+                <img src="https://i.imgur.com/YNjTenA.png" alt="sad yeah" (mouseover)="Type='SAD'" (click)="this.postYeah(bookmark.url)" > <p>{{bookmark.yeahs.sad}}</p>
+                <img src="https://i.imgur.com/oIHbwwy.png" alt="confused yeah" (mouseover)="Type='CFD'" (click)="this.postYeah(bookmark.url)" > <p>{{bookmark.yeahs.cfd}}</p>
+            </div>
+           <a [routerLink]="['/doodle', bookmark!.id]"> <p class="doodle-comments">view all {{bookmark.num_of_comments}} comments..</p></a>
+        </div>
+    </div>
 </div>
+
+<div *ngIf="bookmarksLength == 0" class="no-doodles">
+<p>there are no doodles, get to drawing!!</p>
+</div>
+
