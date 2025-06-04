@@ -34,20 +34,20 @@
 </div>
 
 <div class="text-center py-[3%]" >
-    <h1>Comments </h1>
+    <h1 class="text-xl">Comments </h1>
     <form *ngIf="this.authService.isAuthenticated" [formGroup]="commentForm" (ngSubmit)="submitComment()">
-        <input type="text" placeholder="enter Comment" formControlName="text">
-        <input type="submit">
+        <input class="comment-input" type="text" placeholder="enter Comment" formControlName="text">
+        <input class="comment-submit" type="submit">
     </form>
    <a routerLink="/login" class="underline text-blue-600"> <h2 *ngIf="!this.authService.isAuthenticated" > Log In to make a comment </h2> </a>
 </div>
 
 <div class="text-center">
     <div *ngFor="let comment of comments">
-        <div class="">
-            <p>{{comment.text}}</p>
-            <div class="">
-                <p>{{comment.author}}</p>
+        <div class="comment-box">
+            <p class="text-xl">{{comment.text}}</p>
+            <div class="comment-info space-x-2">
+                <a [routerLink]="['/profile', comment.author]" ><p>{{comment.author}}</p></a>
                 <p>{{comment.created_on}}</p>
             </div>
         </div>

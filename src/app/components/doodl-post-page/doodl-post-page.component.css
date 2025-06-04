@@ -80,3 +80,39 @@
 .modal__close:before {
     transform: rotate(-45deg);
 }
+
+.comment-box {
+    text-align: left;
+    width: 50%;
+    margin:auto;
+    padding: 1%;
+}
+
+.comment-info {
+    display: flex;
+}
+
+.comment-input {
+    border-bottom: 2px solid #000;
+    width: 75%;
+    outline: none;
+}
+
+.comment-input:focus {
+    border-color: blue;
+}
+
+.comment-submit {
+    display: none;
+    border: 2px solid #2F3C7E;
+    background-color: #2F3C7E;
+    color: white;
+    padding: 8px;
+    border-radius: 15px;
+}
+
+
+.comment-input:focus + .comment-submit {
+    display: block;
+    justify-content: end;
+}
