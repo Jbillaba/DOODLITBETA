@@ -10,7 +10,7 @@
                 <div class="doodle-engagement-container">
                     <div class="doodle-engagement-text">
                         <p>tags: {{doodle.tags}}</p>  
-                        <p (click)="this.bookmarkDoodle(doodle.url)">bookmark</p>
+                        <img class="bookmark-svg"  src="assets/bookmark-svgrepo-com.svg" (click)="this.bookmarkDoodle(doodle.url)">
                     </div>
                     <div class="doodle-yeahs">
                         <img src="https://i.imgur.com/etvXnO0.png" alt="happy yeah" (mouseover)="Type='HPY'" (click)="this.postYeah(doodle.url)" > <p>{{doodle.yeahs.hap}}</p>

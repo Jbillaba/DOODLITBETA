@@ -1,3 +1,5 @@
+<h1 class="text-center text-3xl" > Your bookmarks</h1>
+
 <div *ngFor="let bookmark of bookmarks" class="space-y-4">
     <div class="doodle-container"  >
        <div class="doodle-post-info">
@@ -10,7 +12,7 @@
         <div class="doodle-engagement-container">
             <div class="doodle-engagement-text">
                 <p>tags: {{bookmark.tags}}</p>  
-                <p (click)="this.bookmarkDoodle(bookmark.url)">bookmark</p>
+                <img src="../assets/bookmark.svg" (click)="this.bookmarkDoodle(bookmark.url)">
             </div>
             <div class="doodle-yeahs">
                 <img src="https://i.imgur.com/etvXnO0.png" alt="happy yeah" (mouseover)="Type='HPY'" (click)="this.postYeah(bookmark.url)" > <p>{{bookmark.yeahs.hap}}</p>
