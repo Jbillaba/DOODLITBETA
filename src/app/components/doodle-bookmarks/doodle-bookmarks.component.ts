@@ -26,7 +26,6 @@ Type: string = "NULL"
     this.doodlrApiService.currentUserBookmarks().subscribe((response) => {
       this.bookmarks = response;
       this.bookmarksLength = this.bookmarks.length;
-      console.log(this.bookmarks)
     })
   }
 
