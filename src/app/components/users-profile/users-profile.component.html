@@ -55,17 +55,29 @@
 
 
 <div class="flex flex-col justify-center items-center py-[2%]" >
-  <div class="border-2 border-indigo-500" *ngFor="let doodle of doodles" >
-    <h1> {{doodle?.doodlr_username}}  &#9679; {{doodle?.created_on}}  </h1>
-    <p> {{doodle?.title}} </p>
-    <a [routerLink]="['/doodle', doodle!.id]"> <img src="{{doodle.image}}" class="border-2 border-rose-500" /> </a>
-    <div class="flex justify-center space-x-2 border-2 border-lime-500 cursor-pointer ">
-    <img src="https://i.imgur.com/etvXnO0.png" alt="happy yeah"> <p> {{doodle?.yeahs.hap}} </p>
-    <img src="https://i.imgur.com/GB5baRB.png" alt="monotone yeah"> <p> {{doodle?.yeahs.nrm}} </p>
-    <img src="https://i.imgur.com/YNjTenA.png" alt="sad yeah"> <p> {{doodle?.yeahs.sad}} </p>
-    <img src="https://i.imgur.com/oIHbwwy.png" alt="confused yeah"> <p> {{doodle?.yeahs.cfd}} </p>
-  </div>
-  </div>
+  <div *ngFor="let doodle of doodles" >
+    <div class="doodle-container"  >
+      <div class="doodle-post-info">
+           <a [routerLink]="['/profile', doodle!.doodlr_id]" > <p>{{doodle.doodlr_username}} </p></a>
+           <p>{{doodle.created_on}}</p>
+      </div>
+           <h1 class="text-xl">{{doodle.title}}</h1>
+  
+           <a [routerLink]="['/doodle', doodle!.id]"> <img  class="doodle-image" src="{{doodle.image}}"/> </a>
+       <div class="doodle-engagement-container">
+           <div class="doodle-engagement-text">
+               <p>tags: {{doodle.tags}}</p>  
+               <img class="bookmark-svg"  src="assets/bookmark-svgrepo-com.svg" (click)="this.bookmarkDoodle(doodle.url)">
+           </div>
+           <div class="doodle-yeahs">
+               <img src="https://i.imgur.com/etvXnO0.png" alt="happy yeah" (mouseover)="Type='HPY'" (click)="this.postYeah(doodle.url)" > <p>{{doodle.yeahs.hap}}</p>
+               <img src="https://i.imgur.com/GB5baRB.png" alt="monotone yeah" (mouseover)="Type='NRM'" (click)="this.postYeah(doodle.url)"  > <p>{{doodle.yeahs.nrm}}</p>
+               <img src="https://i.imgur.com/YNjTenA.png" alt="sad yeah" (mouseover)="Type='SAD'" (click)="this.postYeah(doodle.url)" > <p>{{doodle.yeahs.sad}}</p>
+               <img src="https://i.imgur.com/oIHbwwy.png" alt="confused yeah" (mouseover)="Type='CFD'" (click)="this.postYeah(doodle.url)" > <p>{{doodle.yeahs.cfd}}</p>
+           </div>
+          <a [routerLink]="['/doodle', doodle!.id]"> <p class="doodle-comments">view all {{doodle.num_of_comments}} comments..</p></a>
+       </div>
+   </div>
 
   <div *ngIf="doodlesLength == 0">
     <h2>this user has no doodles</h2>

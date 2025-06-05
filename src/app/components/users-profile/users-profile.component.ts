@@ -25,6 +25,8 @@ export class UsersProfileComponent {
   following_obj: any; // this is declared in the isFollowing function to set the follow id to following_id to delete it
   isFollowing: boolean = false;
   isUser: boolean;
+  Type: string = "NULL"
+
   constructor(private doodlrApiService: DoodlrApiService,
               private route: ActivatedRoute,
               private authService: AuthService,
@@ -107,6 +109,24 @@ export class UsersProfileComponent {
     }
     else {
       this.isUser = false
+    }
+  }
+
+  public bookmarkDoodle(doodlID: string){
+    if (this.authService.isAuthenticated == true) {
+     return this.doodlrApiService.bookmarkDoodle(doodlID).subscribe()
+    }
+    else {
+      return this.router.navigateByUrl("/login");
+    }
+  }
+
+  public postYeah(doodlURL: string){
+    if (this.authService.isAuthenticated == true) {
+      return this.doodlrApiService.postyeahs(doodlURL, this.Type).subscribe()
+    }
+    else {
+      return this.router.navigateByUrl('/login');
     }
   }
 

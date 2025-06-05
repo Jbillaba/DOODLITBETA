@@ -1,6 +1,6 @@
 import { Component  } from '@angular/core';
 import { DoodlrApiService } from '../../services/doodlr-api.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 
@@ -13,7 +13,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class DoodlrProfileComponent{
   constructor(private doodlrApiService: DoodlrApiService,
-              private authService: AuthService) {}
+              private authService: AuthService,
+              private router: Router) {}
   user: any;
   doodles: any;
   pinned_doodle: any;
@@ -22,6 +23,7 @@ export class DoodlrProfileComponent{
   followersLength;
   following: any;
   followingLength;
+  Type: string = "NULL"
 
   ngOnInit(){
     this.getUser()
@@ -58,6 +60,24 @@ export class DoodlrProfileComponent{
     if(followingBox.checked || followerBox.checked == true ){
       followingBox.checked = false;
       followerBox.checked = false;
+    }
+  }
+
+  public bookmarkDoodle(doodlID: string){
+    if (this.authService.isAuthenticated == true) {
+     return this.doodlrApiService.bookmarkDoodle(doodlID).subscribe()
+    }
+    else {
+      return this.router.navigateByUrl("/login");
+    }
+  }
+
+  public postYeah(doodlURL: string){
+    if (this.authService.isAuthenticated == true) {
+      return this.doodlrApiService.postyeahs(doodlURL, this.Type).subscribe()
+    }
+    else {
+      return this.router.navigateByUrl('/login');
     }
   }
 
