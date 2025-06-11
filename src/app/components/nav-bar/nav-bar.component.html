@@ -1,4 +1,4 @@
-            <div *ngIf="isAuthenticated()" class="flex flex-row space-x-10">
+            <div *ngIf="isAuthenticated()" class="nav-container">
                <div>
                 <p>search</p>
                </div>
@@ -16,7 +16,7 @@
                 </div>
             </div>
 
-            <div *ngIf="!isAuthenticated()" class="flex flex-row">
+            <div *ngIf="!isAuthenticated()" class="nav-container">
                 <div class=" p-4 hover:bg-slate-500"  routerLink="" >
                     <a>Home</a>
                 </div>
