@@ -1,12 +1,7 @@
 <div class="drawing-container" >
 
     <div class="container-top space-x-[50%]" >
-        <div class="palette">
-            <h2>palette placeholder</h2>
-        </div>
-        <div class="post-button">
-            <button (click)="takeToForm()" id="post" > post </button>
-        </div>
+        <img class="icons cursor-pointer" (click)="takeToForm()" src="assets/drawing-component/post_icon.png" alt="">
     </div>
     
     <div class="canvas-container">
@@ -17,9 +12,9 @@
 
     <div class="tools">
         <div class="space-x-[50%] flex cursor-pointer">
-            <h2 (click)="switchToPencil()" >pencil</h2>
-            <h2>undo</h2>
-            <h2 (click)="clearCanvas()" > clear </h2>
+            <img class="icons" src="assets/drawing-component/pencil-icon.png" alt="">
+            <img class="icons" src="assets/drawing-component/undo_icon.png" alt="">
+            <img class="icons" (click)="clearCanvas()" src="assets/drawing-component/clear_icon.png" alt="">
         </div>
         
     </div>
